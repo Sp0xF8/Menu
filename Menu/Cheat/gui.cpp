@@ -4,6 +4,7 @@
 #include "../Imgui/imgui.h"
 #include "../Imgui/imgui_impl_dx9.h"
 #include "../Imgui/imgui_impl_win32.h"
+#include "../Imgui/imguipp.h"
 
 
 
@@ -291,18 +292,48 @@ void gui::Menu() noexcept
 	{
 		//left
 
+		static ImVec4 active = imguipp::to_vec4(186, 2, 75, 255);
+		static ImVec4 inactive = imguipp::to_vec4(79, 1, 32, 255);
+		
+		ImGui::Spacing();
+		ImGui::Spacing();
+
+		ImGui::PushStyleColor(ImGuiCol_Button, config.Tab == 1 ? active : inactive);
 		if (ImGui::Button(" Legit ", ImVec2(230 - 15, 40)))
 			config.Tab = 1;
+
+		ImGui::Spacing();
+		ImGui::Spacing();
+		ImGui::PushStyleColor(ImGuiCol_Button, config.Tab == 2 ? active : inactive);
 		if (ImGui::Button(" Rage ", ImVec2(230 - 15, 40)))
 			config.Tab = 2;
+
+		ImGui::Spacing();
+		ImGui::Spacing();
+		ImGui::PushStyleColor(ImGuiCol_Button, config.Tab == 3 ? active : inactive);
 		if (ImGui::Button(" Visuals ", ImVec2(230 - 15, 40)))
 			config.Tab = 3;
+
+		ImGui::Spacing();
+		ImGui::Spacing();
+		ImGui::PushStyleColor(ImGuiCol_Button, config.Tab == 4 ? active : inactive);
 		if (ImGui::Button(" Misc ", ImVec2(230 - 15, 40)))
 			config.Tab = 4;
+
+		ImGui::Spacing();
+		ImGui::Spacing();
+		ImGui::PushStyleColor(ImGuiCol_Button, config.Tab == 5 ? active : inactive);
 		if (ImGui::Button(" Skin ", ImVec2(230 - 15, 40)))
 			config.Tab = 5;
+
+		ImGui::Spacing();
+		ImGui::Spacing();
+		ImGui::PushStyleColor(ImGuiCol_Button, config.Tab == 6 ? active : inactive);
 		if (ImGui::Button(" Config ", ImVec2(230 - 15, 40)))
 			config.Tab = 6;
+
+		ImGui::Spacing();
+		ImGui::Spacing();
 	}
 
 	ImGui::NextColumn();;
