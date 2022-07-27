@@ -203,7 +203,6 @@ void gui::CreateImGui() noexcept
 	ImGui::CreateContext();
 	ImGuiIO& io = ::ImGui::GetIO();
 	io.IniFilename = NULL;
-	io.Fonts->AddFontFromFileTTF("../Fonts/Oswald-Light.ttf", 12);
 
 	ImGui::StyleColorsDark();
 
@@ -272,6 +271,8 @@ void gui::Theme() noexcept
 	style->WindowMinSize = ImVec2(WIDTH, HEIGHT);
 
 	style->FramePadding = ImVec2(8, 6);
+
+	
 	
 	style->Colors[ImGuiCol_TitleBg] = ImColor(config.titleBg.r, config.titleBg.g, config.titleBg.b, config.titleBg.a);
 	style->Colors[ImGuiCol_TitleBgActive] = ImColor(config.titleBgActive.r, config.titleBgActive.g, config.titleBgActive.b, config.titleBgActive.a);
@@ -281,11 +282,19 @@ void gui::Theme() noexcept
 	style->Colors[ImGuiCol_ButtonHovered] = ImColor(config.buttonHovered.r, config.buttonHovered.g, config.buttonHovered.b, config.buttonHovered.a);
 	style->Colors[ImGuiCol_ButtonActive] = ImColor(config.buttonActive.r, config.buttonActive.g, config.buttonActive.b, config.buttonActive.a);
 	
+	style->Colors[ImGuiCol_Separator] = ImColor(config.separator.r, config.separator.g, config.separator.b, config.separator.a);
+	style->Colors[ImGuiCol_SeparatorHovered] = ImColor(config.separatorHovered.r, config.separatorHovered.g, config.separatorHovered.b, config.separatorHovered.a);
+	style->Colors[ImGuiCol_SeparatorActive] = ImColor(config.separatorActive.r, config.separatorActive.g, config.separatorActive.b, config.separatorActive.a);
+	
 	
 }
 
 void gui::Menu() noexcept
 {
+	ImGuiIO& io = ::ImGui::GetIO();
+	ImFont* mainFont = io.Fonts->AddFontFromFileTTF("../Fonts/Oswald-Medium.ttf", 15, NULL, io.Fonts->GetGlyphRangesJapanese());
+	IM_ASSERT(mainFont != NULL);
+
 	ImGui::Columns(2);
 	ImGui::SetColumnOffset(1, 230);
 	
@@ -294,6 +303,7 @@ void gui::Menu() noexcept
 		static ImVec4 active = imguipp::to_vec4(config.buttonActive.r, config.buttonActive.g, config.buttonActive.b, config.buttonActive.a);
 		static ImVec4 inactive = imguipp::to_vec4(config.button.r, config.button.g, config.button.b, config.button.a);
 		
+		ImGui::PushFont(mainFont);
 		
 		ImGui::Spacing();
 		ImGui::Spacing();
@@ -329,11 +339,18 @@ void gui::Menu() noexcept
 		ImGui::Spacing();
 		ImGui::Spacing();
 		ImGui::PushStyleColor(ImGuiCol_Button, config.Tab == 6 ? active : inactive);
-		if (ImGui::Button(" Config ", ImVec2(230 - 15, 40)))
+		if (ImGui::Button(" Settings ", ImVec2(230 - 15, 40)))
 			config.Tab = 6;
 
 		ImGui::Spacing();
 		ImGui::Spacing();
+		
+		ImGui::PopStyleColor(6);
+		
+		ImGui::SetCursorPosY(ImGui::GetWindowHeight() - 30);
+		imguipp::center_text_ex("Version 0.0.1", 230, 1, false);
+
+		ImGui::PopFont();
 	}
 
 	ImGui::NextColumn();;
@@ -341,6 +358,12 @@ void gui::Menu() noexcept
 	{
 
 		//right
+
+		switch (config.Tab) {
+		case 1:
+			//Legit Bot
+			break;
+		}
 	}
 	
 }

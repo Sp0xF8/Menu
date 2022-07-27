@@ -5,6 +5,7 @@
 #include "../Imgui/imgui_impl_dx9.h"
 #include "../Imgui/imgui_impl_win32.h"
 #include "../Imgui/imguipp.h"
+#include <string>
 
 struct Colour {
 	int r, g, b, a = 255;
@@ -13,7 +14,7 @@ struct Colour {
 class Config {
 public:
 	int Tab;
-	
+	float version = 0.1;
 	
 	//LegitBot Settings
 
@@ -46,7 +47,9 @@ public:
 	Colour buttonHovered = { 31, 30, 31, 150 };
 	Colour buttonActive = { 186, 2, 75, 255 };
 	
-	
+	Colour separator = { 79, 1, 32, 255 };
+	Colour separatorHovered = { 31, 30, 31, 150 };
+	Colour separatorActive = { 186, 2, 75, 255 };
 	
 
 	
