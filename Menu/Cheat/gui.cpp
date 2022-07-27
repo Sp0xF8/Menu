@@ -1,8 +1,12 @@
 #include "gui.h"
+#include "Config.h"
 
 #include "../Imgui/imgui.h"
 #include "../Imgui/imgui_impl_dx9.h"
 #include "../Imgui/imgui_impl_win32.h"
+
+
+Config config;
 
 
 extern IMGUI_IMPL_API LRESULT ImGui_ImplWin32_WndProcHandler(
@@ -197,6 +201,7 @@ void gui::CreateImGui() noexcept
 	ImGui::CreateContext();
 	ImGuiIO& io = ::ImGui::GetIO();
 	io.IniFilename = NULL;
+	io.Fonts->AddFontFromFileTTF("../Fonts/Oswald-Light.ttf", 12);
 
 	ImGui::StyleColorsDark();
 
@@ -266,9 +271,16 @@ void gui::Theme() noexcept
 
 	style->FramePadding = ImVec2(8, 6);
 	
-	style->Colors[ImGuiCol_TitleBg] = ImColor(106, 0, 192, 255);
-	style->Colors[ImGuiCol_TitleBgActive] = ImColor(106, 0, 192, 255);
-	style->Colors[ImGuiCol_TitleBgCollapsed] = ImColor(0, 0, 0, 130);
+	style->Colors[ImGuiCol_TitleBg] = ImColor(config.titleBg);
+	style->Colors[ImGuiCol_TitleBgActive] = ImColor(config.titleBgActive);
+	style->Colors[ImGuiCol_TitleBgCollapsed] = ImColor(config.titleBgCollapsed);
+
+	style->Colors[ImGuiCol_Button] = ImColor(0, 0, 0, 0);
+	style->Colors[ImGuiCol_ButtonHovered] = ImColor(0, 0, 0, 0);
+	style->Colors[ImGuiCol_ButtonActive] = ImColor(0, 0, 0, 0);
+	
+	style->Colors[ImGuiCol_CheckMark] = ImColor(0, 0, 0, 0);
+	
 }
 
 
