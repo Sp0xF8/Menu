@@ -33,8 +33,12 @@ namespace gui {
 	
 	void BeginRender() noexcept;
 	void EndRender() noexcept;
+
+	void Menu() noexcept;
 	
 	void Theme() noexcept;
+	
+
 	
 	void Render() noexcept;
 	

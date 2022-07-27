@@ -133,6 +133,7 @@
     <ClInclude Include="Cheat\gui.h" />
     <ClInclude Include="Imgui\imconfig.h" />
     <ClInclude Include="Imgui\imgui.h" />
+    <ClInclude Include="Imgui\imguipp.h" />
     <ClInclude Include="Imgui\imgui_impl_dx9.h" />
     <ClInclude Include="Imgui\imgui_impl_win32.h" />
     <ClInclude Include="Imgui\imgui_internal.h" />
@@ -145,6 +146,7 @@
     <ClCompile Include="Cheat\gui.cpp" />
     <ClCompile Include="Cheat\main.cpp" />
     <ClCompile Include="Imgui\imgui.cpp" />
+    <ClCompile Include="Imgui\imguipp.cpp" />
     <ClCompile Include="Imgui\imgui_demo.cpp" />
     <ClCompile Include="Imgui\imgui_draw.cpp" />
     <ClCompile Include="Imgui\imgui_impl_dx9.cpp" />

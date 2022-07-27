@@ -4,6 +4,8 @@
 #include "../Imgui/imgui.h"
 #include "../Imgui/imgui_impl_dx9.h"
 #include "../Imgui/imgui_impl_win32.h"
+#include "../Imgui/imguipp.h"
+
 
 
 Config config;
@@ -271,15 +273,75 @@ void gui::Theme() noexcept
 
 	style->FramePadding = ImVec2(8, 6);
 	
-	style->Colors[ImGuiCol_TitleBg] = ImColor(config.titleBg);
-	style->Colors[ImGuiCol_TitleBgActive] = ImColor(config.titleBgActive);
-	style->Colors[ImGuiCol_TitleBgCollapsed] = ImColor(config.titleBgCollapsed);
+	style->Colors[ImGuiCol_TitleBg] = ImColor(config.titleBg.r, config.titleBg.g, config.titleBg.b, config.titleBg.a);
+	style->Colors[ImGuiCol_TitleBgActive] = ImColor(config.titleBgActive.r, config.titleBgActive.g, config.titleBgActive.b, config.titleBgActive.a);
+	style->Colors[ImGuiCol_TitleBgCollapsed] = ImColor(config.titleBgCollapsed.r, config.titleBgCollapsed.g, config.titleBgCollapsed.b, config.titleBgCollapsed.a);
 
-	style->Colors[ImGuiCol_Button] = ImColor(0, 0, 0, 0);
-	style->Colors[ImGuiCol_ButtonHovered] = ImColor(0, 0, 0, 0);
-	style->Colors[ImGuiCol_ButtonActive] = ImColor(0, 0, 0, 0);
+	style->Colors[ImGuiCol_Button] = ImColor(config.button.r, config.button.g, config.button.b, config.button.a);
+	style->Colors[ImGuiCol_ButtonHovered] = ImColor(config.buttonHovered.r, config.buttonHovered.g, config.buttonHovered.b, config.buttonHovered.a);
+	style->Colors[ImGuiCol_ButtonActive] = ImColor(config.buttonActive.r, config.buttonActive.g, config.buttonActive.b, config.buttonActive.a);
 	
-	style->Colors[ImGuiCol_CheckMark] = ImColor(0, 0, 0, 0);
+	
+}
+
+void gui::Menu() noexcept
+{
+	ImGui::Columns(2);
+	ImGui::SetColumnOffset(1, 230);
+	
+	{
+		//left
+		static ImVec4 active = imguipp::to_vec4(config.buttonActive.r, config.buttonActive.g, config.buttonActive.b, config.buttonActive.a);
+		static ImVec4 inactive = imguipp::to_vec4(config.button.r, config.button.g, config.button.b, config.button.a);
+		
+		
+		ImGui::Spacing();
+		ImGui::Spacing();
+
+		ImGui::PushStyleColor(ImGuiCol_Button, config.Tab == 1 ? active : inactive);
+		if (ImGui::Button(" Legit ", ImVec2(230 - 15, 40)))
+			config.Tab = 1;
+
+		ImGui::Spacing();
+		ImGui::Spacing();
+		ImGui::PushStyleColor(ImGuiCol_Button, config.Tab == 2 ? active : inactive);
+		if (ImGui::Button(" Rage ", ImVec2(230 - 15, 40)))
+			config.Tab = 2;
+
+		ImGui::Spacing();
+		ImGui::Spacing();
+		ImGui::PushStyleColor(ImGuiCol_Button, config.Tab == 3 ? active : inactive);
+		if (ImGui::Button(" Visuals ", ImVec2(230 - 15, 40)))
+			config.Tab = 3;
+
+		ImGui::Spacing();
+		ImGui::Spacing();
+		ImGui::PushStyleColor(ImGuiCol_Button, config.Tab == 4 ? active : inactive);
+		if (ImGui::Button(" Misc ", ImVec2(230 - 15, 40)))
+			config.Tab = 4;
+
+		ImGui::Spacing();
+		ImGui::Spacing();
+		ImGui::PushStyleColor(ImGuiCol_Button, config.Tab == 5 ? active : inactive);
+		if (ImGui::Button(" Skin ", ImVec2(230 - 15, 40)))
+			config.Tab = 5;
+
+		ImGui::Spacing();
+		ImGui::Spacing();
+		ImGui::PushStyleColor(ImGuiCol_Button, config.Tab == 6 ? active : inactive);
+		if (ImGui::Button(" Config ", ImVec2(230 - 15, 40)))
+			config.Tab = 6;
+
+		ImGui::Spacing();
+		ImGui::Spacing();
+	}
+
+	ImGui::NextColumn();;
+	
+	{
+
+		//right
+	}
 	
 }
 
@@ -292,10 +354,15 @@ void gui::Render() noexcept
 	
 	ImGui::Begin(
 		"Re-ReVoid",
-		&exit,
+		0,
 		ImGuiWindowFlags_NoScrollbar |
-		ImGuiWindowFlags_NoSavedSettings 
+		ImGuiWindowFlags_NoSavedSettings |
+		ImGuiWindowFlags_NoCollapse
+		
 	);
+	{
+		gui::Menu();
+	}
 
 	ImGui::End();
 }
