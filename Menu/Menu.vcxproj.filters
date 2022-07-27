@@ -42,6 +42,9 @@
     <ClInclude Include="Cheat\gui.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Cheat\Config.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Imgui\imgui.cpp">
@@ -71,5 +74,12 @@
     <ClCompile Include="Cheat\gui.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Cheat\Config.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Font Include="Fonts\Oswald-Light.ttf" />
+    <Font Include="Fonts\Oswald-Medium.ttf" />
   </ItemGroup>
 </Project>
