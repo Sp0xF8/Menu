@@ -1,7 +1,10 @@
 #pragma once
+#include "gui.h"
+
 #include "../Imgui/imgui.h"
 #include "../Imgui/imgui_impl_dx9.h"
 #include "../Imgui/imgui_impl_win32.h"
+#include "../Imgui/imguipp.h"
 
 struct Colour {
 	int r, g, b, a = 255;
@@ -9,7 +12,8 @@ struct Colour {
 
 class Config {
 public:
-	int Tab = 0;
+	int Tab;
+	
 	
 	//LegitBot Settings
 
@@ -33,13 +37,17 @@ public:
 	
 	//Config Settings
 	
-	ImVec4 titleBg = { 82, 0, 122, 255 };
-	ImVec4 titleBgActive = { 82, 0, 122, 255 };
-	ImVec4 titleBgCollapsed = { 0, 0, 0, 255 };
+	
+	Colour titleBg = { 82, 0, 122, 255 };
+	Colour titleBgActive = { 82, 0, 122, 255 };
+	Colour titleBgCollapsed = { 0, 0, 0, 255 };
 
-	ImVec4 button = { 31, 30, 31, 150 };
-	ImVec4 buttonHovered = { 31, 30, 31, 150 };
-	ImVec4 buttonActive = { 41, 40, 41, 150 };
+	Colour button = { 79, 1, 32, 255 };
+	Colour buttonHovered = { 31, 30, 31, 150 };
+	Colour buttonActive = { 186, 2, 75, 255 };
+	
+	
+	
 
 	
 };

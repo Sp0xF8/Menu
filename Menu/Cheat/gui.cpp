@@ -273,13 +273,13 @@ void gui::Theme() noexcept
 
 	style->FramePadding = ImVec2(8, 6);
 	
-	style->Colors[ImGuiCol_TitleBg] = ImColor(config.titleBg);
-	style->Colors[ImGuiCol_TitleBgActive] = ImColor(config.titleBgActive);
-	style->Colors[ImGuiCol_TitleBgCollapsed] = ImColor(config.titleBgCollapsed);
+	style->Colors[ImGuiCol_TitleBg] = ImColor(config.titleBg.r, config.titleBg.g, config.titleBg.b, config.titleBg.a);
+	style->Colors[ImGuiCol_TitleBgActive] = ImColor(config.titleBgActive.r, config.titleBgActive.g, config.titleBgActive.b, config.titleBgActive.a);
+	style->Colors[ImGuiCol_TitleBgCollapsed] = ImColor(config.titleBgCollapsed.r, config.titleBgCollapsed.g, config.titleBgCollapsed.b, config.titleBgCollapsed.a);
 
-	style->Colors[ImGuiCol_Button] = ImColor(31, 30, 31, 150);
-	style->Colors[ImGuiCol_ButtonHovered] = ImColor(31, 30, 31, 150);
-	style->Colors[ImGuiCol_ButtonActive] = ImColor(41, 40, 41, 150);
+	style->Colors[ImGuiCol_Button] = ImColor(config.button.r, config.button.g, config.button.b, config.button.a);
+	style->Colors[ImGuiCol_ButtonHovered] = ImColor(config.buttonHovered.r, config.buttonHovered.g, config.buttonHovered.b, config.buttonHovered.a);
+	style->Colors[ImGuiCol_ButtonActive] = ImColor(config.buttonActive.r, config.buttonActive.g, config.buttonActive.b, config.buttonActive.a);
 	
 	
 }
@@ -291,9 +291,9 @@ void gui::Menu() noexcept
 	
 	{
 		//left
-
-		static ImVec4 active = imguipp::to_vec4(186, 2, 75, 255);
-		static ImVec4 inactive = imguipp::to_vec4(79, 1, 32, 255);
+		static ImVec4 active = imguipp::to_vec4(config.buttonActive.r, config.buttonActive.g, config.buttonActive.b, config.buttonActive.a);
+		static ImVec4 inactive = imguipp::to_vec4(config.button.r, config.button.g, config.button.b, config.button.a);
+		
 		
 		ImGui::Spacing();
 		ImGui::Spacing();
@@ -354,9 +354,11 @@ void gui::Render() noexcept
 	
 	ImGui::Begin(
 		"Re-ReVoid",
-		&exit,
+		0,
 		ImGuiWindowFlags_NoScrollbar |
-		ImGuiWindowFlags_NoSavedSettings 
+		ImGuiWindowFlags_NoSavedSettings |
+		ImGuiWindowFlags_NoCollapse
+		
 	);
 	{
 		gui::Menu();
