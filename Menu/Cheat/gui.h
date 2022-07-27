@@ -36,6 +36,8 @@ namespace gui {
 	
 	void Theme() noexcept;
 	
+	void Menu() noexcept;
+	
 	void Render() noexcept;
 	
 	

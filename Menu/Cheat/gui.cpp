@@ -6,6 +6,7 @@
 #include "../Imgui/imgui_impl_win32.h"
 
 
+
 Config config;
 
 
@@ -275,11 +276,41 @@ void gui::Theme() noexcept
 	style->Colors[ImGuiCol_TitleBgActive] = ImColor(config.titleBgActive);
 	style->Colors[ImGuiCol_TitleBgCollapsed] = ImColor(config.titleBgCollapsed);
 
-	style->Colors[ImGuiCol_Button] = ImColor(0, 0, 0, 0);
-	style->Colors[ImGuiCol_ButtonHovered] = ImColor(0, 0, 0, 0);
-	style->Colors[ImGuiCol_ButtonActive] = ImColor(0, 0, 0, 0);
+	style->Colors[ImGuiCol_Button] = ImColor(31, 30, 31, 150);
+	style->Colors[ImGuiCol_ButtonHovered] = ImColor(31, 30, 31, 150);
+	style->Colors[ImGuiCol_ButtonActive] = ImColor(41, 40, 41, 150);
 	
-	style->Colors[ImGuiCol_CheckMark] = ImColor(0, 0, 0, 0);
+	
+}
+
+void gui::Menu() noexcept
+{
+	ImGui::Columns(2);
+	ImGui::SetColumnOffset(1, 230);
+	
+	{
+		//left
+
+		if (ImGui::Button(" Legit ", ImVec2(230 - 15, 40)))
+			config.Tab = 1;
+		if (ImGui::Button(" Rage ", ImVec2(230 - 15, 40)))
+			config.Tab = 2;
+		if (ImGui::Button(" Visuals ", ImVec2(230 - 15, 40)))
+			config.Tab = 3;
+		if (ImGui::Button(" Misc ", ImVec2(230 - 15, 40)))
+			config.Tab = 4;
+		if (ImGui::Button(" Skin ", ImVec2(230 - 15, 40)))
+			config.Tab = 5;
+		if (ImGui::Button(" Config ", ImVec2(230 - 15, 40)))
+			config.Tab = 6;
+	}
+
+	ImGui::NextColumn();;
+	
+	{
+
+		//right
+	}
 	
 }
 
@@ -296,6 +327,9 @@ void gui::Render() noexcept
 		ImGuiWindowFlags_NoScrollbar |
 		ImGuiWindowFlags_NoSavedSettings 
 	);
+	{
+		gui::Menu();
+	}
 
 	ImGui::End();
 }

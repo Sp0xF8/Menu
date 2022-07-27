@@ -9,6 +9,8 @@ struct Colour {
 
 class Config {
 public:
+	int Tab = 0;
+	
 	//LegitBot Settings
 
 
@@ -34,7 +36,10 @@ public:
 	ImVec4 titleBg = { 82, 0, 122, 255 };
 	ImVec4 titleBgActive = { 82, 0, 122, 255 };
 	ImVec4 titleBgCollapsed = { 0, 0, 0, 255 };
-	ImVec4 titleText = { 255, 255, 255, 255 };
+
+	ImVec4 button = { 31, 30, 31, 150 };
+	ImVec4 buttonHovered = { 31, 30, 31, 150 };
+	ImVec4 buttonActive = { 41, 40, 41, 150 };
 
 	
 };
