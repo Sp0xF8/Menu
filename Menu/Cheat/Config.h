@@ -158,6 +158,8 @@ namespace Config {
 			float titleBgActive[4] = { 0.32f, 0, 0.47f, 1.0f };
 			float titleBgCollapsed[4] = { 0, 0, 0, 1.0f };
 
+			float textCol1[4] = { 1.0f, 1.0f, 1.0f, 1.0f };
+
 			float button[4] = { 0.30f, 0, 0.13f, 1.0f };
 			float buttonHovered[4] = { 0.12f, 0.11f, 0.12f, 1.0f };
 			float buttonActive[4] = { 0.71f, 0, 0.29f, 1.0f };

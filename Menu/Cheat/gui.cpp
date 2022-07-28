@@ -6,7 +6,7 @@
 #include "../Imgui/imgui_impl_win32.h"
 #include "../Imgui/imguipp.h"
 
-
+ImFont* font1;
 
 
 ImColor float4toImColorRead(float input[4]) {
@@ -234,6 +234,8 @@ void gui::BeginRender() noexcept
 	{
 		TranslateMessage(&message);
 		DispatchMessage(&message);
+
+
 	}
 
 	ImGui_ImplDX9_NewFrame();
@@ -292,13 +294,15 @@ void gui::Theme() noexcept
 	style->Colors[ImGuiCol_Separator] = float4toImColorRead(Config::Settings.Cfg.separator);
 	style->Colors[ImGuiCol_SeparatorHovered] = float4toImColorRead(Config::Settings.Cfg.separatorHovered);
 	style->Colors[ImGuiCol_SeparatorActive] = float4toImColorRead(Config::Settings.Cfg.separatorActive);
+	style->Colors[ImGuiCol_Text] = float4toImColorRead(Config::Settings.Cfg.textCol1);
 	
 	
 }
 
 void gui::Menu() noexcept
 {
-	ImGuiStyle* style = &ImGui::GetStyle();
+	
+	ImGuiIO& io = ImGui::GetIO();
 
 	ImGui::BeginChild("##Top", ImVec2(ImGui::GetContentRegionAvail().x, ImGui::GetContentRegionAvail().y - 70), TRUE);
 	{
@@ -334,7 +338,11 @@ void gui::Menu() noexcept
 			//Settings
 			ImGui::BeginChild("##Top", ImVec2(200, ImGui::GetContentRegionAvail().y), TRUE);
 			{
-				ImGui::ColorEdit4("ButtonBg", (float*)&Config::Settings.Cfg.button, ImGuiColorEditFlags_NoInputs | ImGuiColorEditFlags_AlphaBar);
+				ImGui::ColorEdit4("Button", (float*)&Config::Settings.Cfg.button, ImGuiColorEditFlags_NoInputs | ImGuiColorEditFlags_AlphaBar);
+
+				ImGui::ColorEdit4("ActiveButton", (float*)&Config::Settings.Cfg.buttonActive, ImGuiColorEditFlags_NoInputs | ImGuiColorEditFlags_AlphaBar);
+
+				ImGui::ColorEdit4("Text Colour", (float*)&Config::Settings.Cfg.textCol1, ImGuiColorEditFlags_NoInputs | ImGuiColorEditFlags_AlphaBar);
 			}
 			ImGui::EndChild();
 			
@@ -347,6 +355,7 @@ void gui::Menu() noexcept
 	}
 	ImGui::EndChild();
 
+	
 
 	ImGui::BeginChild("##Bottom", ImVec2(ImGui::GetContentRegionAvail().x, ImGui::GetContentRegionAvail().y), TRUE);
 	{
@@ -356,31 +365,34 @@ void gui::Menu() noexcept
 		
 
 		{
+
 			ImGui::PushStyleColor(ImGuiCol_Button, Config::Tab == 1 ? active : inactive);
 			if (ImGui::Button(" Legit ", ImVec2(153 - 15, 50)))
 				Config::Tab = 1; ImGui::SameLine();
-		
+
 			ImGui::PushStyleColor(ImGuiCol_Button, Config::Tab == 2 ? active : inactive);
 			if (ImGui::Button(" Rage ", ImVec2(153 - 15, 50)))
 				Config::Tab = 2; ImGui::SameLine();
-		
+
 			ImGui::PushStyleColor(ImGuiCol_Button, Config::Tab == 3 ? active : inactive);
 			if (ImGui::Button(" Visuals ", ImVec2(153 - 15, 50)))
 				Config::Tab = 3; ImGui::SameLine();
-		
+
 			ImGui::PushStyleColor(ImGuiCol_Button, Config::Tab == 4 ? active : inactive);
 			if (ImGui::Button(" Misc ", ImVec2(153 - 15, 50)))
 				Config::Tab = 4; ImGui::SameLine();
-		
+			
 			ImGui::PushStyleColor(ImGuiCol_Button, Config::Tab == 5 ? active : inactive);
 			if (ImGui::Button(" Skins ", ImVec2(153 - 15, 50)))
 				Config::Tab = 5; ImGui::SameLine();
-		
+			
 			ImGui::PushStyleColor(ImGuiCol_Button, Config::Tab == 6 ? active : inactive);
 			if (ImGui::Button(" Settings ", ImVec2(153 - 15, 50)))
 				Config::Tab = 6; 
+
 		}
 		ImGui::PopStyleColor(1);
+		
 	}
 	ImGui::EndChild();
 
