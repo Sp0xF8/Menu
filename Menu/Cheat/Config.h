@@ -11,8 +11,10 @@ struct Colour {
 	int r, g, b, a = 255;
 };
 
-class Config {
-public:
+
+
+
+namespace Config {
 	int Tab = 1;
 	float version = 0.1;
 
@@ -151,58 +153,20 @@ public:
 		struct s_Skinchanger {
 		} Skinchanger;
 		struct s_Cfg {
-			Colour titleBg = { 82, 0, 122, 255 };
-			Colour titleBgActive = { 82, 0, 122, 255 };
-			Colour titleBgCollapsed = { 0, 0, 0, 255 };
+			//R G B A !!!!!!!!!!!!!!!!!!
+			float titleBg[4] = { 0.32f, 0, 0.47f, 1.0f };
+			float titleBgActive[4] = { 0.32f, 0, 0.47f, 1.0f };
+			float titleBgCollapsed[4] = { 0, 0, 0, 1.0f };
 
-			Colour button = { 79, 1, 32, 255 };
-			Colour buttonHovered = { 31, 30, 31, 150 };
-			Colour buttonActive = { 186, 2, 75, 255 };
+			float button[4] = { 0.30f, 0, 0.13f, 1.0f };
+			float buttonHovered[4] = { 0.12f, 0.11f, 0.12f, 1.0f };
+			float buttonActive[4] = { 0.71f, 0, 0.29f, 1.0f };
 
-			Colour separator = { 79, 1, 32, 255 };
-			Colour separatorHovered = { 31, 30, 31, 150 };
-			Colour separatorActive = { 186, 2, 75, 255 };
+			float separator[4] = { 0.30f, 0, 0.13f, 1.0f };
+			float separatorHovered[4] = { 0.12f, 0.11f, 0.12f, 1.0f };
+			float separatorActive[4] = { 0.71f, 0, 0.29f, 1.0f };
 		} Cfg;
 		
 	} Settings; 
-	
-	//LegitBot Settings
-
-	
-	
-	
-	
-	
-	
-
-	
-
-
-	//RageBot Settings
-
-	
-	
-	//Visual Settings
-	
-
-	
-	//Misc Settings
-	
-	
-	
-	//Skin Changer
-
-	
-	//Settings
-	
-
-	
-	
-	//Config Settings
-	
-	
-	
-	
-
 	
 };
