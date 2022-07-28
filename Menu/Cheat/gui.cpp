@@ -274,17 +274,17 @@ void gui::Theme() noexcept
 
 	
 	
-	style->Colors[ImGuiCol_TitleBg] = ImColor(config.titleBg.r, config.titleBg.g, config.titleBg.b, config.titleBg.a);
-	style->Colors[ImGuiCol_TitleBgActive] = ImColor(config.titleBgActive.r, config.titleBgActive.g, config.titleBgActive.b, config.titleBgActive.a);
-	style->Colors[ImGuiCol_TitleBgCollapsed] = ImColor(config.titleBgCollapsed.r, config.titleBgCollapsed.g, config.titleBgCollapsed.b, config.titleBgCollapsed.a);
+	style->Colors[ImGuiCol_TitleBg] = ImColor(config.Settings.Cfg.titleBg.r, config.Settings.Cfg.titleBg.g, config.Settings.Cfg.titleBg.b, config.Settings.Cfg.titleBg.a);
+	style->Colors[ImGuiCol_TitleBgActive] = ImColor(config.Settings.Cfg.titleBgActive.r, config.Settings.Cfg.titleBgActive.g, config.Settings.Cfg.titleBgActive.b, config.Settings.Cfg.titleBgActive.a);
+	style->Colors[ImGuiCol_TitleBgCollapsed] = ImColor(config.Settings.Cfg.titleBgCollapsed.r, config.Settings.Cfg.titleBgCollapsed.g, config.Settings.Cfg.titleBgCollapsed.b, config.Settings.Cfg.titleBgCollapsed.a);
 
-	style->Colors[ImGuiCol_Button] = ImColor(config.button.r, config.button.g, config.button.b, config.button.a);
-	style->Colors[ImGuiCol_ButtonHovered] = ImColor(config.buttonHovered.r, config.buttonHovered.g, config.buttonHovered.b, config.buttonHovered.a);
-	style->Colors[ImGuiCol_ButtonActive] = ImColor(config.buttonActive.r, config.buttonActive.g, config.buttonActive.b, config.buttonActive.a);
+	style->Colors[ImGuiCol_Button] = ImColor(config.Settings.Cfg.button.r, config.Settings.Cfg.button.g, config.Settings.Cfg.button.b, config.Settings.Cfg.button.a);
+	style->Colors[ImGuiCol_ButtonHovered] = ImColor(config.Settings.Cfg.buttonHovered.r, config.Settings.Cfg.buttonHovered.g, config.Settings.Cfg.buttonHovered.b, config.Settings.Cfg.buttonHovered.a);
+	style->Colors[ImGuiCol_ButtonActive] = ImColor(config.Settings.Cfg.buttonActive.r, config.Settings.Cfg.buttonActive.g, config.Settings.Cfg.buttonActive.b, config.Settings.Cfg.buttonActive.a);
 	
-	style->Colors[ImGuiCol_Separator] = ImColor(config.separator.r, config.separator.g, config.separator.b, config.separator.a);
-	style->Colors[ImGuiCol_SeparatorHovered] = ImColor(config.separatorHovered.r, config.separatorHovered.g, config.separatorHovered.b, config.separatorHovered.a);
-	style->Colors[ImGuiCol_SeparatorActive] = ImColor(config.separatorActive.r, config.separatorActive.g, config.separatorActive.b, config.separatorActive.a);
+	style->Colors[ImGuiCol_Separator] = ImColor(config.Settings.Cfg.separator.r, config.Settings.Cfg.separator.g, config.Settings.Cfg.separator.b, config.Settings.Cfg.separator.a);
+	style->Colors[ImGuiCol_SeparatorHovered] = ImColor(config.Settings.Cfg.separatorHovered.r, config.Settings.Cfg.separatorHovered.g, config.Settings.Cfg.separatorHovered.b, config.Settings.Cfg.separatorHovered.a);
+	style->Colors[ImGuiCol_SeparatorActive] = ImColor(config.Settings.Cfg.separatorActive.r, config.Settings.Cfg.separatorActive.g, config.Settings.Cfg.separatorActive.b, config.Settings.Cfg.separatorActive.a);
 	
 	
 }
@@ -300,7 +300,13 @@ void gui::Menu() noexcept
 		switch (config.Tab) {
 		case 1:
 			//Legit Bot
-			ImGui::Text("LegitBot");
+			ImGui::Checkbox("Active", &config.Settings.Legit.enabled);
+
+			if (config.Settings.Legit.enabled == true)
+				ImGui::Text("Legit Bot Enabled");
+			else
+				ImGui::Text("Legit Bot Disabled");
+
 			break;
 
 		case 2:
@@ -308,16 +314,34 @@ void gui::Menu() noexcept
 			ImGui::Text("RageBot");
 			break;
 		case 3:
+			//Visuals
 			ImGui::Text("Visuals");
+			break;
+		case 4:
+			//Misc
+			ImGui::Text("Visuals");
+			break;
+		case 5:
+			//Skins
+			ImGui::Text("Visuals");
+			break;
+		case 6:
+			//Settings
+			
+			break;
+		default:
+			ImGui::Text("ERR: R001");
 		}
+		
+
 	}
 	ImGui::EndChild();
 
 
 	ImGui::BeginChild("##Bottom", ImVec2(ImGui::GetContentRegionAvail().x, ImGui::GetContentRegionAvail().y), TRUE);
 	{
-		static ImVec4 active = imguipp::to_vec4(config.buttonActive.r, config.buttonActive.g, config.buttonActive.b, config.buttonActive.a);
-		static ImVec4 inactive = imguipp::to_vec4(config.button.r, config.button.g, config.button.b, config.button.a);
+		static ImVec4 active = imguipp::to_vec4(config.Settings.Cfg.buttonActive.r, config.Settings.Cfg.buttonActive.g, config.Settings.Cfg.buttonActive.b, config.Settings.Cfg.buttonActive.a);
+		static ImVec4 inactive = imguipp::to_vec4(config.Settings.Cfg.button.r, config.Settings.Cfg.button.g, config.Settings.Cfg.button.b, config.Settings.Cfg.button.a);
 		ImGui::Columns(1);
 		
 
@@ -356,8 +380,8 @@ void gui::Menu() noexcept
 	
 	{
 		//left
-		static ImVec4 active = imguipp::to_vec4(config.buttonActive.r, config.buttonActive.g, config.buttonActive.b, config.buttonActive.a);
-		static ImVec4 inactive = imguipp::to_vec4(config.button.r, config.button.g, config.button.b, config.button.a);
+		static ImVec4 active = imguipp::to_vec4(config.Settings.Cfg.buttonActive.r, config.Settings.Cfg.buttonActive.g, config.Settings.Cfg.buttonActive.b, config.Settings.Cfg.buttonActive.a);
+		static ImVec4 inactive = imguipp::to_vec4(config.Settings.Cfg.button.r, config.Settings.Cfg.button.g, config.Settings.Cfg.button.b, config.Settings.Cfg.button.a);
 		
 		ImGui::PushFont(mainFont);
 		
