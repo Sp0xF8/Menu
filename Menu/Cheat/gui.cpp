@@ -295,6 +295,50 @@ void gui::Menu() noexcept
 	ImFont* mainFont = io.Fonts->AddFontFromFileTTF("../Fonts/Oswald-Medium.ttf", 15, NULL, io.Fonts->GetGlyphRangesJapanese());
 	IM_ASSERT(mainFont != NULL);
 
+	ImGui::BeginChild("##Top", ImVec2(ImGui::GetContentRegionAvail().x, ImGui::GetContentRegionAvail().y - 70), TRUE);
+	{
+
+	}
+	ImGui::EndChild();
+
+
+	ImGui::BeginChild("##Bottom", ImVec2(ImGui::GetContentRegionAvail().x, ImGui::GetContentRegionAvail().y), TRUE);
+	{
+		static ImVec4 active = imguipp::to_vec4(config.buttonActive.r, config.buttonActive.g, config.buttonActive.b, config.buttonActive.a);
+		static ImVec4 inactive = imguipp::to_vec4(config.button.r, config.button.g, config.button.b, config.button.a);
+		ImGui::Columns(1);
+		
+
+		{
+			ImGui::PushStyleColor(ImGuiCol_Button, config.Tab == 1 ? active : inactive);
+			if (ImGui::Button(" Legit ", ImVec2(153 - 15, 50)))
+				config.Tab = 1; ImGui::SameLine();
+		
+			ImGui::PushStyleColor(ImGuiCol_Button, config.Tab == 2 ? active : inactive);
+			if (ImGui::Button(" Rage ", ImVec2(153 - 15, 50)))
+				config.Tab = 2; ImGui::SameLine();
+		
+			ImGui::PushStyleColor(ImGuiCol_Button, config.Tab == 3 ? active : inactive);
+			if (ImGui::Button(" Visuals ", ImVec2(153 - 15, 50)))
+				config.Tab = 3; ImGui::SameLine();
+		
+			ImGui::PushStyleColor(ImGuiCol_Button, config.Tab == 4 ? active : inactive);
+			if (ImGui::Button(" Misc ", ImVec2(153 - 15, 50)))
+				config.Tab = 4; ImGui::SameLine();
+		
+			ImGui::PushStyleColor(ImGuiCol_Button, config.Tab == 5 ? active : inactive);
+			if (ImGui::Button(" Skins ", ImVec2(153 - 15, 50)))
+				config.Tab = 5; ImGui::SameLine();
+		
+			ImGui::PushStyleColor(ImGuiCol_Button, config.Tab == 6 ? active : inactive);
+			if (ImGui::Button(" Settings ", ImVec2(153 - 15, 50)))
+				config.Tab = 6; 
+		}
+		ImGui::PopStyleColor(1);
+	}
+	ImGui::EndChild();
+
+	/*
 	ImGui::Columns(2);
 	ImGui::SetColumnOffset(1, 230);
 	
@@ -365,7 +409,10 @@ void gui::Menu() noexcept
 			break;
 		}
 	}
-	
+	*/
+
+
+
 }
 
 
@@ -380,7 +427,9 @@ void gui::Render() noexcept
 		0,
 		ImGuiWindowFlags_NoScrollbar |
 		ImGuiWindowFlags_NoSavedSettings |
-		ImGuiWindowFlags_NoCollapse
+		ImGuiWindowFlags_NoCollapse |
+		ImGuiWindowFlags_NoResize |
+		ImGuiWindowFlags_NoDecoration
 		
 	);
 	{
