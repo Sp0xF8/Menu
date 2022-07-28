@@ -13,7 +13,7 @@ struct Colour {
 
 class Config {
 public:
-	int Tab;
+	int Tab = 1;
 	float version = 0.1;
 	
 	//LegitBot Settings

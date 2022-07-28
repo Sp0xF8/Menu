@@ -297,7 +297,19 @@ void gui::Menu() noexcept
 
 	ImGui::BeginChild("##Top", ImVec2(ImGui::GetContentRegionAvail().x, ImGui::GetContentRegionAvail().y - 70), TRUE);
 	{
+		switch (config.Tab) {
+		case 1:
+			//Legit Bot
+			ImGui::Text("LegitBot");
+			break;
 
+		case 2:
+			//RageBot
+			ImGui::Text("RageBot");
+			break;
+		case 3:
+			ImGui::Text("Visuals");
+		}
 	}
 	ImGui::EndChild();
 
