@@ -16,10 +16,9 @@ int __stdcall wWinMain(
 	{
 		gui::BeginRender();
 		
-		gui::Theme(); 
-		{
-			gui::Render();
-		}
+		
+		gui::Render();
+		
 		
 		
 		gui::EndRender();

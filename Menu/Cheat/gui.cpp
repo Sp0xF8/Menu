@@ -6,9 +6,16 @@
 #include "../Imgui/imgui_impl_win32.h"
 #include "../Imgui/imguipp.h"
 
+ImFont* font1;
 
 
-Config config;
+ImColor float4toImColorRead(float input[4]) {
+	return ImColor(input[0], input[1], input[2], input[3]);
+}
+
+ImVec4 float4toImVec4Read(float input[4]) {
+	return ImVec4(input[0], input[1], input[2], input[3]);
+}
 
 
 extern IMGUI_IMPL_API LRESULT ImGui_ImplWin32_WndProcHandler(
@@ -227,6 +234,8 @@ void gui::BeginRender() noexcept
 	{
 		TranslateMessage(&message);
 		DispatchMessage(&message);
+
+
 	}
 
 	ImGui_ImplDX9_NewFrame();
@@ -274,35 +283,49 @@ void gui::Theme() noexcept
 
 	
 	
-	style->Colors[ImGuiCol_TitleBg] = ImColor(config.Settings.Cfg.titleBg.r, config.Settings.Cfg.titleBg.g, config.Settings.Cfg.titleBg.b, config.Settings.Cfg.titleBg.a);
-	style->Colors[ImGuiCol_TitleBgActive] = ImColor(config.Settings.Cfg.titleBgActive.r, config.Settings.Cfg.titleBgActive.g, config.Settings.Cfg.titleBgActive.b, config.Settings.Cfg.titleBgActive.a);
-	style->Colors[ImGuiCol_TitleBgCollapsed] = ImColor(config.Settings.Cfg.titleBgCollapsed.r, config.Settings.Cfg.titleBgCollapsed.g, config.Settings.Cfg.titleBgCollapsed.b, config.Settings.Cfg.titleBgCollapsed.a);
+	style->Colors[ImGuiCol_TitleBg] = float4toImColorRead(Config::Settings.Cfg.titleBg);
+	style->Colors[ImGuiCol_TitleBgActive] = float4toImColorRead(Config::Settings.Cfg.titleBgActive);
+	style->Colors[ImGuiCol_TitleBgCollapsed] = float4toImColorRead(Config::Settings.Cfg.titleBgCollapsed);
 
-	style->Colors[ImGuiCol_Button] = ImColor(config.Settings.Cfg.button.r, config.Settings.Cfg.button.g, config.Settings.Cfg.button.b, config.Settings.Cfg.button.a);
-	style->Colors[ImGuiCol_ButtonHovered] = ImColor(config.Settings.Cfg.buttonHovered.r, config.Settings.Cfg.buttonHovered.g, config.Settings.Cfg.buttonHovered.b, config.Settings.Cfg.buttonHovered.a);
-	style->Colors[ImGuiCol_ButtonActive] = ImColor(config.Settings.Cfg.buttonActive.r, config.Settings.Cfg.buttonActive.g, config.Settings.Cfg.buttonActive.b, config.Settings.Cfg.buttonActive.a);
+	style->Colors[ImGuiCol_Button] = float4toImColorRead(Config::Settings.Cfg.button);
+	style->Colors[ImGuiCol_ButtonHovered] = float4toImColorRead(Config::Settings.Cfg.buttonHovered);
+	style->Colors[ImGuiCol_ButtonActive] = float4toImColorRead(Config::Settings.Cfg.buttonActive);
 	
-	style->Colors[ImGuiCol_Separator] = ImColor(config.Settings.Cfg.separator.r, config.Settings.Cfg.separator.g, config.Settings.Cfg.separator.b, config.Settings.Cfg.separator.a);
-	style->Colors[ImGuiCol_SeparatorHovered] = ImColor(config.Settings.Cfg.separatorHovered.r, config.Settings.Cfg.separatorHovered.g, config.Settings.Cfg.separatorHovered.b, config.Settings.Cfg.separatorHovered.a);
-	style->Colors[ImGuiCol_SeparatorActive] = ImColor(config.Settings.Cfg.separatorActive.r, config.Settings.Cfg.separatorActive.g, config.Settings.Cfg.separatorActive.b, config.Settings.Cfg.separatorActive.a);
-	
+	style->Colors[ImGuiCol_Separator] = float4toImColorRead(Config::Settings.Cfg.separator);
+	style->Colors[ImGuiCol_SeparatorHovered] = float4toImColorRead(Config::Settings.Cfg.separatorHovered);
+	style->Colors[ImGuiCol_SeparatorActive] = float4toImColorRead(Config::Settings.Cfg.separatorActive);
+
+	style->Colors[ImGuiCol_Text] = float4toImColorRead(Config::Settings.Cfg.textCol1);
+	style->Colors[ImGuiCol_ChildBg] = float4toImColorRead(Config::Settings.Cfg.childBg);
+	style->Colors[ImGuiCol_WindowBg] = float4toImColorRead(Config::Settings.Cfg.windowBg);
+	style->Colors[ImGuiCol_Border] = float4toImColorRead(Config::Settings.Cfg.borderBg);
+	style->Colors[ImGuiCol_FrameBg] = float4toImColorRead(Config::Settings.Cfg.frameBg);
+
+	style->Colors[ImGuiCol_CheckMark] = float4toImColorRead(Config::Settings.Cfg.checkMark);
+
+	style->Colors[ImGuiCol_SliderGrab] = float4toImColorRead(Config::Settings.Cfg.sliderGrab);
+	style->Colors[ImGuiCol_SliderGrabActive] = float4toImColorRead(Config::Settings.Cfg.sliderGrabActive);
+
+	style->Colors[ImGuiCol_ScrollbarBg] = float4toImColorRead(Config::Settings.Cfg.scrollBar);
+	style->Colors[ImGuiCol_ScrollbarGrab] = float4toImColorRead(Config::Settings.Cfg.scrollBarGrab);
+	style->Colors[ImGuiCol_ScrollbarGrabHovered] = float4toImColorRead(Config::Settings.Cfg.scrollBarHovered);
+	style->Colors[ImGuiCol_ScrollbarGrabActive] = float4toImColorRead(Config::Settings.Cfg.scrollBarActive);
 	
 }
 
 void gui::Menu() noexcept
 {
-	ImGuiIO& io = ::ImGui::GetIO();
-	ImFont* mainFont = io.Fonts->AddFontFromFileTTF("../Fonts/Oswald-Medium.ttf", 15, NULL, io.Fonts->GetGlyphRangesJapanese());
-	IM_ASSERT(mainFont != NULL);
+	
+	ImGuiIO& io = ImGui::GetIO();
 
 	ImGui::BeginChild("##Top", ImVec2(ImGui::GetContentRegionAvail().x, ImGui::GetContentRegionAvail().y - 70), TRUE);
 	{
-		switch (config.Tab) {
+		switch (Config::Tab) {
 		case 1:
 			//Legit Bot
-			ImGui::Checkbox("Active", &config.Settings.Legit.enabled);
+			ImGui::Checkbox("Active", &Config::Settings.Legit.enabled);
 
-			if (config.Settings.Legit.enabled == true)
+			if (Config::Settings.Legit.enabled == true)
 				ImGui::Text("Legit Bot Enabled");
 			else
 				ImGui::Text("Legit Bot Disabled");
@@ -319,7 +342,31 @@ void gui::Menu() noexcept
 			break;
 		case 4:
 			//Misc
-			ImGui::Text("Visuals");
+			ImGui::BeginChild("Misc", ImVec2(200, ImGui::GetContentRegionAvail().y), TRUE);
+			{
+				imguipp::center_text_ex("Player Functions", 200, 1, false);
+				ImGui::SeparatorEx(ImGuiSeparatorFlags_Horizontal);
+
+				ImGui::Checkbox("Legit BHop", &Config::Settings.Misc.legitBhop);
+				ImGui::Checkbox("Rage BHop", &Config::Settings.Misc.bhop);
+				ImGui::Checkbox("Auto Strafe", &Config::Settings.Misc.autoStrafe);
+				ImGui::Checkbox("Auto Accept", &Config::Settings.Misc.autoAccept);
+				ImGui::Checkbox("Auto Block", &Config::Settings.Misc.autoBlock);
+				ImGui::Checkbox("ReVoid Tag", &Config::Settings.Misc.reVoidTag);
+				{
+					Config::Settings.Misc.customTag == true ? Config::Settings.Misc.reVoidTag = false : NULL;
+				}
+				ImGui::Checkbox("Custom Tag", &Config::Settings.Misc.customTag);
+				{
+					Config::Settings.Misc.reVoidTag == true ? Config::Settings.Misc.customTag = false : NULL;
+				}
+
+				ImGui::InputTextWithHint("","10 Char", Config::Settings.Misc.customTagText, 11, 0, 0);
+
+
+				ImGui::Text(Config::Settings.Misc.customTagText);
+			}
+			ImGui::EndChild();
 			break;
 		case 5:
 			//Skins
@@ -327,6 +374,43 @@ void gui::Menu() noexcept
 			break;
 		case 6:
 			//Settings
+			ImGui::BeginChild("Colours", ImVec2(200, ImGui::GetContentRegionAvail().y), TRUE);
+			{
+
+				//Menu Colours
+				imguipp::center_text_ex("Menu Colours", 200, 1, false);
+				ImGui::SeparatorEx(ImGuiSeparatorFlags_Horizontal);
+				
+				ImGui::ColorEdit4("Button", (float*)&Config::Settings.Cfg.button, ImGuiColorEditFlags_NoInputs | ImGuiColorEditFlags_AlphaBar);
+				ImGui::ColorEdit4("Button Active", (float*)&Config::Settings.Cfg.buttonActive, ImGuiColorEditFlags_NoInputs | ImGuiColorEditFlags_AlphaBar);
+				ImGui::ColorEdit4("Button Hover", (float*)&Config::Settings.Cfg.buttonHovered, ImGuiColorEditFlags_NoInputs | ImGuiColorEditFlags_AlphaBar);
+
+				ImGui::ColorEdit4("Separator", (float*)&Config::Settings.Cfg.separator, ImGuiColorEditFlags_NoInputs | ImGuiColorEditFlags_AlphaBar);
+				//ImGui::ColorEdit4("Separator Hover", (float*)&Config::Settings.Cfg.separatorHovered, ImGuiColorEditFlags_NoInputs | ImGuiColorEditFlags_AlphaBar);
+				//ImGui::ColorEdit4("Separator Active", (float*)&Config::Settings.Cfg.separatorActive, ImGuiColorEditFlags_NoInputs | ImGuiColorEditFlags_AlphaBar);
+				
+				//ImGui::ColorEdit4("Title Background", (float*)&Config::Settings.Cfg.titleBg, ImGuiColorEditFlags_NoInputs | ImGuiColorEditFlags_AlphaBar);
+				//ImGui::ColorEdit4("Title Bg Active", (float*)&Config::Settings.Cfg.titleBgActive, ImGuiColorEditFlags_NoInputs | ImGuiColorEditFlags_AlphaBar);
+		
+				ImGui::ColorEdit4("Window", (float*)&Config::Settings.Cfg.windowBg, ImGuiColorEditFlags_NoInputs | ImGuiColorEditFlags_AlphaBar);
+				ImGui::ColorEdit4("Child", (float*)&Config::Settings.Cfg.childBg, ImGuiColorEditFlags_NoInputs | ImGuiColorEditFlags_AlphaBar);
+				ImGui::ColorEdit4("Border", (float*)&Config::Settings.Cfg.borderBg, ImGuiColorEditFlags_NoInputs | ImGuiColorEditFlags_AlphaBar);
+
+				ImGui::ColorEdit4("Check Mark", (float*)&Config::Settings.Cfg.checkMark, ImGuiColorEditFlags_NoInputs | ImGuiColorEditFlags_AlphaBar);
+
+				ImGui::ColorEdit4("Slider", (float*)&Config::Settings.Cfg.sliderGrab, ImGuiColorEditFlags_NoInputs | ImGuiColorEditFlags_AlphaBar);
+				ImGui::ColorEdit4("Slider Active", (float*)&Config::Settings.Cfg.sliderGrabActive, ImGuiColorEditFlags_NoInputs | ImGuiColorEditFlags_AlphaBar);
+
+				ImGui::ColorEdit4("Frame Background", (float*)&Config::Settings.Cfg.frameBg, ImGuiColorEditFlags_NoInputs | ImGuiColorEditFlags_AlphaBar);
+
+				ImGui::ColorEdit4("Scrollbar", (float*)&Config::Settings.Cfg.scrollBar, ImGuiColorEditFlags_NoInputs | ImGuiColorEditFlags_AlphaBar);
+				ImGui::ColorEdit4("Scrollbar Grab", (float*)&Config::Settings.Cfg.scrollBarGrab, ImGuiColorEditFlags_NoInputs | ImGuiColorEditFlags_AlphaBar);
+				ImGui::ColorEdit4("Scrollbar Hover", (float*)&Config::Settings.Cfg.scrollBarHovered, ImGuiColorEditFlags_NoInputs | ImGuiColorEditFlags_AlphaBar);
+				ImGui::ColorEdit4("Scrollbar Active", (float*)&Config::Settings.Cfg.scrollBarActive, ImGuiColorEditFlags_NoInputs | ImGuiColorEditFlags_AlphaBar);
+
+				ImGui::ColorEdit4("Text Colour", (float*)&Config::Settings.Cfg.textCol1, ImGuiColorEditFlags_NoInputs | ImGuiColorEditFlags_AlphaBar);
+			}
+			ImGui::EndChild();
 			
 			break;
 		default:
@@ -337,40 +421,44 @@ void gui::Menu() noexcept
 	}
 	ImGui::EndChild();
 
+	
 
 	ImGui::BeginChild("##Bottom", ImVec2(ImGui::GetContentRegionAvail().x, ImGui::GetContentRegionAvail().y), TRUE);
 	{
-		static ImVec4 active = imguipp::to_vec4(config.Settings.Cfg.buttonActive.r, config.Settings.Cfg.buttonActive.g, config.Settings.Cfg.buttonActive.b, config.Settings.Cfg.buttonActive.a);
-		static ImVec4 inactive = imguipp::to_vec4(config.Settings.Cfg.button.r, config.Settings.Cfg.button.g, config.Settings.Cfg.button.b, config.Settings.Cfg.button.a);
+		ImVec4 active = imguipp::to_vec4(Config::Settings.Cfg.buttonActive[0] * 255, Config::Settings.Cfg.buttonActive[1] * 255, Config::Settings.Cfg.buttonActive[2] * 255, Config::Settings.Cfg.buttonActive[3] * 255);
+		ImVec4 inactive = imguipp::to_vec4(Config::Settings.Cfg.button[0] * 255, Config::Settings.Cfg.button[1] * 255, Config::Settings.Cfg.button[2] * 255, Config::Settings.Cfg.button[3] * 255);
 		ImGui::Columns(1);
 		
 
 		{
-			ImGui::PushStyleColor(ImGuiCol_Button, config.Tab == 1 ? active : inactive);
+
+			ImGui::PushStyleColor(ImGuiCol_Button, Config::Tab == 1 ? active : inactive);
 			if (ImGui::Button(" Legit ", ImVec2(153 - 15, 50)))
-				config.Tab = 1; ImGui::SameLine();
-		
-			ImGui::PushStyleColor(ImGuiCol_Button, config.Tab == 2 ? active : inactive);
+				Config::Tab = 1; ImGui::SameLine();
+
+			ImGui::PushStyleColor(ImGuiCol_Button, Config::Tab == 2 ? active : inactive);
 			if (ImGui::Button(" Rage ", ImVec2(153 - 15, 50)))
-				config.Tab = 2; ImGui::SameLine();
-		
-			ImGui::PushStyleColor(ImGuiCol_Button, config.Tab == 3 ? active : inactive);
+				Config::Tab = 2; ImGui::SameLine();
+
+			ImGui::PushStyleColor(ImGuiCol_Button, Config::Tab == 3 ? active : inactive);
 			if (ImGui::Button(" Visuals ", ImVec2(153 - 15, 50)))
-				config.Tab = 3; ImGui::SameLine();
-		
-			ImGui::PushStyleColor(ImGuiCol_Button, config.Tab == 4 ? active : inactive);
+				Config::Tab = 3; ImGui::SameLine();
+
+			ImGui::PushStyleColor(ImGuiCol_Button, Config::Tab == 4 ? active : inactive);
 			if (ImGui::Button(" Misc ", ImVec2(153 - 15, 50)))
-				config.Tab = 4; ImGui::SameLine();
-		
-			ImGui::PushStyleColor(ImGuiCol_Button, config.Tab == 5 ? active : inactive);
+				Config::Tab = 4; ImGui::SameLine();
+			
+			ImGui::PushStyleColor(ImGuiCol_Button, Config::Tab == 5 ? active : inactive);
 			if (ImGui::Button(" Skins ", ImVec2(153 - 15, 50)))
-				config.Tab = 5; ImGui::SameLine();
-		
-			ImGui::PushStyleColor(ImGuiCol_Button, config.Tab == 6 ? active : inactive);
+				Config::Tab = 5; ImGui::SameLine();
+			
+			ImGui::PushStyleColor(ImGuiCol_Button, Config::Tab == 6 ? active : inactive);
 			if (ImGui::Button(" Settings ", ImVec2(153 - 15, 50)))
-				config.Tab = 6; 
+				Config::Tab = 6; 
+
 		}
 		ImGui::PopStyleColor(1);
+		
 	}
 	ImGui::EndChild();
 
@@ -380,47 +468,47 @@ void gui::Menu() noexcept
 	
 	{
 		//left
-		static ImVec4 active = imguipp::to_vec4(config.Settings.Cfg.buttonActive.r, config.Settings.Cfg.buttonActive.g, config.Settings.Cfg.buttonActive.b, config.Settings.Cfg.buttonActive.a);
-		static ImVec4 inactive = imguipp::to_vec4(config.Settings.Cfg.button.r, config.Settings.Cfg.button.g, config.Settings.Cfg.button.b, config.Settings.Cfg.button.a);
+		static ImVec4 active = imguipp::to_vec4(Config::Settings.Cfg.buttonActive[0], Config::Settings.Cfg.buttonActive[0], Config::Settings.Cfg.buttonActive[2], Config::Settings.Cfg.buttonActive.a);
+		static ImVec4 inactive = imguipp::to_vec4(Config::Settings.Cfg.button[0], Config::Settings.Cfg.button[0], Config::Settings.Cfg.button[2], Config::Settings.Cfg.button.a);
 		
 		ImGui::PushFont(mainFont);
 		
 		ImGui::Spacing();
 		ImGui::Spacing();
 
-		ImGui::PushStyleColor(ImGuiCol_Button, config.Tab == 1 ? active : inactive);
+		ImGui::PushStyleColor(ImGuiCol_Button, Config::Tab == 1 ? active : inactive);
 		if (ImGui::Button(" Legit ", ImVec2(230 - 15, 40)))
-			config.Tab = 1;
+			Config::Tab = 1;
 
 		ImGui::Spacing();
 		ImGui::Spacing();
-		ImGui::PushStyleColor(ImGuiCol_Button, config.Tab == 2 ? active : inactive);
+		ImGui::PushStyleColor(ImGuiCol_Button, Config::Tab == 2 ? active : inactive);
 		if (ImGui::Button(" Rage ", ImVec2(230 - 15, 40)))
-			config.Tab = 2;
+			Config::Tab = 2;
 
 		ImGui::Spacing();
 		ImGui::Spacing();
-		ImGui::PushStyleColor(ImGuiCol_Button, config.Tab == 3 ? active : inactive);
+		ImGui::PushStyleColor(ImGuiCol_Button, Config::Tab == 3 ? active : inactive);
 		if (ImGui::Button(" Visuals ", ImVec2(230 - 15, 40)))
-			config.Tab = 3;
+			Config::Tab = 3;
 
 		ImGui::Spacing();
 		ImGui::Spacing();
-		ImGui::PushStyleColor(ImGuiCol_Button, config.Tab == 4 ? active : inactive);
+		ImGui::PushStyleColor(ImGuiCol_Button, Config::Tab == 4 ? active : inactive);
 		if (ImGui::Button(" Misc ", ImVec2(230 - 15, 40)))
-			config.Tab = 4;
+			Config::Tab = 4;
 
 		ImGui::Spacing();
 		ImGui::Spacing();
-		ImGui::PushStyleColor(ImGuiCol_Button, config.Tab == 5 ? active : inactive);
+		ImGui::PushStyleColor(ImGuiCol_Button, Config::Tab == 5 ? active : inactive);
 		if (ImGui::Button(" Skin ", ImVec2(230 - 15, 40)))
-			config.Tab = 5;
+			Config::Tab = 5;
 
 		ImGui::Spacing();
 		ImGui::Spacing();
-		ImGui::PushStyleColor(ImGuiCol_Button, config.Tab == 6 ? active : inactive);
+		ImGui::PushStyleColor(ImGuiCol_Button, Config::Tab == 6 ? active : inactive);
 		if (ImGui::Button(" Settings ", ImVec2(230 - 15, 40)))
-			config.Tab = 6;
+			Config::Tab = 6;
 
 		ImGui::Spacing();
 		ImGui::Spacing();
@@ -439,7 +527,7 @@ void gui::Menu() noexcept
 
 		//right
 
-		switch (config.Tab) {
+		switch (Config::Tab) {
 		case 1:
 			//Legit Bot
 			break;
@@ -468,8 +556,12 @@ void gui::Render() noexcept
 		ImGuiWindowFlags_NoDecoration
 		
 	);
-	{
-		gui::Menu();
+	{	
+		gui::Theme();
+		{
+			gui::Menu();
+		}
+		
 	}
 
 	ImGui::End();
