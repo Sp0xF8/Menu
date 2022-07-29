@@ -294,8 +294,22 @@ void gui::Theme() noexcept
 	style->Colors[ImGuiCol_Separator] = float4toImColorRead(Config::Settings.Cfg.separator);
 	style->Colors[ImGuiCol_SeparatorHovered] = float4toImColorRead(Config::Settings.Cfg.separatorHovered);
 	style->Colors[ImGuiCol_SeparatorActive] = float4toImColorRead(Config::Settings.Cfg.separatorActive);
+
 	style->Colors[ImGuiCol_Text] = float4toImColorRead(Config::Settings.Cfg.textCol1);
-	
+	style->Colors[ImGuiCol_ChildBg] = float4toImColorRead(Config::Settings.Cfg.childBg);
+	style->Colors[ImGuiCol_WindowBg] = float4toImColorRead(Config::Settings.Cfg.windowBg);
+	style->Colors[ImGuiCol_Border] = float4toImColorRead(Config::Settings.Cfg.borderBg);
+	style->Colors[ImGuiCol_FrameBg] = float4toImColorRead(Config::Settings.Cfg.frameBg);
+
+	style->Colors[ImGuiCol_CheckMark] = float4toImColorRead(Config::Settings.Cfg.checkMark);
+
+	style->Colors[ImGuiCol_SliderGrab] = float4toImColorRead(Config::Settings.Cfg.sliderGrab);
+	style->Colors[ImGuiCol_SliderGrabActive] = float4toImColorRead(Config::Settings.Cfg.sliderGrabActive);
+
+	style->Colors[ImGuiCol_ScrollbarBg] = float4toImColorRead(Config::Settings.Cfg.scrollBar);
+	style->Colors[ImGuiCol_ScrollbarGrab] = float4toImColorRead(Config::Settings.Cfg.scrollBarGrab);
+	style->Colors[ImGuiCol_ScrollbarGrabHovered] = float4toImColorRead(Config::Settings.Cfg.scrollBarHovered);
+	style->Colors[ImGuiCol_ScrollbarGrabActive] = float4toImColorRead(Config::Settings.Cfg.scrollBarActive);
 	
 }
 
@@ -328,7 +342,31 @@ void gui::Menu() noexcept
 			break;
 		case 4:
 			//Misc
-			ImGui::Text("Visuals");
+			ImGui::BeginChild("Misc", ImVec2(200, ImGui::GetContentRegionAvail().y), TRUE);
+			{
+				imguipp::center_text_ex("Player Functions", 200, 1, false);
+				ImGui::SeparatorEx(ImGuiSeparatorFlags_Horizontal);
+
+				ImGui::Checkbox("Legit BHop", &Config::Settings.Misc.legitBhop);
+				ImGui::Checkbox("Rage BHop", &Config::Settings.Misc.bhop);
+				ImGui::Checkbox("Auto Strafe", &Config::Settings.Misc.autoStrafe);
+				ImGui::Checkbox("Auto Accept", &Config::Settings.Misc.autoAccept);
+				ImGui::Checkbox("Auto Block", &Config::Settings.Misc.autoBlock);
+				ImGui::Checkbox("ReVoid Tag", &Config::Settings.Misc.reVoidTag);
+				{
+					Config::Settings.Misc.customTag == true ? Config::Settings.Misc.reVoidTag = false : NULL;
+				}
+				ImGui::Checkbox("Custom Tag", &Config::Settings.Misc.customTag);
+				{
+					Config::Settings.Misc.reVoidTag == true ? Config::Settings.Misc.customTag = false : NULL;
+				}
+
+				ImGui::InputTextWithHint("","10 Char", Config::Settings.Misc.customTagText, 11, 0, 0);
+
+
+				ImGui::Text(Config::Settings.Misc.customTagText);
+			}
+			ImGui::EndChild();
 			break;
 		case 5:
 			//Skins
@@ -336,11 +374,39 @@ void gui::Menu() noexcept
 			break;
 		case 6:
 			//Settings
-			ImGui::BeginChild("##Top", ImVec2(200, ImGui::GetContentRegionAvail().y), TRUE);
+			ImGui::BeginChild("Colours", ImVec2(200, ImGui::GetContentRegionAvail().y), TRUE);
 			{
-				ImGui::ColorEdit4("Button", (float*)&Config::Settings.Cfg.button, ImGuiColorEditFlags_NoInputs | ImGuiColorEditFlags_AlphaBar);
 
-				ImGui::ColorEdit4("ActiveButton", (float*)&Config::Settings.Cfg.buttonActive, ImGuiColorEditFlags_NoInputs | ImGuiColorEditFlags_AlphaBar);
+				//Menu Colours
+				imguipp::center_text_ex("Menu Colours", 200, 1, false);
+				ImGui::SeparatorEx(ImGuiSeparatorFlags_Horizontal);
+				
+				ImGui::ColorEdit4("Button", (float*)&Config::Settings.Cfg.button, ImGuiColorEditFlags_NoInputs | ImGuiColorEditFlags_AlphaBar);
+				ImGui::ColorEdit4("Button Active", (float*)&Config::Settings.Cfg.buttonActive, ImGuiColorEditFlags_NoInputs | ImGuiColorEditFlags_AlphaBar);
+				ImGui::ColorEdit4("Button Hover", (float*)&Config::Settings.Cfg.buttonHovered, ImGuiColorEditFlags_NoInputs | ImGuiColorEditFlags_AlphaBar);
+
+				ImGui::ColorEdit4("Separator", (float*)&Config::Settings.Cfg.separator, ImGuiColorEditFlags_NoInputs | ImGuiColorEditFlags_AlphaBar);
+				//ImGui::ColorEdit4("Separator Hover", (float*)&Config::Settings.Cfg.separatorHovered, ImGuiColorEditFlags_NoInputs | ImGuiColorEditFlags_AlphaBar);
+				//ImGui::ColorEdit4("Separator Active", (float*)&Config::Settings.Cfg.separatorActive, ImGuiColorEditFlags_NoInputs | ImGuiColorEditFlags_AlphaBar);
+				
+				//ImGui::ColorEdit4("Title Background", (float*)&Config::Settings.Cfg.titleBg, ImGuiColorEditFlags_NoInputs | ImGuiColorEditFlags_AlphaBar);
+				//ImGui::ColorEdit4("Title Bg Active", (float*)&Config::Settings.Cfg.titleBgActive, ImGuiColorEditFlags_NoInputs | ImGuiColorEditFlags_AlphaBar);
+		
+				ImGui::ColorEdit4("Window", (float*)&Config::Settings.Cfg.windowBg, ImGuiColorEditFlags_NoInputs | ImGuiColorEditFlags_AlphaBar);
+				ImGui::ColorEdit4("Child", (float*)&Config::Settings.Cfg.childBg, ImGuiColorEditFlags_NoInputs | ImGuiColorEditFlags_AlphaBar);
+				ImGui::ColorEdit4("Border", (float*)&Config::Settings.Cfg.borderBg, ImGuiColorEditFlags_NoInputs | ImGuiColorEditFlags_AlphaBar);
+
+				ImGui::ColorEdit4("Check Mark", (float*)&Config::Settings.Cfg.checkMark, ImGuiColorEditFlags_NoInputs | ImGuiColorEditFlags_AlphaBar);
+
+				ImGui::ColorEdit4("Slider", (float*)&Config::Settings.Cfg.sliderGrab, ImGuiColorEditFlags_NoInputs | ImGuiColorEditFlags_AlphaBar);
+				ImGui::ColorEdit4("Slider Active", (float*)&Config::Settings.Cfg.sliderGrabActive, ImGuiColorEditFlags_NoInputs | ImGuiColorEditFlags_AlphaBar);
+
+				ImGui::ColorEdit4("Frame Background", (float*)&Config::Settings.Cfg.frameBg, ImGuiColorEditFlags_NoInputs | ImGuiColorEditFlags_AlphaBar);
+
+				ImGui::ColorEdit4("Scrollbar", (float*)&Config::Settings.Cfg.scrollBar, ImGuiColorEditFlags_NoInputs | ImGuiColorEditFlags_AlphaBar);
+				ImGui::ColorEdit4("Scrollbar Grab", (float*)&Config::Settings.Cfg.scrollBarGrab, ImGuiColorEditFlags_NoInputs | ImGuiColorEditFlags_AlphaBar);
+				ImGui::ColorEdit4("Scrollbar Hover", (float*)&Config::Settings.Cfg.scrollBarHovered, ImGuiColorEditFlags_NoInputs | ImGuiColorEditFlags_AlphaBar);
+				ImGui::ColorEdit4("Scrollbar Active", (float*)&Config::Settings.Cfg.scrollBarActive, ImGuiColorEditFlags_NoInputs | ImGuiColorEditFlags_AlphaBar);
 
 				ImGui::ColorEdit4("Text Colour", (float*)&Config::Settings.Cfg.textCol1, ImGuiColorEditFlags_NoInputs | ImGuiColorEditFlags_AlphaBar);
 			}

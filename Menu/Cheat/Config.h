@@ -149,24 +149,48 @@ namespace Config {
 		struct s_Visuals {
 		} Visuals;
 		struct s_Misc {
+			
+			bool legitBhop = false;
+			bool bhop = false;
+			bool autoStrafe = false;
+			bool autoAccept = false;
+			bool autoBlock = false;
+			bool reVoidTag = false;
+			bool customTag = false;
+			char customTagText[11] = "Custom";
 		} Misc;
 		struct s_Skinchanger {
 		} Skinchanger;
 		struct s_Cfg {
 			//R G B A !!!!!!!!!!!!!!!!!!
-			float titleBg[4] = { 0.32f, 0, 0.47f, 1.0f };
-			float titleBgActive[4] = { 0.32f, 0, 0.47f, 1.0f };
-			float titleBgCollapsed[4] = { 0, 0, 0, 1.0f };
+			float titleBg[4] =			{ 0.32f, 0.00f, 0.47f, 1.00f };
+			float titleBgActive[4] =	{ 0.32f, 0.00f, 0.47f, 1.00f };
+			float titleBgCollapsed[4] = { 0.00f, 0.00f, 0.00f, 1.00f };
 
-			float textCol1[4] = { 1.0f, 1.0f, 1.0f, 1.0f };
+			float textCol1[4] =			{ 1.00f, 1.00f, 1.00f, 1.00f };
 
-			float button[4] = { 0.30f, 0, 0.13f, 1.0f };
-			float buttonHovered[4] = { 0.12f, 0.11f, 0.12f, 1.0f };
-			float buttonActive[4] = { 0.71f, 0, 0.29f, 1.0f };
+			float button[4] =			{ 0.30f, 0.00f, 0.13f, 1.00f };
+			float buttonHovered[4] =	{ 0.12f, 0.11f, 0.12f, 1.00f };
+			float buttonActive[4] =		{ 0.71f, 0.00f, 0.29f, 1.00f };
 
-			float separator[4] = { 0.30f, 0, 0.13f, 1.0f };
-			float separatorHovered[4] = { 0.12f, 0.11f, 0.12f, 1.0f };
-			float separatorActive[4] = { 0.71f, 0, 0.29f, 1.0f };
+			float separator[4] =		{ 0.30f, 0.00f, 0.13f, 1.00f };
+			float separatorHovered[4] = { 0.12f, 0.11f, 0.12f, 1.00f };
+			float separatorActive[4] =	{ 0.71f, 0.00f, 0.29f, 1.00f };
+
+			float windowBg[4] =			{ 0.06f, 0.06f, 0.06f, 0.94f };
+			float childBg[4] =			{ 0.00f, 0.00f, 0.00f, 0.00f };
+			float borderBg[4] =			{ 0.43f, 0.43f, 0.50f, 0.50f };
+			float frameBg[4] =			{ 0.16f, 0.29f, 0.48f, 0.54f };
+			
+			float checkMark[4] =		{ 0.26f, 0.59f, 0.98f, 1.00f };
+			
+			float sliderGrab[4] =		{ 0.24f, 0.52f, 0.88f, 1.00f };
+			float sliderGrabActive[4] = { 0.26f, 0.59f, 0.98f, 1.00f };
+			
+			float scrollBar[4] =		{ 0.02f, 0.02f, 0.02f, 0.53f };
+			float scrollBarGrab[4] = { 0.31f, 0.31f, 0.31f, 1.00f };
+			float scrollBarHovered[4] = { 0.41f, 0.41f, 0.41f, 1.00f };
+			float scrollBarActive[4] =	{ 0.51f, 0.51f, 0.51f, 1.00f };
 		} Cfg;
 		
 	} Settings; 
