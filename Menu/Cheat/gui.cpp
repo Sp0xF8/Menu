@@ -6,6 +6,8 @@
 #include "../Imgui/imgui_impl_win32.h"
 #include "../Imgui/imguipp.h"
 
+#include <string.h>
+
 ImFont* font1;
 
 
@@ -16,6 +18,8 @@ ImColor float4toImColorRead(float input[4]) {
 ImVec4 float4toImVec4Read(float input[4]) {
 	return ImVec4(input[0], input[1], input[2], input[3]);
 }
+
+
 
 
 extern IMGUI_IMPL_API LRESULT ImGui_ImplWin32_WndProcHandler(
@@ -322,16 +326,436 @@ void gui::Menu() noexcept
 	{
 		switch (Config::Tab) {
 		case 1:
-			//Legit Bot
-			ImGui::Checkbox("Active", &Config::Settings.Legit.enabled);
+			//Legit TAB
 
-			if (Config::Settings.Legit.enabled == true)
-				ImGui::Text("Legit Bot Enabled");
-			else
-				ImGui::Text("Legit Bot Disabled");
+
+			//main
+			ImGui::BeginChild("legitMain", ImVec2(200, ImGui::GetContentRegionAvail().y), TRUE);
+			{
+				const char* items[] = { "Scout", "AWP", "Auto", "Rifles", "SMGs", "Shotguns", "Pistols" };
+				
+				imguipp::center_text_ex("Main", 200, 1, false);
+				
+				ImGui::SeparatorEx(ImGuiSeparatorFlags_Horizontal);
+				ImGui::Spacing();
+				
+				ImGui::Checkbox("Active", &Config::Settings.Legit.enabled);
+				
+				ImGui::Spacing();
+				
+				ImGui::Combo("", &Config::item_current, items, IM_ARRAYSIZE(items));
+
+				switch (Config::item_current) {
+					case 0:
+						ImGui::Spacing();
+						ImGui::SliderFloat("FOV", &Config::Settings.Legit.Weapons.Rifles.Scout.aimFOV, 0.00f, 60.00f, "%.1f");
+						ImGui::Spacing();
+						ImGui::SliderFloat("Smooth", &Config::Settings.Legit.Weapons.Rifles.Scout.aimSmooth, 0.00f, 1.00f, "%.2f");
+					break;
+					case 1:
+						ImGui::Spacing();
+						ImGui::SliderFloat("FOV", &Config::Settings.Legit.Weapons.Rifles.AWP.aimFOV, 0.00f, 60.00f, "%.1f");
+						ImGui::Spacing();
+						ImGui::SliderFloat("Smooth", &Config::Settings.Legit.Weapons.Rifles.AWP.aimSmooth, 0.00f, 1.00f, "%.2f");
+					break;
+					case 2:
+						ImGui::Spacing();
+						ImGui::SliderFloat("FOV", &Config::Settings.Legit.Weapons.Rifles.Auto.aimFOV, 0.00f, 60.00f, "%.1f");
+						ImGui::Spacing();
+						ImGui::SliderFloat("Smooth", &Config::Settings.Legit.Weapons.Rifles.Auto.aimSmooth, 0.00f, 1.00f, "%.2f");
+						ImGui::Spacing();
+						ImGui::Checkbox("Enable RCS", &Config::Settings.Legit.Weapons.Rifles.enableRCS);
+						ImGui::Spacing();
+						ImGui::Checkbox("Standalone RCS", &Config::Settings.Legit.Weapons.Rifles.standaloneRCS);
+						ImGui::Spacing();
+						ImGui::SliderFloat("RCS X", &Config::Settings.Legit.Weapons.Rifles.xRCS, 0.00f, 1.00f, "%.3f");
+						ImGui::Spacing();
+						ImGui::SliderFloat("RCS Y", &Config::Settings.Legit.Weapons.Rifles.yRCS, 0.00f, 1.00f, "%.3f");
+						ImGui::Spacing();
+					break;
+					case 3:
+						ImGui::Spacing();
+						ImGui::SliderFloat("FOV", &Config::Settings.Legit.Weapons.Rifles.aimFOV, 0.00f, 60.00f, "%.1f");
+						ImGui::Spacing();
+						ImGui::SliderFloat("Smooth", &Config::Settings.Legit.Weapons.Rifles.aimSmooth, 0.00f, 1.00f, "%.2f");
+						ImGui::Spacing();
+						ImGui::Checkbox("Enable RCS", &Config::Settings.Legit.Weapons.Rifles.enableRCS);
+						ImGui::Spacing();
+						ImGui::Checkbox("Standalone RCS", &Config::Settings.Legit.Weapons.Rifles.standaloneRCS);
+						ImGui::Spacing();
+						ImGui::SliderFloat("RCS X", &Config::Settings.Legit.Weapons.Rifles.xRCS, 0.00f, 1.00f, "%.3f");
+						ImGui::Spacing();
+						ImGui::SliderFloat("RCS Y", &Config::Settings.Legit.Weapons.Rifles.yRCS, 0.00f, 1.00f, "%.3f");
+					break;
+					case 4:
+						ImGui::Spacing();
+						ImGui::SliderFloat("FOV", &Config::Settings.Legit.Weapons.SMGs.aimFOV, 0.00f, 60.00f, "%.1f");
+						ImGui::Spacing();
+						ImGui::SliderFloat("Smooth", &Config::Settings.Legit.Weapons.SMGs.aimSmooth, 0.00f, 1.00f, "%.2f");
+						ImGui::Spacing();
+						ImGui::Checkbox("Enable RCS", &Config::Settings.Legit.Weapons.SMGs.enableRCS);
+						ImGui::Spacing();
+						ImGui::Checkbox("Standalone RCS", &Config::Settings.Legit.Weapons.SMGs.standaloneRCS);
+						ImGui::Spacing();
+						ImGui::SliderFloat("RCS X", &Config::Settings.Legit.Weapons.SMGs.xRCS, 0.00f, 1.00f, "%.3f");
+						ImGui::Spacing();
+						ImGui::SliderFloat("RCS Y", &Config::Settings.Legit.Weapons.SMGs.yRCS, 0.00f, 1.00f, "%.3f");
+					break;
+					case 5:
+						ImGui::Spacing();
+						ImGui::SliderFloat("FOV", &Config::Settings.Legit.Weapons.Shotguns.aimFOV, 0.00f, 60.00f, "%.1f");
+						ImGui::Spacing();
+						ImGui::SliderFloat("Smooth", &Config::Settings.Legit.Weapons.Shotguns.aimSmooth, 0.00f, 1.00f, "%.2f");
+					break;
+					case 6:
+						ImGui::Spacing();
+						ImGui::SliderFloat("FOV", &Config::Settings.Legit.Weapons.Pistols.aimFOV, 0.00f, 60.00f, "%.1f");
+						ImGui::Spacing();
+						ImGui::SliderFloat("Smooth", &Config::Settings.Legit.Weapons.Pistols.aimSmooth, 0.00f, 1.00f, "%.2f");
+						ImGui::Spacing();
+						ImGui::Checkbox("Auto Pistol", &Config::Settings.Legit.Weapons.Pistols.autoPistol);
+					break;
+				}
+
+			}
+			ImGui::EndChild();
+			ImGui::SameLine();
+			//bones childd
+			ImGui::BeginChild("legitBones", ImVec2(300, ImGui::GetContentRegionAvail().y), TRUE);
+			{
+
+				ImDrawList* draw_list = ImGui::GetWindowDrawList();
+				ImVec2 p = ImGui::GetCursorScreenPos();
+				imguipp::center_text_ex("Bones", 300, 1, false);
+
+				ImGui::SeparatorEx(ImGuiSeparatorFlags_Horizontal);
+				ImGui::Spacing();
+
+				switch (Config::item_current) {
+					case 0: //Scout
+						//stick man thing
+						ImGui::BeginChild("Gui", ImVec2(120, ImGui::GetContentRegionAvail().y), TRUE);
+						{
+							draw_list->AddCircle(ImVec2(p.x + 60, p.y + 65), 20.0f, Config::Settings.Legit.Weapons.Rifles.Scout.aimHead == true ? float4toImColorRead(Config::Settings.Cfg.menuBonesActive) : float4toImColorRead(Config::Settings.Cfg.menuBonesInactive), 16, 2.0f); //head
+							draw_list->AddLine(ImVec2(p.x + 60, p.y + 85), ImVec2(p.x + 60, p.y + 100), Config::Settings.Legit.Weapons.Rifles.Scout.aimNeck == true ? float4toImColorRead(Config::Settings.Cfg.menuBonesActive) : float4toImColorRead(Config::Settings.Cfg.menuBonesInactive), 2.0f); //neck
+
+							draw_list->AddRect(ImVec2(p.x + 40, p.y + 100), ImVec2(p.x + 80, p.y + 160), Config::Settings.Legit.Weapons.Rifles.Scout.aimChest == true ? float4toImColorRead(Config::Settings.Cfg.menuBonesActive) : float4toImColorRead(Config::Settings.Cfg.menuBonesInactive), 0, 0, 2.0f); //ubody
+							draw_list->AddQuad(ImVec2(p.x + 40, p.y + 160), ImVec2(p.x + 80, p.y + 160), ImVec2(p.x + 75, p.y + 200), ImVec2(p.x + 45, p.y + 200), Config::Settings.Legit.Weapons.Rifles.Scout.aimPelvis == true ? float4toImColorRead(Config::Settings.Cfg.menuBonesActive) : float4toImColorRead(Config::Settings.Cfg.menuBonesInactive), 2.0f); //lbody
+
+							draw_list->AddQuad(ImVec2(p.x + 40, p.y + 102), ImVec2(p.x + 40, p.y + 118), ImVec2(p.x + 20, p.y + 145), ImVec2(p.x + 15, p.y + 140), Config::Settings.Legit.Weapons.Rifles.Scout.aimArms == true ? float4toImColorRead(Config::Settings.Cfg.menuBonesActive) : float4toImColorRead(Config::Settings.Cfg.menuBonesInactive), 2.0f); //larm
+							draw_list->AddTriangle(ImVec2(p.x + 20, p.y + 145), ImVec2(p.x + 15, p.y + 140), ImVec2(p.x + 13, p.y + 152), Config::Settings.Legit.Weapons.Rifles.Scout.aimHands == true ? float4toImColorRead(Config::Settings.Cfg.menuBonesActive) : float4toImColorRead(Config::Settings.Cfg.menuBonesInactive), 2.0f);
+
+							draw_list->AddQuad(ImVec2(p.x + 80, p.y + 102), ImVec2(p.x + 80, p.y + 118), ImVec2(p.x + 100, p.y + 145), ImVec2(p.x + 105, p.y + 140), Config::Settings.Legit.Weapons.Rifles.Scout.aimArms == true ? float4toImColorRead(Config::Settings.Cfg.menuBonesActive) : float4toImColorRead(Config::Settings.Cfg.menuBonesInactive), 2.0f); //rarm
+							draw_list->AddTriangle(ImVec2(p.x + 100, p.y + 145), ImVec2(p.x + 105, p.y + 140), ImVec2(p.x + 108, p.y + 152), Config::Settings.Legit.Weapons.Rifles.Scout.aimHands == true ? float4toImColorRead(Config::Settings.Cfg.menuBonesActive) : float4toImColorRead(Config::Settings.Cfg.menuBonesInactive), 2.0f);
+
+							draw_list->AddQuad(ImVec2(p.x + 45, p.y + 200), ImVec2(p.x + 55, p.y + 200), ImVec2(p.x + 55, p.y + 280), ImVec2(p.x + 45, p.y + 280), Config::Settings.Legit.Weapons.Rifles.Scout.aimLegs == true ? float4toImColorRead(Config::Settings.Cfg.menuBonesActive) : float4toImColorRead(Config::Settings.Cfg.menuBonesInactive), 2.0f); //lLeg
+							draw_list->AddQuad(ImVec2(p.x + 40, p.y + 280), ImVec2(p.x + 55, p.y + 280), ImVec2(p.x + 55, p.y + 290), ImVec2(p.x + 40, p.y + 290), Config::Settings.Legit.Weapons.Rifles.Scout.aimFeet == true ? float4toImColorRead(Config::Settings.Cfg.menuBonesActive) : float4toImColorRead(Config::Settings.Cfg.menuBonesInactive), 2.0f); //lFoot
+
+							draw_list->AddQuad(ImVec2(p.x + 65, p.y + 200), ImVec2(p.x + 75, p.y + 200), ImVec2(p.x + 75, p.y + 280), ImVec2(p.x + 65, p.y + 280), Config::Settings.Legit.Weapons.Rifles.Scout.aimLegs == true ? float4toImColorRead(Config::Settings.Cfg.menuBonesActive) : float4toImColorRead(Config::Settings.Cfg.menuBonesInactive), 2.0f); //rLeg
+							draw_list->AddQuad(ImVec2(p.x + 80, p.y + 280), ImVec2(p.x + 65, p.y + 280), ImVec2(p.x + 65, p.y + 290), ImVec2(p.x + 80, p.y + 290), Config::Settings.Legit.Weapons.Rifles.Scout.aimFeet == true ? float4toImColorRead(Config::Settings.Cfg.menuBonesActive) : float4toImColorRead(Config::Settings.Cfg.menuBonesInactive), 2.0f); //rFoot
+						}
+						ImGui::EndChild();
+						ImGui::SameLine();
+						//check boxes
+						ImGui::BeginChild("Bones", ImVec2(ImGui::GetContentRegionAvail().x, ImGui::GetContentRegionAvail().y), TRUE);
+						{
+							ImGui::Checkbox("Head", &Config::Settings.Legit.Weapons.Rifles.Scout.aimHead);
+							ImGui::Spacing();
+							ImGui::Checkbox("Neck", &Config::Settings.Legit.Weapons.Rifles.Scout.aimNeck);
+							ImGui::Spacing();
+							ImGui::Checkbox("Upper Body", &Config::Settings.Legit.Weapons.Rifles.Scout.aimChest);
+							ImGui::Spacing();
+							ImGui::Checkbox("Lower Body", &Config::Settings.Legit.Weapons.Rifles.Scout.aimPelvis);
+							ImGui::Spacing();
+							ImGui::Checkbox("Arms", &Config::Settings.Legit.Weapons.Rifles.Scout.aimArms);
+							ImGui::Spacing();
+							ImGui::Checkbox("Hands", &Config::Settings.Legit.Weapons.Rifles.Scout.aimHands);
+							ImGui::Spacing();
+							ImGui::Checkbox("Legs", &Config::Settings.Legit.Weapons.Rifles.Scout.aimLegs);
+							ImGui::Spacing();
+							ImGui::Checkbox("Feet", &Config::Settings.Legit.Weapons.Rifles.Scout.aimFeet);
+						}
+						ImGui::EndChild();
+
+						break;
+					case 1: //Awp
+						//stick man thing
+						ImGui::BeginChild("Gui", ImVec2(120, ImGui::GetContentRegionAvail().y), TRUE);
+						{
+							draw_list->AddCircle(ImVec2(p.x + 60, p.y + 65), 20.0f, Config::Settings.Legit.Weapons.Rifles.AWP.aimHead == true ? float4toImColorRead(Config::Settings.Cfg.menuBonesActive) : float4toImColorRead(Config::Settings.Cfg.menuBonesInactive), 16, 2.0f); //head
+							draw_list->AddLine(ImVec2(p.x + 60, p.y + 85), ImVec2(p.x + 60, p.y + 100), Config::Settings.Legit.Weapons.Rifles.AWP.aimNeck == true ? float4toImColorRead(Config::Settings.Cfg.menuBonesActive) : float4toImColorRead(Config::Settings.Cfg.menuBonesInactive), 2.0f); //neck
+
+							draw_list->AddRect(ImVec2(p.x + 40, p.y + 100), ImVec2(p.x + 80, p.y + 160), Config::Settings.Legit.Weapons.Rifles.AWP.aimChest == true ? float4toImColorRead(Config::Settings.Cfg.menuBonesActive) : float4toImColorRead(Config::Settings.Cfg.menuBonesInactive), 0, 0, 2.0f); //ubody
+							draw_list->AddQuad(ImVec2(p.x + 40, p.y + 160), ImVec2(p.x + 80, p.y + 160), ImVec2(p.x + 75, p.y + 200), ImVec2(p.x + 45, p.y + 200), Config::Settings.Legit.Weapons.Rifles.AWP.aimPelvis == true ? float4toImColorRead(Config::Settings.Cfg.menuBonesActive) : float4toImColorRead(Config::Settings.Cfg.menuBonesInactive), 2.0f); //lbody
+
+							draw_list->AddQuad(ImVec2(p.x + 40, p.y + 102), ImVec2(p.x + 40, p.y + 118), ImVec2(p.x + 20, p.y + 145), ImVec2(p.x + 15, p.y + 140), Config::Settings.Legit.Weapons.Rifles.AWP.aimArms == true ? float4toImColorRead(Config::Settings.Cfg.menuBonesActive) : float4toImColorRead(Config::Settings.Cfg.menuBonesInactive), 2.0f); //larm
+							draw_list->AddTriangle(ImVec2(p.x + 20, p.y + 145), ImVec2(p.x + 15, p.y + 140), ImVec2(p.x + 13, p.y + 152), Config::Settings.Legit.Weapons.Rifles.AWP.aimHands == true ? float4toImColorRead(Config::Settings.Cfg.menuBonesActive) : float4toImColorRead(Config::Settings.Cfg.menuBonesInactive), 2.0f);
+
+							draw_list->AddQuad(ImVec2(p.x + 80, p.y + 102), ImVec2(p.x + 80, p.y + 118), ImVec2(p.x + 100, p.y + 145), ImVec2(p.x + 105, p.y + 140), Config::Settings.Legit.Weapons.Rifles.AWP.aimArms == true ? float4toImColorRead(Config::Settings.Cfg.menuBonesActive) : float4toImColorRead(Config::Settings.Cfg.menuBonesInactive), 2.0f); //rarm
+							draw_list->AddTriangle(ImVec2(p.x + 100, p.y + 145), ImVec2(p.x + 105, p.y + 140), ImVec2(p.x + 108, p.y + 152), Config::Settings.Legit.Weapons.Rifles.AWP.aimHands == true ? float4toImColorRead(Config::Settings.Cfg.menuBonesActive) : float4toImColorRead(Config::Settings.Cfg.menuBonesInactive), 2.0f);
+
+							draw_list->AddQuad(ImVec2(p.x + 45, p.y + 200), ImVec2(p.x + 55, p.y + 200), ImVec2(p.x + 55, p.y + 280), ImVec2(p.x + 45, p.y + 280), Config::Settings.Legit.Weapons.Rifles.AWP.aimLegs == true ? float4toImColorRead(Config::Settings.Cfg.menuBonesActive) : float4toImColorRead(Config::Settings.Cfg.menuBonesInactive), 2.0f); //lLeg
+							draw_list->AddQuad(ImVec2(p.x + 40, p.y + 280), ImVec2(p.x + 55, p.y + 280), ImVec2(p.x + 55, p.y + 290), ImVec2(p.x + 40, p.y + 290), Config::Settings.Legit.Weapons.Rifles.AWP.aimFeet == true ? float4toImColorRead(Config::Settings.Cfg.menuBonesActive) : float4toImColorRead(Config::Settings.Cfg.menuBonesInactive), 2.0f); //lFoot
+
+							draw_list->AddQuad(ImVec2(p.x + 65, p.y + 200), ImVec2(p.x + 75, p.y + 200), ImVec2(p.x + 75, p.y + 280), ImVec2(p.x + 65, p.y + 280), Config::Settings.Legit.Weapons.Rifles.AWP.aimLegs == true ? float4toImColorRead(Config::Settings.Cfg.menuBonesActive) : float4toImColorRead(Config::Settings.Cfg.menuBonesInactive), 2.0f); //rLeg
+							draw_list->AddQuad(ImVec2(p.x + 80, p.y + 280), ImVec2(p.x + 65, p.y + 280), ImVec2(p.x + 65, p.y + 290), ImVec2(p.x + 80, p.y + 290), Config::Settings.Legit.Weapons.Rifles.AWP.aimFeet == true ? float4toImColorRead(Config::Settings.Cfg.menuBonesActive) : float4toImColorRead(Config::Settings.Cfg.menuBonesInactive), 2.0f); //rFoot
+						}
+						ImGui::EndChild();
+						ImGui::SameLine();
+						//check boxes
+						ImGui::BeginChild("Bones", ImVec2(ImGui::GetContentRegionAvail().x, ImGui::GetContentRegionAvail().y), TRUE);
+						{
+							ImGui::Checkbox("Head", &Config::Settings.Legit.Weapons.Rifles.AWP.aimHead);
+							ImGui::Spacing();
+							ImGui::Checkbox("Neck", &Config::Settings.Legit.Weapons.Rifles.AWP.aimNeck);
+							ImGui::Spacing();
+							ImGui::Checkbox("Upper Body", &Config::Settings.Legit.Weapons.Rifles.AWP.aimChest);
+							ImGui::Spacing();
+							ImGui::Checkbox("Lower Body", &Config::Settings.Legit.Weapons.Rifles.AWP.aimPelvis);
+							ImGui::Spacing();
+							ImGui::Checkbox("Arms", &Config::Settings.Legit.Weapons.Rifles.AWP.aimArms);
+							ImGui::Spacing();
+							ImGui::Checkbox("Hands", &Config::Settings.Legit.Weapons.Rifles.AWP.aimHands);
+							ImGui::Spacing();
+							ImGui::Checkbox("Legs", &Config::Settings.Legit.Weapons.Rifles.AWP.aimLegs);
+							ImGui::Spacing();
+							ImGui::Checkbox("Feet", &Config::Settings.Legit.Weapons.Rifles.AWP.aimFeet);
+						}
+						ImGui::EndChild();
+
+						break;
+					case 2: //Auto
+						//stick man thing
+						ImGui::BeginChild("Gui", ImVec2(120, ImGui::GetContentRegionAvail().y), TRUE);
+						{
+							draw_list->AddCircle(ImVec2(p.x + 60, p.y + 65), 20.0f, Config::Settings.Legit.Weapons.Rifles.Auto.aimHead == true ? float4toImColorRead(Config::Settings.Cfg.menuBonesActive) : float4toImColorRead(Config::Settings.Cfg.menuBonesInactive), 16, 2.0f); //head
+							draw_list->AddLine(ImVec2(p.x + 60, p.y + 85), ImVec2(p.x + 60, p.y + 100), Config::Settings.Legit.Weapons.Rifles.Auto.aimNeck == true ? float4toImColorRead(Config::Settings.Cfg.menuBonesActive) : float4toImColorRead(Config::Settings.Cfg.menuBonesInactive), 2.0f); //neck
+
+							draw_list->AddRect(ImVec2(p.x + 40, p.y + 100), ImVec2(p.x + 80, p.y + 160), Config::Settings.Legit.Weapons.Rifles.Auto.aimChest == true ? float4toImColorRead(Config::Settings.Cfg.menuBonesActive) : float4toImColorRead(Config::Settings.Cfg.menuBonesInactive), 0, 0, 2.0f); //ubody
+							draw_list->AddQuad(ImVec2(p.x + 40, p.y + 160), ImVec2(p.x + 80, p.y + 160), ImVec2(p.x + 75, p.y + 200), ImVec2(p.x + 45, p.y + 200), Config::Settings.Legit.Weapons.Rifles.Auto.aimPelvis == true ? float4toImColorRead(Config::Settings.Cfg.menuBonesActive) : float4toImColorRead(Config::Settings.Cfg.menuBonesInactive), 2.0f); //lbody
+
+							draw_list->AddQuad(ImVec2(p.x + 40, p.y + 102), ImVec2(p.x + 40, p.y + 118), ImVec2(p.x + 20, p.y + 145), ImVec2(p.x + 15, p.y + 140), Config::Settings.Legit.Weapons.Rifles.Auto.aimArms == true ? float4toImColorRead(Config::Settings.Cfg.menuBonesActive) : float4toImColorRead(Config::Settings.Cfg.menuBonesInactive), 2.0f); //larm
+							draw_list->AddTriangle(ImVec2(p.x + 20, p.y + 145), ImVec2(p.x + 15, p.y + 140), ImVec2(p.x + 13, p.y + 152), Config::Settings.Legit.Weapons.Rifles.Auto.aimHands == true ? float4toImColorRead(Config::Settings.Cfg.menuBonesActive) : float4toImColorRead(Config::Settings.Cfg.menuBonesInactive), 2.0f);
+
+							draw_list->AddQuad(ImVec2(p.x + 80, p.y + 102), ImVec2(p.x + 80, p.y + 118), ImVec2(p.x + 100, p.y + 145), ImVec2(p.x + 105, p.y + 140), Config::Settings.Legit.Weapons.Rifles.Auto.aimArms == true ? float4toImColorRead(Config::Settings.Cfg.menuBonesActive) : float4toImColorRead(Config::Settings.Cfg.menuBonesInactive), 2.0f); //rarm
+							draw_list->AddTriangle(ImVec2(p.x + 100, p.y + 145), ImVec2(p.x + 105, p.y + 140), ImVec2(p.x + 108, p.y + 152), Config::Settings.Legit.Weapons.Rifles.Auto.aimHands == true ? float4toImColorRead(Config::Settings.Cfg.menuBonesActive) : float4toImColorRead(Config::Settings.Cfg.menuBonesInactive), 2.0f);
+
+							draw_list->AddQuad(ImVec2(p.x + 45, p.y + 200), ImVec2(p.x + 55, p.y + 200), ImVec2(p.x + 55, p.y + 280), ImVec2(p.x + 45, p.y + 280), Config::Settings.Legit.Weapons.Rifles.Auto.aimLegs == true ? float4toImColorRead(Config::Settings.Cfg.menuBonesActive) : float4toImColorRead(Config::Settings.Cfg.menuBonesInactive), 2.0f); //lLeg
+							draw_list->AddQuad(ImVec2(p.x + 40, p.y + 280), ImVec2(p.x + 55, p.y + 280), ImVec2(p.x + 55, p.y + 290), ImVec2(p.x + 40, p.y + 290), Config::Settings.Legit.Weapons.Rifles.Auto.aimFeet == true ? float4toImColorRead(Config::Settings.Cfg.menuBonesActive) : float4toImColorRead(Config::Settings.Cfg.menuBonesInactive), 2.0f); //lFoot
+
+							draw_list->AddQuad(ImVec2(p.x + 65, p.y + 200), ImVec2(p.x + 75, p.y + 200), ImVec2(p.x + 75, p.y + 280), ImVec2(p.x + 65, p.y + 280), Config::Settings.Legit.Weapons.Rifles.Auto.aimLegs == true ? float4toImColorRead(Config::Settings.Cfg.menuBonesActive) : float4toImColorRead(Config::Settings.Cfg.menuBonesInactive), 2.0f); //rLeg
+							draw_list->AddQuad(ImVec2(p.x + 80, p.y + 280), ImVec2(p.x + 65, p.y + 280), ImVec2(p.x + 65, p.y + 290), ImVec2(p.x + 80, p.y + 290), Config::Settings.Legit.Weapons.Rifles.Auto.aimFeet == true ? float4toImColorRead(Config::Settings.Cfg.menuBonesActive) : float4toImColorRead(Config::Settings.Cfg.menuBonesInactive), 2.0f); //rFoot
+						}
+						ImGui::EndChild();
+						ImGui::SameLine();
+						//check boxes
+						ImGui::BeginChild("Bones", ImVec2(ImGui::GetContentRegionAvail().x, ImGui::GetContentRegionAvail().y), TRUE);
+						{
+							ImGui::Checkbox("Head", &Config::Settings.Legit.Weapons.Rifles.Auto.aimHead);
+							ImGui::Spacing();
+							ImGui::Checkbox("Neck", &Config::Settings.Legit.Weapons.Rifles.Auto.aimNeck);
+							ImGui::Spacing();
+							ImGui::Checkbox("Upper Body", &Config::Settings.Legit.Weapons.Rifles.Auto.aimChest);
+							ImGui::Spacing();
+							ImGui::Checkbox("Lower Body", &Config::Settings.Legit.Weapons.Rifles.Auto.aimPelvis);
+							ImGui::Spacing();
+							ImGui::Checkbox("Arms", &Config::Settings.Legit.Weapons.Rifles.Auto.aimArms);
+							ImGui::Spacing();
+							ImGui::Checkbox("Hands", &Config::Settings.Legit.Weapons.Rifles.Auto.aimHands);
+							ImGui::Spacing();
+							ImGui::Checkbox("Legs", &Config::Settings.Legit.Weapons.Rifles.Auto.aimLegs);
+							ImGui::Spacing();
+							ImGui::Checkbox("Feet", &Config::Settings.Legit.Weapons.Rifles.Auto.aimFeet);
+						}
+						ImGui::EndChild();
+
+						break;
+					case 3: // Rifles
+						//stick man thing
+						ImGui::BeginChild("Gui", ImVec2(120, ImGui::GetContentRegionAvail().y), TRUE);
+						{
+							draw_list->AddCircle(ImVec2(p.x + 60, p.y + 65), 20.0f, Config::Settings.Legit.Weapons.Rifles.aimHead == true ? float4toImColorRead(Config::Settings.Cfg.menuBonesActive) : float4toImColorRead(Config::Settings.Cfg.menuBonesInactive), 16, 2.0f); //head
+							draw_list->AddLine(ImVec2(p.x + 60, p.y + 85), ImVec2(p.x + 60, p.y + 100), Config::Settings.Legit.Weapons.Rifles.aimNeck == true ? float4toImColorRead(Config::Settings.Cfg.menuBonesActive) : float4toImColorRead(Config::Settings.Cfg.menuBonesInactive), 2.0f); //neck
+
+							draw_list->AddRect(ImVec2(p.x + 40, p.y + 100), ImVec2(p.x + 80, p.y + 160), Config::Settings.Legit.Weapons.Rifles.aimChest == true ? float4toImColorRead(Config::Settings.Cfg.menuBonesActive) : float4toImColorRead(Config::Settings.Cfg.menuBonesInactive), 0, 0, 2.0f); //ubody
+							draw_list->AddQuad(ImVec2(p.x + 40, p.y + 160), ImVec2(p.x + 80, p.y + 160), ImVec2(p.x + 75, p.y + 200), ImVec2(p.x + 45, p.y + 200), Config::Settings.Legit.Weapons.Rifles.aimPelvis == true ? float4toImColorRead(Config::Settings.Cfg.menuBonesActive) : float4toImColorRead(Config::Settings.Cfg.menuBonesInactive), 2.0f); //lbody
+
+							draw_list->AddQuad(ImVec2(p.x + 40, p.y + 102), ImVec2(p.x + 40, p.y + 118), ImVec2(p.x + 20, p.y + 145), ImVec2(p.x + 15, p.y + 140), Config::Settings.Legit.Weapons.Rifles.aimArms == true ? float4toImColorRead(Config::Settings.Cfg.menuBonesActive) : float4toImColorRead(Config::Settings.Cfg.menuBonesInactive), 2.0f); //larm
+							draw_list->AddTriangle(ImVec2(p.x + 20, p.y + 145), ImVec2(p.x + 15, p.y + 140), ImVec2(p.x + 13, p.y + 152), Config::Settings.Legit.Weapons.Rifles.aimHands == true ? float4toImColorRead(Config::Settings.Cfg.menuBonesActive) : float4toImColorRead(Config::Settings.Cfg.menuBonesInactive), 2.0f);
+
+							draw_list->AddQuad(ImVec2(p.x + 80, p.y + 102), ImVec2(p.x + 80, p.y + 118), ImVec2(p.x + 100, p.y + 145), ImVec2(p.x + 105, p.y + 140), Config::Settings.Legit.Weapons.Rifles.aimArms == true ? float4toImColorRead(Config::Settings.Cfg.menuBonesActive) : float4toImColorRead(Config::Settings.Cfg.menuBonesInactive), 2.0f); //rarm
+							draw_list->AddTriangle(ImVec2(p.x + 100, p.y + 145), ImVec2(p.x + 105, p.y + 140), ImVec2(p.x + 108, p.y + 152), Config::Settings.Legit.Weapons.Rifles.aimHands == true ? float4toImColorRead(Config::Settings.Cfg.menuBonesActive) : float4toImColorRead(Config::Settings.Cfg.menuBonesInactive), 2.0f);
+
+							draw_list->AddQuad(ImVec2(p.x + 45, p.y + 200), ImVec2(p.x + 55, p.y + 200), ImVec2(p.x + 55, p.y + 280), ImVec2(p.x + 45, p.y + 280), Config::Settings.Legit.Weapons.Rifles.aimLegs == true ? float4toImColorRead(Config::Settings.Cfg.menuBonesActive) : float4toImColorRead(Config::Settings.Cfg.menuBonesInactive), 2.0f); //lLeg
+							draw_list->AddQuad(ImVec2(p.x + 40, p.y + 280), ImVec2(p.x + 55, p.y + 280), ImVec2(p.x + 55, p.y + 290), ImVec2(p.x + 40, p.y + 290), Config::Settings.Legit.Weapons.Rifles.aimFeet == true ? float4toImColorRead(Config::Settings.Cfg.menuBonesActive) : float4toImColorRead(Config::Settings.Cfg.menuBonesInactive), 2.0f); //lFoot
+
+							draw_list->AddQuad(ImVec2(p.x + 65, p.y + 200), ImVec2(p.x + 75, p.y + 200), ImVec2(p.x + 75, p.y + 280), ImVec2(p.x + 65, p.y + 280), Config::Settings.Legit.Weapons.Rifles.aimLegs == true ? float4toImColorRead(Config::Settings.Cfg.menuBonesActive) : float4toImColorRead(Config::Settings.Cfg.menuBonesInactive), 2.0f); //rLeg
+							draw_list->AddQuad(ImVec2(p.x + 80, p.y + 280), ImVec2(p.x + 65, p.y + 280), ImVec2(p.x + 65, p.y + 290), ImVec2(p.x + 80, p.y + 290), Config::Settings.Legit.Weapons.Rifles.aimFeet == true ? float4toImColorRead(Config::Settings.Cfg.menuBonesActive) : float4toImColorRead(Config::Settings.Cfg.menuBonesInactive), 2.0f); //rFoot
+						}
+						ImGui::EndChild();
+						ImGui::SameLine();
+						//check boxes
+						ImGui::BeginChild("Bones", ImVec2(ImGui::GetContentRegionAvail().x, ImGui::GetContentRegionAvail().y), TRUE);
+						{
+							ImGui::Checkbox("Head", &Config::Settings.Legit.Weapons.Rifles.aimHead);
+							ImGui::Spacing();
+							ImGui::Checkbox("Neck", &Config::Settings.Legit.Weapons.Rifles.aimNeck);
+							ImGui::Spacing();
+							ImGui::Checkbox("Upper Body", &Config::Settings.Legit.Weapons.Rifles.aimChest);
+							ImGui::Spacing();
+							ImGui::Checkbox("Lower Body", &Config::Settings.Legit.Weapons.Rifles.aimPelvis);
+							ImGui::Spacing();
+							ImGui::Checkbox("Arms", &Config::Settings.Legit.Weapons.Rifles.aimArms);
+							ImGui::Spacing();
+							ImGui::Checkbox("Hands", &Config::Settings.Legit.Weapons.Rifles.aimHands);
+							ImGui::Spacing();
+							ImGui::Checkbox("Legs", &Config::Settings.Legit.Weapons.Rifles.aimLegs);
+							ImGui::Spacing();
+							ImGui::Checkbox("Feet", &Config::Settings.Legit.Weapons.Rifles.aimFeet);
+						}
+						ImGui::EndChild();
+
+						break;
+					case 4: //SMGS
+						ImGui::BeginChild("Gui", ImVec2(120, ImGui::GetContentRegionAvail().y), TRUE);
+						{
+							draw_list->AddCircle(ImVec2(p.x + 60, p.y + 65), 20.0f, Config::Settings.Legit.Weapons.SMGs.aimHead == true ? float4toImColorRead(Config::Settings.Cfg.menuBonesActive) : float4toImColorRead(Config::Settings.Cfg.menuBonesInactive), 16, 2.0f); //head
+							draw_list->AddLine(ImVec2(p.x + 60, p.y + 85), ImVec2(p.x + 60, p.y + 100), Config::Settings.Legit.Weapons.SMGs.aimNeck == true ? float4toImColorRead(Config::Settings.Cfg.menuBonesActive) : float4toImColorRead(Config::Settings.Cfg.menuBonesInactive), 2.0f); //neck
+
+							draw_list->AddRect(ImVec2(p.x + 40, p.y + 100), ImVec2(p.x + 80, p.y + 160), Config::Settings.Legit.Weapons.SMGs.aimChest == true ? float4toImColorRead(Config::Settings.Cfg.menuBonesActive) : float4toImColorRead(Config::Settings.Cfg.menuBonesInactive), 0, 0, 2.0f); //ubody
+							draw_list->AddQuad(ImVec2(p.x + 40, p.y + 160), ImVec2(p.x + 80, p.y + 160), ImVec2(p.x + 75, p.y + 200), ImVec2(p.x + 45, p.y + 200), Config::Settings.Legit.Weapons.SMGs.aimPelvis == true ? float4toImColorRead(Config::Settings.Cfg.menuBonesActive) : float4toImColorRead(Config::Settings.Cfg.menuBonesInactive), 2.0f); //lbody
+
+							draw_list->AddQuad(ImVec2(p.x + 40, p.y + 102), ImVec2(p.x + 40, p.y + 118), ImVec2(p.x + 20, p.y + 145), ImVec2(p.x + 15, p.y + 140), Config::Settings.Legit.Weapons.SMGs.aimArms == true ? float4toImColorRead(Config::Settings.Cfg.menuBonesActive) : float4toImColorRead(Config::Settings.Cfg.menuBonesInactive), 2.0f); //larm
+							draw_list->AddTriangle(ImVec2(p.x + 20, p.y + 145), ImVec2(p.x + 15, p.y + 140), ImVec2(p.x + 13, p.y + 152), Config::Settings.Legit.Weapons.SMGs.aimHands == true ? float4toImColorRead(Config::Settings.Cfg.menuBonesActive) : float4toImColorRead(Config::Settings.Cfg.menuBonesInactive), 2.0f);
+
+							draw_list->AddQuad(ImVec2(p.x + 80, p.y + 102), ImVec2(p.x + 80, p.y + 118), ImVec2(p.x + 100, p.y + 145), ImVec2(p.x + 105, p.y + 140), Config::Settings.Legit.Weapons.SMGs.aimArms == true ? float4toImColorRead(Config::Settings.Cfg.menuBonesActive) : float4toImColorRead(Config::Settings.Cfg.menuBonesInactive), 2.0f); //rarm
+							draw_list->AddTriangle(ImVec2(p.x + 100, p.y + 145), ImVec2(p.x + 105, p.y + 140), ImVec2(p.x + 108, p.y + 152), Config::Settings.Legit.Weapons.SMGs.aimHands == true ? float4toImColorRead(Config::Settings.Cfg.menuBonesActive) : float4toImColorRead(Config::Settings.Cfg.menuBonesInactive), 2.0f);
+
+							draw_list->AddQuad(ImVec2(p.x + 45, p.y + 200), ImVec2(p.x + 55, p.y + 200), ImVec2(p.x + 55, p.y + 280), ImVec2(p.x + 45, p.y + 280), Config::Settings.Legit.Weapons.SMGs.aimLegs == true ? float4toImColorRead(Config::Settings.Cfg.menuBonesActive) : float4toImColorRead(Config::Settings.Cfg.menuBonesInactive), 2.0f); //lLeg
+							draw_list->AddQuad(ImVec2(p.x + 40, p.y + 280), ImVec2(p.x + 55, p.y + 280), ImVec2(p.x + 55, p.y + 290), ImVec2(p.x + 40, p.y + 290), Config::Settings.Legit.Weapons.SMGs.aimFeet == true ? float4toImColorRead(Config::Settings.Cfg.menuBonesActive) : float4toImColorRead(Config::Settings.Cfg.menuBonesInactive), 2.0f); //lFoot
+
+							draw_list->AddQuad(ImVec2(p.x + 65, p.y + 200), ImVec2(p.x + 75, p.y + 200), ImVec2(p.x + 75, p.y + 280), ImVec2(p.x + 65, p.y + 280), Config::Settings.Legit.Weapons.SMGs.aimLegs == true ? float4toImColorRead(Config::Settings.Cfg.menuBonesActive) : float4toImColorRead(Config::Settings.Cfg.menuBonesInactive), 2.0f); //rLeg
+							draw_list->AddQuad(ImVec2(p.x + 80, p.y + 280), ImVec2(p.x + 65, p.y + 280), ImVec2(p.x + 65, p.y + 290), ImVec2(p.x + 80, p.y + 290), Config::Settings.Legit.Weapons.SMGs.aimFeet == true ? float4toImColorRead(Config::Settings.Cfg.menuBonesActive) : float4toImColorRead(Config::Settings.Cfg.menuBonesInactive), 2.0f); //rFoot
+						}
+						ImGui::EndChild();
+						ImGui::SameLine();
+						//check boxes
+						ImGui::BeginChild("Bones", ImVec2(ImGui::GetContentRegionAvail().x, ImGui::GetContentRegionAvail().y), TRUE);
+						{
+							ImGui::Checkbox("Head", &Config::Settings.Legit.Weapons.SMGs.aimHead);
+							ImGui::Spacing();
+							ImGui::Checkbox("Neck", &Config::Settings.Legit.Weapons.SMGs.aimNeck);
+							ImGui::Spacing();
+							ImGui::Checkbox("Upper Body", &Config::Settings.Legit.Weapons.SMGs.aimChest);
+							ImGui::Spacing();
+							ImGui::Checkbox("Lower Body", &Config::Settings.Legit.Weapons.SMGs.aimPelvis);
+							ImGui::Spacing();
+							ImGui::Checkbox("Arms", &Config::Settings.Legit.Weapons.SMGs.aimArms);
+							ImGui::Spacing();
+							ImGui::Checkbox("Hands", &Config::Settings.Legit.Weapons.SMGs.aimHands);
+							ImGui::Spacing();
+							ImGui::Checkbox("Legs", &Config::Settings.Legit.Weapons.SMGs.aimLegs);
+							ImGui::Spacing();
+							ImGui::Checkbox("Feet", &Config::Settings.Legit.Weapons.SMGs.aimFeet);
+						}
+						ImGui::EndChild();
+						break;
+					case 5: //SHOTGUNS
+						ImGui::BeginChild("Gui", ImVec2(120, ImGui::GetContentRegionAvail().y), TRUE);
+						{
+							draw_list->AddCircle(ImVec2(p.x + 60, p.y + 65), 20.0f, Config::Settings.Legit.Weapons.Shotguns.aimHead == true ? float4toImColorRead(Config::Settings.Cfg.menuBonesActive) : float4toImColorRead(Config::Settings.Cfg.menuBonesInactive), 16, 2.0f); //head
+							draw_list->AddLine(ImVec2(p.x + 60, p.y + 85), ImVec2(p.x + 60, p.y + 100), Config::Settings.Legit.Weapons.Shotguns.aimNeck == true ? float4toImColorRead(Config::Settings.Cfg.menuBonesActive) : float4toImColorRead(Config::Settings.Cfg.menuBonesInactive), 2.0f); //neck
+
+							draw_list->AddRect(ImVec2(p.x + 40, p.y + 100), ImVec2(p.x + 80, p.y + 160), Config::Settings.Legit.Weapons.Shotguns.aimChest == true ? float4toImColorRead(Config::Settings.Cfg.menuBonesActive) : float4toImColorRead(Config::Settings.Cfg.menuBonesInactive), 0, 0, 2.0f); //ubody
+							draw_list->AddQuad(ImVec2(p.x + 40, p.y + 160), ImVec2(p.x + 80, p.y + 160), ImVec2(p.x + 75, p.y + 200), ImVec2(p.x + 45, p.y + 200), Config::Settings.Legit.Weapons.Shotguns.aimPelvis == true ? float4toImColorRead(Config::Settings.Cfg.menuBonesActive) : float4toImColorRead(Config::Settings.Cfg.menuBonesInactive), 2.0f); //lbody
+
+							draw_list->AddQuad(ImVec2(p.x + 40, p.y + 102), ImVec2(p.x + 40, p.y + 118), ImVec2(p.x + 20, p.y + 145), ImVec2(p.x + 15, p.y + 140), Config::Settings.Legit.Weapons.Shotguns.aimArms == true ? float4toImColorRead(Config::Settings.Cfg.menuBonesActive) : float4toImColorRead(Config::Settings.Cfg.menuBonesInactive), 2.0f); //larm
+							draw_list->AddTriangle(ImVec2(p.x + 20, p.y + 145), ImVec2(p.x + 15, p.y + 140), ImVec2(p.x + 13, p.y + 152), Config::Settings.Legit.Weapons.Shotguns.aimHands == true ? float4toImColorRead(Config::Settings.Cfg.menuBonesActive) : float4toImColorRead(Config::Settings.Cfg.menuBonesInactive), 2.0f);
+
+							draw_list->AddQuad(ImVec2(p.x + 80, p.y + 102), ImVec2(p.x + 80, p.y + 118), ImVec2(p.x + 100, p.y + 145), ImVec2(p.x + 105, p.y + 140), Config::Settings.Legit.Weapons.Shotguns.aimArms == true ? float4toImColorRead(Config::Settings.Cfg.menuBonesActive) : float4toImColorRead(Config::Settings.Cfg.menuBonesInactive), 2.0f); //rarm
+							draw_list->AddTriangle(ImVec2(p.x + 100, p.y + 145), ImVec2(p.x + 105, p.y + 140), ImVec2(p.x + 108, p.y + 152), Config::Settings.Legit.Weapons.Shotguns.aimHands == true ? float4toImColorRead(Config::Settings.Cfg.menuBonesActive) : float4toImColorRead(Config::Settings.Cfg.menuBonesInactive), 2.0f);
+
+							draw_list->AddQuad(ImVec2(p.x + 45, p.y + 200), ImVec2(p.x + 55, p.y + 200), ImVec2(p.x + 55, p.y + 280), ImVec2(p.x + 45, p.y + 280), Config::Settings.Legit.Weapons.Shotguns.aimLegs == true ? float4toImColorRead(Config::Settings.Cfg.menuBonesActive) : float4toImColorRead(Config::Settings.Cfg.menuBonesInactive), 2.0f); //lLeg
+							draw_list->AddQuad(ImVec2(p.x + 40, p.y + 280), ImVec2(p.x + 55, p.y + 280), ImVec2(p.x + 55, p.y + 290), ImVec2(p.x + 40, p.y + 290), Config::Settings.Legit.Weapons.Shotguns.aimFeet == true ? float4toImColorRead(Config::Settings.Cfg.menuBonesActive) : float4toImColorRead(Config::Settings.Cfg.menuBonesInactive), 2.0f); //lFoot
+
+							draw_list->AddQuad(ImVec2(p.x + 65, p.y + 200), ImVec2(p.x + 75, p.y + 200), ImVec2(p.x + 75, p.y + 280), ImVec2(p.x + 65, p.y + 280), Config::Settings.Legit.Weapons.Shotguns.aimLegs == true ? float4toImColorRead(Config::Settings.Cfg.menuBonesActive) : float4toImColorRead(Config::Settings.Cfg.menuBonesInactive), 2.0f); //rLeg
+							draw_list->AddQuad(ImVec2(p.x + 80, p.y + 280), ImVec2(p.x + 65, p.y + 280), ImVec2(p.x + 65, p.y + 290), ImVec2(p.x + 80, p.y + 290), Config::Settings.Legit.Weapons.Shotguns.aimFeet == true ? float4toImColorRead(Config::Settings.Cfg.menuBonesActive) : float4toImColorRead(Config::Settings.Cfg.menuBonesInactive), 2.0f); //rFoot
+						}
+						ImGui::EndChild();
+						ImGui::SameLine();
+						//check boxes
+						ImGui::BeginChild("Bones", ImVec2(ImGui::GetContentRegionAvail().x, ImGui::GetContentRegionAvail().y), TRUE);
+						{
+							ImGui::Checkbox("Head", &Config::Settings.Legit.Weapons.Shotguns.aimHead);
+							ImGui::Spacing();
+							ImGui::Checkbox("Neck", &Config::Settings.Legit.Weapons.Shotguns.aimNeck);
+							ImGui::Spacing();
+							ImGui::Checkbox("Upper Body", &Config::Settings.Legit.Weapons.Shotguns.aimChest);
+							ImGui::Spacing();
+							ImGui::Checkbox("Lower Body", &Config::Settings.Legit.Weapons.Shotguns.aimPelvis);
+							ImGui::Spacing();
+							ImGui::Checkbox("Arms", &Config::Settings.Legit.Weapons.Shotguns.aimArms);
+							ImGui::Spacing();
+							ImGui::Checkbox("Hands", &Config::Settings.Legit.Weapons.Shotguns.aimHands);
+							ImGui::Spacing();
+							ImGui::Checkbox("Legs", &Config::Settings.Legit.Weapons.Shotguns.aimLegs);
+							ImGui::Spacing();
+							ImGui::Checkbox("Feet", &Config::Settings.Legit.Weapons.Shotguns.aimFeet);
+						}
+						ImGui::EndChild();
+						break;
+					case 6: //PISTOLS
+						ImGui::BeginChild("Gui", ImVec2(120, ImGui::GetContentRegionAvail().y), TRUE);
+						{
+							draw_list->AddCircle(ImVec2(p.x + 60, p.y + 65), 20.0f, Config::Settings.Legit.Weapons.Pistols.aimHead == true ? float4toImColorRead(Config::Settings.Cfg.menuBonesActive) : float4toImColorRead(Config::Settings.Cfg.menuBonesInactive), 16, 2.0f); //head
+							draw_list->AddLine(ImVec2(p.x + 60, p.y + 85), ImVec2(p.x + 60, p.y + 100), Config::Settings.Legit.Weapons.Pistols.aimNeck == true ? float4toImColorRead(Config::Settings.Cfg.menuBonesActive) : float4toImColorRead(Config::Settings.Cfg.menuBonesInactive), 2.0f); //neck
+
+							draw_list->AddRect(ImVec2(p.x + 40, p.y + 100), ImVec2(p.x + 80, p.y + 160), Config::Settings.Legit.Weapons.Pistols.aimChest == true ? float4toImColorRead(Config::Settings.Cfg.menuBonesActive) : float4toImColorRead(Config::Settings.Cfg.menuBonesInactive), 0, 0, 2.0f); //ubody
+							draw_list->AddQuad(ImVec2(p.x + 40, p.y + 160), ImVec2(p.x + 80, p.y + 160), ImVec2(p.x + 75, p.y + 200), ImVec2(p.x + 45, p.y + 200), Config::Settings.Legit.Weapons.Pistols.aimPelvis == true ? float4toImColorRead(Config::Settings.Cfg.menuBonesActive) : float4toImColorRead(Config::Settings.Cfg.menuBonesInactive), 2.0f); //lbody
+
+							draw_list->AddQuad(ImVec2(p.x + 40, p.y + 102), ImVec2(p.x + 40, p.y + 118), ImVec2(p.x + 20, p.y + 145), ImVec2(p.x + 15, p.y + 140), Config::Settings.Legit.Weapons.Pistols.aimArms == true ? float4toImColorRead(Config::Settings.Cfg.menuBonesActive) : float4toImColorRead(Config::Settings.Cfg.menuBonesInactive), 2.0f); //larm
+							draw_list->AddTriangle(ImVec2(p.x + 20, p.y + 145), ImVec2(p.x + 15, p.y + 140), ImVec2(p.x + 13, p.y + 152), Config::Settings.Legit.Weapons.Pistols.aimHands == true ? float4toImColorRead(Config::Settings.Cfg.menuBonesActive) : float4toImColorRead(Config::Settings.Cfg.menuBonesInactive), 2.0f);
+
+							draw_list->AddQuad(ImVec2(p.x + 80, p.y + 102), ImVec2(p.x + 80, p.y + 118), ImVec2(p.x + 100, p.y + 145), ImVec2(p.x + 105, p.y + 140), Config::Settings.Legit.Weapons.Pistols.aimArms == true ? float4toImColorRead(Config::Settings.Cfg.menuBonesActive) : float4toImColorRead(Config::Settings.Cfg.menuBonesInactive), 2.0f); //rarm
+							draw_list->AddTriangle(ImVec2(p.x + 100, p.y + 145), ImVec2(p.x + 105, p.y + 140), ImVec2(p.x + 108, p.y + 152), Config::Settings.Legit.Weapons.Pistols.aimHands == true ? float4toImColorRead(Config::Settings.Cfg.menuBonesActive) : float4toImColorRead(Config::Settings.Cfg.menuBonesInactive), 2.0f);
+
+							draw_list->AddQuad(ImVec2(p.x + 45, p.y + 200), ImVec2(p.x + 55, p.y + 200), ImVec2(p.x + 55, p.y + 280), ImVec2(p.x + 45, p.y + 280), Config::Settings.Legit.Weapons.Pistols.aimLegs == true ? float4toImColorRead(Config::Settings.Cfg.menuBonesActive) : float4toImColorRead(Config::Settings.Cfg.menuBonesInactive), 2.0f); //lLeg
+							draw_list->AddQuad(ImVec2(p.x + 40, p.y + 280), ImVec2(p.x + 55, p.y + 280), ImVec2(p.x + 55, p.y + 290), ImVec2(p.x + 40, p.y + 290), Config::Settings.Legit.Weapons.Pistols.aimFeet == true ? float4toImColorRead(Config::Settings.Cfg.menuBonesActive) : float4toImColorRead(Config::Settings.Cfg.menuBonesInactive), 2.0f); //lFoot
+
+							draw_list->AddQuad(ImVec2(p.x + 65, p.y + 200), ImVec2(p.x + 75, p.y + 200), ImVec2(p.x + 75, p.y + 280), ImVec2(p.x + 65, p.y + 280), Config::Settings.Legit.Weapons.Pistols.aimLegs == true ? float4toImColorRead(Config::Settings.Cfg.menuBonesActive) : float4toImColorRead(Config::Settings.Cfg.menuBonesInactive), 2.0f); //rLeg
+							draw_list->AddQuad(ImVec2(p.x + 80, p.y + 280), ImVec2(p.x + 65, p.y + 280), ImVec2(p.x + 65, p.y + 290), ImVec2(p.x + 80, p.y + 290), Config::Settings.Legit.Weapons.Pistols.aimFeet == true ? float4toImColorRead(Config::Settings.Cfg.menuBonesActive) : float4toImColorRead(Config::Settings.Cfg.menuBonesInactive), 2.0f); //rFoot
+						}
+						ImGui::EndChild();
+						ImGui::SameLine();
+						//check boxes
+						ImGui::BeginChild("Bones", ImVec2(ImGui::GetContentRegionAvail().x, ImGui::GetContentRegionAvail().y), TRUE);
+						{
+							ImGui::Checkbox("Head", &Config::Settings.Legit.Weapons.Pistols.aimHead);
+							ImGui::Spacing();
+							ImGui::Checkbox("Neck", &Config::Settings.Legit.Weapons.Pistols.aimNeck);
+							ImGui::Spacing();
+							ImGui::Checkbox("Upper Body", &Config::Settings.Legit.Weapons.Pistols.aimChest);
+							ImGui::Spacing();
+							ImGui::Checkbox("Lower Body", &Config::Settings.Legit.Weapons.Pistols.aimPelvis);
+							ImGui::Spacing();
+							ImGui::Checkbox("Arms", &Config::Settings.Legit.Weapons.Pistols.aimArms);
+							ImGui::Spacing();
+							ImGui::Checkbox("Hands", &Config::Settings.Legit.Weapons.Pistols.aimHands);
+							ImGui::Spacing();
+							ImGui::Checkbox("Legs", &Config::Settings.Legit.Weapons.Pistols.aimLegs);
+							ImGui::Spacing();
+							ImGui::Checkbox("Feet", &Config::Settings.Legit.Weapons.Pistols.aimFeet);
+						}
+						ImGui::EndChild();
+						break;
+
+				}
+				
+
+			}
+			ImGui::EndChild();
 
 			break;
-
 		case 2:
 			//RageBot
 			ImGui::Text("RageBot");
@@ -395,6 +819,8 @@ void gui::Menu() noexcept
 				ImGui::ColorEdit4("Window", (float*)&Config::Settings.Cfg.windowBg, ImGuiColorEditFlags_NoInputs | ImGuiColorEditFlags_AlphaBar);
 				ImGui::ColorEdit4("Child", (float*)&Config::Settings.Cfg.childBg, ImGuiColorEditFlags_NoInputs | ImGuiColorEditFlags_AlphaBar);
 				ImGui::ColorEdit4("Border", (float*)&Config::Settings.Cfg.borderBg, ImGuiColorEditFlags_NoInputs | ImGuiColorEditFlags_AlphaBar);
+				ImGui::ColorEdit4("Bones Inactive", (float*)&Config::Settings.Cfg.menuBonesInactive, ImGuiColorEditFlags_NoInputs | ImGuiColorEditFlags_AlphaBar);
+				ImGui::ColorEdit4("Bones Active", (float*)&Config::Settings.Cfg.menuBonesActive, ImGuiColorEditFlags_NoInputs | ImGuiColorEditFlags_AlphaBar);
 
 				ImGui::ColorEdit4("Check Mark", (float*)&Config::Settings.Cfg.checkMark, ImGuiColorEditFlags_NoInputs | ImGuiColorEditFlags_AlphaBar);
 
@@ -409,6 +835,7 @@ void gui::Menu() noexcept
 				ImGui::ColorEdit4("Scrollbar Active", (float*)&Config::Settings.Cfg.scrollBarActive, ImGuiColorEditFlags_NoInputs | ImGuiColorEditFlags_AlphaBar);
 
 				ImGui::ColorEdit4("Text Colour", (float*)&Config::Settings.Cfg.textCol1, ImGuiColorEditFlags_NoInputs | ImGuiColorEditFlags_AlphaBar);
+
 			}
 			ImGui::EndChild();
 			
