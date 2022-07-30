@@ -303,7 +303,10 @@ void gui::Theme() noexcept
 	style->Colors[ImGuiCol_ChildBg] = float4toImColorRead(Config::Settings.Cfg.childBg);
 	style->Colors[ImGuiCol_WindowBg] = float4toImColorRead(Config::Settings.Cfg.windowBg);
 	style->Colors[ImGuiCol_Border] = float4toImColorRead(Config::Settings.Cfg.borderBg);
+	
 	style->Colors[ImGuiCol_FrameBg] = float4toImColorRead(Config::Settings.Cfg.frameBg);
+	style->Colors[ImGuiCol_FrameBgHovered] = float4toImColorRead(Config::Settings.Cfg.frameBgHover);
+	style->Colors[ImGuiCol_FrameBgActive] = float4toImColorRead(Config::Settings.Cfg.frameBgActive);
 
 	style->Colors[ImGuiCol_CheckMark] = float4toImColorRead(Config::Settings.Cfg.checkMark);
 
@@ -314,6 +317,10 @@ void gui::Theme() noexcept
 	style->Colors[ImGuiCol_ScrollbarGrab] = float4toImColorRead(Config::Settings.Cfg.scrollBarGrab);
 	style->Colors[ImGuiCol_ScrollbarGrabHovered] = float4toImColorRead(Config::Settings.Cfg.scrollBarHovered);
 	style->Colors[ImGuiCol_ScrollbarGrabActive] = float4toImColorRead(Config::Settings.Cfg.scrollBarActive);
+
+	style->Colors[ImGuiCol_Header] = float4toImColorRead(Config::Settings.Cfg.headder);
+	style->Colors[ImGuiCol_HeaderHovered] = float4toImColorRead(Config::Settings.Cfg.headderHover);
+	style->Colors[ImGuiCol_HeaderActive] = float4toImColorRead(Config::Settings.Cfg.headderActive);
 	
 }
 
@@ -328,8 +335,7 @@ void gui::Menu() noexcept
 		case 1:
 			//Legit TAB
 
-
-			//main
+			//MAIN CHILD
 			ImGui::BeginChild("legitMain", ImVec2(200, ImGui::GetContentRegionAvail().y), TRUE);
 			{
 				const char* items[] = { "Scout", "AWP", "Auto", "Rifles", "SMGs", "Shotguns", "Pistols" };
@@ -420,7 +426,7 @@ void gui::Menu() noexcept
 			}
 			ImGui::EndChild();
 			ImGui::SameLine();
-			//bones childd
+			//BONES CHILD
 			ImGui::BeginChild("legitBones", ImVec2(300, ImGui::GetContentRegionAvail().y), TRUE);
 			{
 
@@ -754,6 +760,88 @@ void gui::Menu() noexcept
 
 			}
 			ImGui::EndChild();
+			ImGui::SameLine();
+			ImGui::BeginChild("legitTrigger", ImVec2(150, ImGui::GetContentRegionAvail().y /2), TRUE);
+			{
+				imguipp::center_text_ex("Trigger Bot", 150, 1, false);
+				ImGui::SeparatorEx(ImGuiSeparatorFlags_Horizontal);
+				ImGui::Spacing();
+				
+
+				switch (Config::item_current) {
+					case 0:
+						//SCOUT
+						ImGui::Checkbox("Enabled", &Config::Settings.Legit.Weapons.Rifles.Scout.triggerBot);
+						ImGui::Spacing();
+						ImGui::Combo("", &Config::Settings.Legit.Weapons.Rifles.Scout.triggerKey, Config::binds, IM_ARRAYSIZE(Config::binds));
+						ImGui::Spacing();
+						ImGui::Text("Hit Chance");
+						ImGui::Spacing();
+						ImGui::SliderFloat("", &Config::Settings.Legit.Weapons.Rifles.Scout.triggerHC, 0.0f, 100.0f, "%0.1f" );
+						break;
+					case 1:
+						//AWP
+						ImGui::Checkbox("Enabled", &Config::Settings.Legit.Weapons.Rifles.AWP.triggerBot);
+						ImGui::Spacing();
+						ImGui::Combo("", &Config::Settings.Legit.Weapons.Rifles.AWP.triggerKey, Config::binds, IM_ARRAYSIZE(Config::binds));
+						ImGui::Spacing();
+						ImGui::Text("Hit Chance");
+						ImGui::Spacing();
+						ImGui::SliderFloat("", &Config::Settings.Legit.Weapons.Rifles.AWP.triggerHC, 0.0f, 100.0f, "%0.1f");
+						break;
+					case 2:
+						//AUTO
+						ImGui::Checkbox("Enabled", &Config::Settings.Legit.Weapons.Rifles.Auto.triggerBot);
+						ImGui::Spacing();
+						ImGui::Combo("", &Config::Settings.Legit.Weapons.Rifles.Auto.triggerKey, Config::binds, IM_ARRAYSIZE(Config::binds));
+						ImGui::Spacing();
+						ImGui::Text("Hit Chance");
+						ImGui::Spacing();
+						ImGui::SliderFloat("", &Config::Settings.Legit.Weapons.Rifles.Auto.triggerHC, 0.0f, 100.0f, "%0.1f");
+						break;
+					case 3:
+						//RIFLES
+						ImGui::Checkbox("Enabled", &Config::Settings.Legit.Weapons.Rifles.triggerBot);
+						ImGui::Spacing();
+						ImGui::Combo("", &Config::Settings.Legit.Weapons.Rifles.triggerKey, Config::binds, IM_ARRAYSIZE(Config::binds));
+						ImGui::Spacing();
+						ImGui::Text("Hit Chance");
+						ImGui::Spacing();
+						ImGui::SliderFloat("", &Config::Settings.Legit.Weapons.Rifles.triggerHC, 0.0f, 100.0f, "%0.1f");
+						break;
+					case 4:
+						//SMGs
+						ImGui::Checkbox("Enabled", &Config::Settings.Legit.Weapons.SMGs.triggerBot);
+						ImGui::Spacing();
+						ImGui::Combo("", &Config::Settings.Legit.Weapons.SMGs.triggerKey, Config::binds, IM_ARRAYSIZE(Config::binds));
+						ImGui::Spacing();
+						ImGui::Text("Hit Chance");
+						ImGui::Spacing();
+						ImGui::SliderFloat("", &Config::Settings.Legit.Weapons.SMGs.triggerHC, 0.0f, 100.0f, "%0.1f");
+						break;
+					case 5:
+						//SHOTGUNS
+						ImGui::Checkbox("Enabled", &Config::Settings.Legit.Weapons.Shotguns.triggerBot);
+						ImGui::Spacing();
+						ImGui::Combo("", &Config::Settings.Legit.Weapons.Shotguns.triggerKey, Config::binds, IM_ARRAYSIZE(Config::binds));
+						ImGui::Spacing();
+						ImGui::Text("Hit Chance");
+						ImGui::Spacing();
+						ImGui::SliderFloat("", &Config::Settings.Legit.Weapons.Shotguns.triggerHC, 0.0f, 100.0f, "%0.1f");
+						break;
+					case 6:
+						//PISTOLS
+						ImGui::Checkbox("Enabled", &Config::Settings.Legit.Weapons.Pistols.triggerBot);
+						ImGui::Spacing();
+						ImGui::Combo("", &Config::Settings.Legit.Weapons.Pistols.triggerKey, Config::binds, IM_ARRAYSIZE(Config::binds));
+						ImGui::Spacing();
+						ImGui::Text("Hit Chance");
+						ImGui::Spacing();
+						ImGui::SliderFloat("", &Config::Settings.Legit.Weapons.Pistols.triggerHC, 0.0f, 100.0f, "%0.1f");
+						break;
+				}
+			}
+			ImGui::EndChild();
 
 			break;
 		case 2:
@@ -828,6 +916,8 @@ void gui::Menu() noexcept
 				ImGui::ColorEdit4("Slider Active", (float*)&Config::Settings.Cfg.sliderGrabActive, ImGuiColorEditFlags_NoInputs | ImGuiColorEditFlags_AlphaBar);
 
 				ImGui::ColorEdit4("Frame Background", (float*)&Config::Settings.Cfg.frameBg, ImGuiColorEditFlags_NoInputs | ImGuiColorEditFlags_AlphaBar);
+				ImGui::ColorEdit4("Frame Hover", (float*)&Config::Settings.Cfg.frameBgHover, ImGuiColorEditFlags_NoInputs | ImGuiColorEditFlags_AlphaBar);
+				ImGui::ColorEdit4("Frame Active", (float*)&Config::Settings.Cfg.frameBgActive, ImGuiColorEditFlags_NoInputs | ImGuiColorEditFlags_AlphaBar);
 
 				ImGui::ColorEdit4("Scrollbar", (float*)&Config::Settings.Cfg.scrollBar, ImGuiColorEditFlags_NoInputs | ImGuiColorEditFlags_AlphaBar);
 				ImGui::ColorEdit4("Scrollbar Grab", (float*)&Config::Settings.Cfg.scrollBarGrab, ImGuiColorEditFlags_NoInputs | ImGuiColorEditFlags_AlphaBar);
@@ -850,7 +940,7 @@ void gui::Menu() noexcept
 
 	
 
-	ImGui::BeginChild("##Bottom", ImVec2(ImGui::GetContentRegionAvail().x, ImGui::GetContentRegionAvail().y), TRUE);
+	ImGui::BeginChild("MenuBar", ImVec2(ImGui::GetContentRegionAvail().x, ImGui::GetContentRegionAvail().y), TRUE);
 	{
 		ImVec4 active = imguipp::to_vec4(Config::Settings.Cfg.buttonActive[0] * 255, Config::Settings.Cfg.buttonActive[1] * 255, Config::Settings.Cfg.buttonActive[2] * 255, Config::Settings.Cfg.buttonActive[3] * 255);
 		ImVec4 inactive = imguipp::to_vec4(Config::Settings.Cfg.button[0] * 255, Config::Settings.Cfg.button[1] * 255, Config::Settings.Cfg.button[2] * 255, Config::Settings.Cfg.button[3] * 255);

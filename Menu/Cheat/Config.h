@@ -17,7 +17,7 @@ struct Colour {
 namespace Config {
 	int Tab = 1;
 	float version = 0.01;
-	
+	const char* binds[] = { "MB1", "MB2", "MB3", "MB4", "MB5", "INS", "HOME" };
 	static int item_current = 0;
 
 	struct s_Config {
@@ -28,7 +28,7 @@ namespace Config {
 			bool shootSmoke = false;
 			bool shootFlash = false;
 
-			float legitBackTracking = 0;
+			
 			bool legitDrawFOV = false;
 			bool legitAutoPistol = false;
 			
@@ -41,14 +41,7 @@ namespace Config {
 					float xRCS = 0;
 					float yRCS = 0;
 					
-					bool triggerBot = false;
-					int triggerKey = 0;
-					float triggerHC = 0;
-
-					bool autoWall = false;
-					float autoWallDamage = 0;
-
-
+					
 					/// <summary>
 					/// Bone Selection
 					/// </summary>
@@ -63,6 +56,13 @@ namespace Config {
 					bool aimFeet = false;
 					bool aimHands = false;
 					
+					bool triggerBot = false;
+					int triggerKey;
+					float triggerHC = 0;
+					float legitBackTracking = 0;
+					bool autoWall = false;
+					float autoWallDamage = 0;
+					
 					struct s_Scout {
 						float aimFOV = 0;
 						float aimSmooth = 0;
@@ -76,6 +76,13 @@ namespace Config {
 						bool aimLegs = false;
 						bool aimFeet = false;
 						bool aimHands = false;
+
+						bool triggerBot = false;
+						int triggerKey = 0;
+						float triggerHC = 0;
+						float legitBackTracking = 0;
+						bool autoWall = false;
+						float autoWallDamage = 0;
 					} Scout;
 					struct s_AWP {
 						float aimFOV = 0;
@@ -90,6 +97,13 @@ namespace Config {
 						bool aimLegs = false;
 						bool aimFeet = false;
 						bool aimHands = false;
+
+						bool triggerBot = false;
+						int triggerKey = 0;
+						float triggerHC = 0;
+						float legitBackTracking = 0;
+						bool autoWall = false;
+						float autoWallDamage = 0;
 					} AWP;
 					struct s_Auto {
 						float aimFOV = 0;
@@ -104,6 +118,13 @@ namespace Config {
 						bool aimLegs = false;
 						bool aimFeet = false;
 						bool aimHands = false;
+
+						bool triggerBot = false;
+						int triggerKey = 0;
+						float triggerHC = 0;
+						float legitBackTracking = 0;
+						bool autoWall = false;
+						float autoWallDamage = 0;
 					} Auto;
 				} Rifles;
 				struct s_SMGs {
@@ -117,7 +138,7 @@ namespace Config {
 					bool triggerBot = false;
 					int triggerKey = 0;
 					float triggerHC = 0;
-
+					float legitBackTracking = 0;
 					bool autoWall = false;
 					float autoWallDamage = 0;
 					
@@ -138,7 +159,7 @@ namespace Config {
 					bool triggerBot = false;
 					int triggerKey = 0;
 					float triggerHC = 0;
-
+					float legitBackTracking = 0;
 					bool autoWall = false;
 					float autoWallDamage = 0;
 					
@@ -161,7 +182,7 @@ namespace Config {
 					bool triggerBot = false;
 					int triggerKey = 0;
 					float triggerHC = 0;
-
+					float legitBackTracking = 0;
 					bool autoWall = false;
 					float autoWallDamage = 0;
 					
@@ -242,18 +263,26 @@ namespace Config {
 
 			float windowBg[4] =			{ 0.06f, 0.06f, 0.06f, 0.94f };
 			float childBg[4] =			{ 0.00f, 0.00f, 0.00f, 0.00f };
-			float borderBg[4] =			{ 0.43f, 0.43f, 0.50f, 0.50f };
-			float frameBg[4] =			{ 0.16f, 0.29f, 0.48f, 0.54f };
+			float borderBg[4] =			{ 0.27f, 0.00f, 0.11f, 1.00f };
 			
-			float checkMark[4] =		{ 0.26f, 0.59f, 0.98f, 1.00f };
 			
-			float sliderGrab[4] =		{ 0.24f, 0.52f, 0.88f, 1.00f };
-			float sliderGrabActive[4] = { 0.26f, 0.59f, 0.98f, 1.00f };
+			float frameBg[4] =			{ 0.30f, 0.00f, 0.13f, 1.00f };
+			float frameBgHover[4] =		{ 0.12f, 0.11f, 0.12f, 1.00f };
+			float frameBgActive[4] =	{ 0.30f, 0.00f, 0.13f, 1.00f };
+
+			float headder[4] =			{ 0.30f, 0.00f, 0.13f, 1.00f };
+			float headderHover[4] =		{ 0.12f, 0.11f, 0.12f, 1.00f };
+			float headderActive[4] =	{ 0.30f, 0.00f, 0.13f, 1.00f };
 			
-			float scrollBar[4] =		{ 0.02f, 0.02f, 0.02f, 0.53f };
-			float scrollBarGrab[4] =	{ 0.31f, 0.31f, 0.31f, 1.00f };
-			float scrollBarHovered[4] = { 0.41f, 0.41f, 0.41f, 1.00f };
-			float scrollBarActive[4] =	{ 0.51f, 0.51f, 0.51f, 1.00f };
+			float checkMark[4] =		{ 0.71f, 0.00f, 0.29f, 1.00f };
+			
+			float sliderGrab[4] =		{ 0.30f, 0.00f, 0.13f, 1.00f };
+			float sliderGrabActive[4] = { 0.71f, 0.00f, 0.29f, 1.00f };
+			
+			float scrollBar[4] =		{ 0.30f, 0.00f, 0.13f, 1.00f };
+			float scrollBarGrab[4] =	{ 0.71f, 0.00f, 0.29f, 1.00f };
+			float scrollBarHovered[4] = { 0.12f, 0.11f, 0.12f, 1.00f };
+			float scrollBarActive[4] =	{ 0.71f, 0.00f, 0.29f, 1.00f };
 			
 			float menuBonesInactive[4] = { 0.30f, 0.00f, 0.13f, 0.50f };
 			float menuBonesActive[4] =	{ 0.71f, 0.00f, 0.29f, 1.00f };
