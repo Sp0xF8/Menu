@@ -1,293 +1,315 @@
 #pragma once
-#include "gui.h"
-
-#include "../Imgui/imgui.h"
-#include "../Imgui/imgui_impl_dx9.h"
-#include "../Imgui/imgui_impl_win32.h"
-#include "../Imgui/imguipp.h"
-#include <string>
-
-struct Colour {
-	int r, g, b, a = 255;
-};
-
-
-
 
 namespace Config {
-	int Tab = 1;
-	float version = 0.01;
-	const char* binds[] = { "MB1", "MB2", "MB3", "MB4", "MB5", "INS", "HOME" };
-	static int item_current = 0;
+	extern int Tab;
+	extern float version;
+	extern const char* binds[];
+	extern int item_current;
 
-	struct s_Config {
-		struct s_Legit {
-			bool enabled = false;
-			int activationType = 0;
-			int aimKey = 0;
-			bool shootSmoke = false;
-			bool shootFlash = false;
+	namespace Settings {
+		namespace Legit {
+			extern bool enabled;
+			extern int activationType;
+			extern int aimKey;
+			
+			extern bool shootSmoke;
+			extern bool shootFlash;
+			extern bool grenadeHelper;
+			extern bool drawFOV;
+			extern bool quickStop;
 
 			
-			bool legitDrawFOV = false;
-			bool legitAutoPistol = false;
-			
-			struct s_Weapons {
-				struct s_Rifles {
-					float aimFOV = 0;
-					float aimSmooth = 0;
-					bool enableRCS = false;
-					bool standaloneRCS = false;
-					float xRCS = 0;
-					float yRCS = 0;
+			namespace Weapons {
+				namespace Rifles {
+					extern float aimFOV;
+					extern float aimSmooth;
+					extern bool enableRCS;
+					extern bool standaloneRCS;
+					extern float xRCS;
+					extern float yRCS;
 					
 					
 					/// <summary>
 					/// Bone Selection
 					/// </summary>
 					
-					bool aimHead = false;
-					bool aimNeck = false;
-					bool aimChest = false;
-					bool aimStomach = false;
-					bool aimPelvis = false;
-					bool aimArms = false;
-					bool aimLegs = false;
-					bool aimFeet = false;
-					bool aimHands = false;
+					extern bool aimHead;
+					extern bool aimNeck;
+					extern bool aimChest;
+					extern bool aimStomach;
+					extern bool aimPelvis;
+					extern bool aimArms;
+					extern bool aimLegs;
+					extern bool aimFeet;
+					extern bool aimHands;
 					
-					bool triggerBot = false;
-					int triggerKey;
-					float triggerHC = 0;
-					float legitBackTracking = 0;
-					bool autoWall = false;
-					float autoWallDamage = 0;
+					extern bool triggerBot;
+					extern int triggerKey;
+					extern float triggerHC;
+					extern int minTrigDmg;
+					extern float triggerDelay;
 					
-					struct s_Scout {
-						float aimFOV = 0;
-						float aimSmooth = 0;
+					extern bool backTrackingEnabled;
+					extern int backTracking;
+					
+					extern bool autoWall;
+					extern float autoWallDamage;
+					
+					namespace Scout {
+						extern float aimFOV;
+						extern float aimSmooth;
 						
-						bool aimHead = false;
-						bool aimNeck = false;
-						bool aimChest = false;
-						bool aimStomach = false;
-						bool aimPelvis = false;
-						bool aimArms = false;
-						bool aimLegs = false;
-						bool aimFeet = false;
-						bool aimHands = false;
+						extern bool aimHead;
+						extern bool aimNeck;
+						extern bool aimChest;
+						extern bool aimStomach;
+						extern bool aimPelvis;
+						extern bool aimArms;
+						extern bool aimLegs;
+						extern bool aimFeet;
+						extern bool aimHands;
 
-						bool triggerBot = false;
-						int triggerKey = 0;
-						float triggerHC = 0;
-						float legitBackTracking = 0;
-						bool autoWall = false;
-						float autoWallDamage = 0;
-					} Scout;
-					struct s_AWP {
-						float aimFOV = 0;
-						float aimSmooth = 0;
+						extern bool triggerBot;
+						extern int triggerKey;
+						extern float triggerHC;
+						extern int minTrigDmg;
+						extern float triggerDelay;
+						
+						extern bool backTrackingEnabled;
+						extern int backTracking;
+						
+						extern bool autoWall;
+						extern float autoWallDamage;
+					};
+					namespace AWP {
+						extern float aimFOV;
+						extern float aimSmooth;
 
-						bool aimHead = false;
-						bool aimNeck = false;
-						bool aimChest = false;
-						bool aimStomach = false;
-						bool aimPelvis = false;
-						bool aimArms = false;
-						bool aimLegs = false;
-						bool aimFeet = false;
-						bool aimHands = false;
+						extern bool aimHead;
+						extern bool aimNeck;
+						extern bool aimChest;
+						extern bool aimStomach;
+						extern bool aimPelvis;
+						extern bool aimArms;
+						extern bool aimLegs;
+						extern bool aimFeet;
+						extern bool aimHands;
 
-						bool triggerBot = false;
-						int triggerKey = 0;
-						float triggerHC = 0;
-						float legitBackTracking = 0;
-						bool autoWall = false;
-						float autoWallDamage = 0;
-					} AWP;
-					struct s_Auto {
-						float aimFOV = 0;
-						float aimSmooth = 0;
+						extern bool triggerBot;
+						extern int triggerKey;
+						extern float triggerHC;
+						extern int minTrigDmg;
+						extern float triggerDelay;
+						
+						extern bool backTrackingEnabled;
+						extern int backTracking;
+						
+						extern bool autoWall;
+						extern float autoWallDamage;
+					};
+					namespace Auto {
+						extern float aimFOV;
+						extern float aimSmooth;
 	
-						bool aimHead = false;
-						bool aimNeck = false;
-						bool aimChest = false;
-						bool aimStomach = false;
-						bool aimPelvis = false;
-						bool aimArms = false;
-						bool aimLegs = false;
-						bool aimFeet = false;
-						bool aimHands = false;
+						extern bool aimHead;
+						extern bool aimNeck;
+						extern bool aimChest;
+						extern bool aimStomach;
+						extern bool aimPelvis;
+						extern bool aimArms;
+						extern bool aimLegs;
+						extern bool aimFeet;
+						extern bool aimHands;
 
-						bool triggerBot = false;
-						int triggerKey = 0;
-						float triggerHC = 0;
-						float legitBackTracking = 0;
-						bool autoWall = false;
-						float autoWallDamage = 0;
-					} Auto;
-				} Rifles;
-				struct s_SMGs {
-					float aimFOV = 0;
-					float aimSmooth = 0;
-					bool enableRCS = false;
-					bool standaloneRCS = false;
-					float xRCS = 0;
-					float yRCS = 0;
+						extern bool triggerBot;
+						extern int triggerKey;
+						extern float triggerHC;
+						extern int minTrigDmg;
+						extern float triggerDelay;
+						
+						extern bool backTrackingEnabled;
+						extern int backTracking;
+						
+						extern bool autoWall;
+						extern float autoWallDamage;
+					};
+				};
+				namespace SMGs {
+					extern float aimFOV;
+					extern float aimSmooth;
+					extern bool enableRCS;
+					extern bool standaloneRCS;
+					extern float xRCS;
+					extern float yRCS;
 
-					bool triggerBot = false;
-					int triggerKey = 0;
-					float triggerHC = 0;
-					float legitBackTracking = 0;
-					bool autoWall = false;
-					float autoWallDamage = 0;
+					extern bool triggerBot;
+					extern int triggerKey;
+					extern float triggerHC;
+					extern int minTrigDmg;
+					extern float triggerDelay;
 					
-					bool aimHead = false;
-					bool aimNeck = false;
-					bool aimChest = false;
-					bool aimStomach = false;
-					bool aimPelvis = false;
-					bool aimArms = false;
-					bool aimLegs = false;
-					bool aimFeet = false;
-					bool aimHands = false;
-				} SMGs;
-				struct s_Shotguns {
-					float aimFOV = 0;
-					float aimSmooth = 0;
-
-					bool triggerBot = false;
-					int triggerKey = 0;
-					float triggerHC = 0;
-					float legitBackTracking = 0;
-					bool autoWall = false;
-					float autoWallDamage = 0;
+					extern bool backTrackingEnabled;
+					extern int backTracking;
 					
-					bool aimHead = false;
-					bool aimNeck = false;
-					bool aimChest = false;
-					bool aimStomach = false;
-					bool aimPelvis = false;
-					bool aimArms = false;
-					bool aimLegs = false;
-					bool aimFeet = false;
-					bool aimHands = false;
-				} Shotguns;
-				struct s_Pistols {
-					float aimFOV = 0;
-					float aimSmooth = 0;
-
-					bool autoPistol = false;
-
-					bool triggerBot = false;
-					int triggerKey = 0;
-					float triggerHC = 0;
-					float legitBackTracking = 0;
-					bool autoWall = false;
-					float autoWallDamage = 0;
+					extern bool autoWall;
+					extern float autoWallDamage;
 					
-					bool aimHead = false;
-					bool aimNeck = false;
-					bool aimChest = false;
-					bool aimStomach = false;
-					bool aimPelvis = false;
-					bool aimArms = false;
-					bool aimLegs = false;
-					bool aimFeet = false;
-					bool aimHands = false;
-				} Pistols;
-			} Weapons;
-		} Legit;
-		struct s_Rage {
+					extern bool aimHead;
+					extern bool aimNeck;
+					extern bool aimChest;
+					extern bool aimStomach;
+					extern bool aimPelvis;
+					extern bool aimArms;
+					extern bool aimLegs;
+					extern bool aimFeet;
+					extern bool aimHands;
+				};
+				namespace Shotguns {
+					extern float aimFOV;
+					extern float aimSmooth;
 
-			struct s_Weapons {
-				struct s_Rifles {
+					extern bool triggerBot;
+					extern int triggerKey;
+					extern float triggerHC;
+					extern int minTrigDmg;
+					extern float triggerDelay;
+					
+					extern bool backTrackingEnabled;
+					extern int backTracking;
+					
+					extern bool autoWall;
+					extern float autoWallDamage;
+					
+					extern bool aimHead;
+					extern bool aimNeck;
+					extern bool aimChest;
+					extern bool aimStomach;
+					extern bool aimPelvis;
+					extern bool aimArms;
+					extern bool aimLegs;
+					extern bool aimFeet;
+					extern bool aimHands;
+				};
+				namespace Pistols {
+					extern float aimFOV;
+					extern float aimSmooth;
 
-					struct s_Scout {
+					extern bool autoPistol;
 
-					} Scout;
-					struct s_AWP {
+					extern bool triggerBot;
+					extern int triggerKey;
+					extern float triggerHC;
+					extern int minTrigDmg;
+					extern float triggerDelay;
+					
+					extern bool backTrackingEnabled;
+					extern int backTracking;
+					
+					extern bool autoWall;
+					extern float autoWallDamage;
+					
+					extern bool aimHead;
+					extern bool aimNeck;
+					extern bool aimChest;
+					extern bool aimStomach;
+					extern bool aimPelvis;
+					extern bool aimArms;
+					extern bool aimLegs;
+					extern bool aimFeet;
+					extern bool aimHands;
+				};
+			};
+		};
+		namespace Rage {
 
-					} AWP;
-					struct s_Auto {
+			namespace Weapons {
+				namespace Rifles {
 
-					} Auto;
-				} Rifles;
-				struct s_SMGs {
+					namespace Scout {
 
-				} SMGs;
-				struct s_Shotguns {
+					};
+					namespace AWP {
 
-				} Shotguns;
-				struct s_Pistols {
+					};
+					namespace Auto {
 
-					struct s_Revolver {
+					};
+				};
+				namespace SMGs {
 
-					} Revolver;
-					struct s_Deagle {
+				};
+				namespace s_Shotguns {
 
-					} Deagle;
-				} Pistols;
-			} Weapons;
-		} Rage;
-		struct s_Visuals {
-		} Visuals;
-		struct s_Misc {
+				};
+				namespace s_Pistols {
+
+					namespace s_Revolver {
+
+					};
+					namespace s_Deagle {
+
+					};
+				};
+			};
+		};
+		namespace Visuals {
+		};
+		namespace Misc {
 			
-			bool legitBhop = false;
-			bool bhop = false;
-			bool autoStrafe = false;
-			bool autoAccept = false;
-			bool autoBlock = false;
-			bool reVoidTag = false;
-			bool customTag = false;
-			char customTagText[11] = "Custom";
-		} Misc;
-		struct s_Skinchanger {
-		} Skinchanger;
-		struct s_Cfg {
+			extern bool legitBhop;
+			extern bool bhop;
+			extern bool autoStrafe;
+			extern bool autoAccept;
+			extern bool autoBlock;
+			extern bool reVoidTag;
+			extern bool customTag;
+			extern char customTagText[11];
+		};
+		namespace Skinchanger {
+		};
+		namespace Cfg {
 			//R G B A !!!!!!!!!!!!!!!!!!
-			float titleBg[4] =			{ 0.32f, 0.00f, 0.47f, 1.00f };
-			float titleBgActive[4] =	{ 0.32f, 0.00f, 0.47f, 1.00f };
-			float titleBgCollapsed[4] = { 0.00f, 0.00f, 0.00f, 1.00f };
+			extern float titleBg[4];
+			extern float titleBgActive[4];
+			extern float titleBgCollapsed[4];
 
-			float textCol1[4] =			{ 1.00f, 1.00f, 1.00f, 1.00f };
+			extern float textCol1[4];
 
-			float button[4] =			{ 0.30f, 0.00f, 0.13f, 1.00f };
-			float buttonHovered[4] =	{ 0.12f, 0.11f, 0.12f, 1.00f };
-			float buttonActive[4] =		{ 0.71f, 0.00f, 0.29f, 1.00f };
+			extern float button[4];
+			extern float buttonHovered[4];
+			extern float buttonActive[4];
 
-			float separator[4] =		{ 0.30f, 0.00f, 0.13f, 1.00f };
-			float separatorHovered[4] = { 0.12f, 0.11f, 0.12f, 1.00f };
-			float separatorActive[4] =	{ 0.71f, 0.00f, 0.29f, 1.00f };
+			extern float separator[4];
+			extern float separatorHovered[4];
+			extern float separatorActive[4];
 
-			float windowBg[4] =			{ 0.06f, 0.06f, 0.06f, 0.94f };
-			float childBg[4] =			{ 0.00f, 0.00f, 0.00f, 0.00f };
-			float borderBg[4] =			{ 0.27f, 0.00f, 0.11f, 1.00f };
+			extern float windowBg[4];
+			extern float childBg[4];
+			extern float borderBg[4];
 			
 			
-			float frameBg[4] =			{ 0.30f, 0.00f, 0.13f, 1.00f };
-			float frameBgHover[4] =		{ 0.12f, 0.11f, 0.12f, 1.00f };
-			float frameBgActive[4] =	{ 0.30f, 0.00f, 0.13f, 1.00f };
+			extern float frameBg[4];
+			extern float frameBgHover[4];
+			extern float frameBgActive[4];
 
-			float headder[4] =			{ 0.30f, 0.00f, 0.13f, 1.00f };
-			float headderHover[4] =		{ 0.12f, 0.11f, 0.12f, 1.00f };
-			float headderActive[4] =	{ 0.30f, 0.00f, 0.13f, 1.00f };
+			extern float headder[4];
+			extern float headderHover[4];
+			extern float headderActive[4];
 			
-			float checkMark[4] =		{ 0.71f, 0.00f, 0.29f, 1.00f };
+			extern float checkMark[4];
 			
-			float sliderGrab[4] =		{ 0.30f, 0.00f, 0.13f, 1.00f };
-			float sliderGrabActive[4] = { 0.71f, 0.00f, 0.29f, 1.00f };
+			extern float sliderGrab[4];
+			extern float sliderGrabActive[4];
 			
-			float scrollBar[4] =		{ 0.30f, 0.00f, 0.13f, 1.00f };
-			float scrollBarGrab[4] =	{ 0.71f, 0.00f, 0.29f, 1.00f };
-			float scrollBarHovered[4] = { 0.12f, 0.11f, 0.12f, 1.00f };
-			float scrollBarActive[4] =	{ 0.71f, 0.00f, 0.29f, 1.00f };
+			extern float scrollBar[4];
+			extern float scrollBarGrab[4];
+			extern float scrollBarHovered[4];
+			extern float scrollBarActive[4];
 			
-			float menuBonesInactive[4] = { 0.30f, 0.00f, 0.13f, 0.50f };
-			float menuBonesActive[4] =	{ 0.71f, 0.00f, 0.29f, 1.00f };
-		} Cfg;
+			extern float menuBonesInactive[4];
+			extern float menuBonesActive[4];
+		};
 		
-	} Settings; 
+	}; 
 	
 };
