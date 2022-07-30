@@ -16,8 +16,9 @@ struct Colour {
 
 namespace Config {
 	int Tab = 1;
-	float version = 0.1;
-
+	float version = 0.01;
+	
+	static int item_current = 0;
 
 	struct s_Config {
 		struct s_Legit {
@@ -46,23 +47,63 @@ namespace Config {
 
 					bool autoWall = false;
 					float autoWallDamage = 0;
+
+
+					/// <summary>
+					/// Bone Selection
+					/// </summary>
+					
+					bool aimHead = false;
+					bool aimNeck = false;
+					bool aimChest = false;
+					bool aimStomach = false;
+					bool aimPelvis = false;
+					bool aimArms = false;
+					bool aimLegs = false;
+					bool aimFeet = false;
+					bool aimHands = false;
 					
 					struct s_Scout {
 						float aimFOV = 0;
 						float aimSmooth = 0;
 						
+						bool aimHead = false;
+						bool aimNeck = false;
+						bool aimChest = false;
+						bool aimStomach = false;
+						bool aimPelvis = false;
+						bool aimArms = false;
+						bool aimLegs = false;
+						bool aimFeet = false;
+						bool aimHands = false;
 					} Scout;
 					struct s_AWP {
 						float aimFOV = 0;
 						float aimSmooth = 0;
 
-						
+						bool aimHead = false;
+						bool aimNeck = false;
+						bool aimChest = false;
+						bool aimStomach = false;
+						bool aimPelvis = false;
+						bool aimArms = false;
+						bool aimLegs = false;
+						bool aimFeet = false;
+						bool aimHands = false;
 					} AWP;
 					struct s_Auto {
 						float aimFOV = 0;
 						float aimSmooth = 0;
 	
-
+						bool aimHead = false;
+						bool aimNeck = false;
+						bool aimChest = false;
+						bool aimStomach = false;
+						bool aimPelvis = false;
+						bool aimArms = false;
+						bool aimLegs = false;
+						bool aimFeet = false;
+						bool aimHands = false;
 					} Auto;
 				} Rifles;
 				struct s_SMGs {
@@ -80,14 +121,19 @@ namespace Config {
 					bool autoWall = false;
 					float autoWallDamage = 0;
 					
+					bool aimHead = false;
+					bool aimNeck = false;
+					bool aimChest = false;
+					bool aimStomach = false;
+					bool aimPelvis = false;
+					bool aimArms = false;
+					bool aimLegs = false;
+					bool aimFeet = false;
+					bool aimHands = false;
 				} SMGs;
 				struct s_Shotguns {
 					float aimFOV = 0;
 					float aimSmooth = 0;
-					bool enableRCS = false;
-					bool standaloneRCS = false;
-					float xRCS = 0;
-					float yRCS = 0;
 
 					bool triggerBot = false;
 					int triggerKey = 0;
@@ -96,14 +142,21 @@ namespace Config {
 					bool autoWall = false;
 					float autoWallDamage = 0;
 					
+					bool aimHead = false;
+					bool aimNeck = false;
+					bool aimChest = false;
+					bool aimStomach = false;
+					bool aimPelvis = false;
+					bool aimArms = false;
+					bool aimLegs = false;
+					bool aimFeet = false;
+					bool aimHands = false;
 				} Shotguns;
 				struct s_Pistols {
 					float aimFOV = 0;
 					float aimSmooth = 0;
-					bool enableRCS = false;
-					bool standaloneRCS = false;
-					float xRCS = 0;
-					float yRCS = 0;
+
+					bool autoPistol = false;
 
 					bool triggerBot = false;
 					int triggerKey = 0;
@@ -111,6 +164,16 @@ namespace Config {
 
 					bool autoWall = false;
 					float autoWallDamage = 0;
+					
+					bool aimHead = false;
+					bool aimNeck = false;
+					bool aimChest = false;
+					bool aimStomach = false;
+					bool aimPelvis = false;
+					bool aimArms = false;
+					bool aimLegs = false;
+					bool aimFeet = false;
+					bool aimHands = false;
 				} Pistols;
 			} Weapons;
 		} Legit;
@@ -188,9 +251,12 @@ namespace Config {
 			float sliderGrabActive[4] = { 0.26f, 0.59f, 0.98f, 1.00f };
 			
 			float scrollBar[4] =		{ 0.02f, 0.02f, 0.02f, 0.53f };
-			float scrollBarGrab[4] = { 0.31f, 0.31f, 0.31f, 1.00f };
+			float scrollBarGrab[4] =	{ 0.31f, 0.31f, 0.31f, 1.00f };
 			float scrollBarHovered[4] = { 0.41f, 0.41f, 0.41f, 1.00f };
 			float scrollBarActive[4] =	{ 0.51f, 0.51f, 0.51f, 1.00f };
+			
+			float menuBonesInactive[4] = { 0.30f, 0.00f, 0.13f, 0.50f };
+			float menuBonesActive[4] =	{ 0.71f, 0.00f, 0.29f, 1.00f };
 		} Cfg;
 		
 	} Settings; 
