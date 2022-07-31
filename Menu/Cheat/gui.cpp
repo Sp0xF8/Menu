@@ -348,7 +348,7 @@ void gui::Menu() noexcept
 				
 				ImGui::Spacing();
 				
-				ImGui::Combo("", &Config::item_current, items, IM_ARRAYSIZE(items));
+				ImGui::Combo("##Combo1", &Config::item_current, items, IM_ARRAYSIZE(items));
 
 				switch (Config::item_current) {
 					case 0:
@@ -778,7 +778,7 @@ void gui::Menu() noexcept
 						ImGui::Spacing();
 						ImGui::Checkbox("Triggerbot", &Config::Settings::Legit::Weapons::Rifles::Scout::triggerBot);
 						ImGui::Spacing();
-						ImGui::Combo("", &Config::Settings::Legit::Weapons::Rifles::Scout::triggerKey, Config::binds, 7);
+						ImGui::Combo("##Combo2", &Config::Settings::Legit::Weapons::Rifles::Scout::triggerKey, Config::binds, 7);
 						ImGui::Spacing();
 						ImGui::SliderFloat("Chance", &Config::Settings::Legit::Weapons::Rifles::Scout::triggerHC, 0.0f, 100.0f, "%0.1f" );
 						ImGui::Spacing();
@@ -834,7 +834,7 @@ void gui::Menu() noexcept
 						ImGui::Spacing();
 						ImGui::Checkbox("Triggerbot", &Config::Settings::Legit::Weapons::Rifles::Auto::triggerBot);
 						ImGui::Spacing();
-						ImGui::Combo("", &Config::Settings::Legit::Weapons::Rifles::Auto::triggerKey, Config::binds, 7);
+						ImGui::Combo("##Combo3", &Config::Settings::Legit::Weapons::Rifles::Auto::triggerKey, Config::binds, 7);
 						ImGui::Spacing();
 						ImGui::SliderFloat("Chance", &Config::Settings::Legit::Weapons::Rifles::Auto::triggerHC, 0.0f, 100.0f, "%0.1f");
 						ImGui::Spacing();
@@ -861,7 +861,7 @@ void gui::Menu() noexcept
 						ImGui::Spacing();
 						ImGui::Checkbox("Triggerbot", &Config::Settings::Legit::Weapons::Rifles::triggerBot);
 						ImGui::Spacing();
-						ImGui::Combo("", &Config::Settings::Legit::Weapons::Rifles::triggerKey, Config::binds, 7);
+						ImGui::Combo("##Combo4", &Config::Settings::Legit::Weapons::Rifles::triggerKey, Config::binds, 7);
 						ImGui::Spacing();
 						ImGui::SliderFloat("Chance", &Config::Settings::Legit::Weapons::Rifles::triggerHC, 0.0f, 100.0f, "%0.1f");
 						ImGui::Spacing();
@@ -888,7 +888,7 @@ void gui::Menu() noexcept
 						ImGui::Spacing();
 						ImGui::Checkbox("Triggerbot", &Config::Settings::Legit::Weapons::SMGs::triggerBot);
 						ImGui::Spacing();
-						ImGui::Combo("", &Config::Settings::Legit::Weapons::SMGs::triggerKey, Config::binds, 7);
+						ImGui::Combo("##Combo5", &Config::Settings::Legit::Weapons::SMGs::triggerKey, Config::binds, 7);
 						ImGui::Spacing();
 						ImGui::SliderFloat("Chance", &Config::Settings::Legit::Weapons::SMGs::triggerHC, 0.0f, 100.0f, "%0.1f");
 						ImGui::Spacing();
@@ -915,7 +915,7 @@ void gui::Menu() noexcept
 						ImGui::Spacing();
 						ImGui::Checkbox("Triggerbot", &Config::Settings::Legit::Weapons::Shotguns::triggerBot);
 						ImGui::Spacing();
-						ImGui::Combo("", &Config::Settings::Legit::Weapons::Shotguns::triggerKey, Config::binds, 7);
+						ImGui::Combo("##Combo6", &Config::Settings::Legit::Weapons::Shotguns::triggerKey, Config::binds, 7);
 						ImGui::Spacing();
 						ImGui::SliderFloat("Chance", &Config::Settings::Legit::Weapons::Shotguns::triggerHC, 0.0f, 100.0f, "%0.1f");
 						ImGui::Spacing();
@@ -942,7 +942,7 @@ void gui::Menu() noexcept
 						ImGui::Spacing();
 						ImGui::Checkbox("Triggerbot", &Config::Settings::Legit::Weapons::Pistols::triggerBot);
 						ImGui::Spacing();
-						ImGui::Combo("", &Config::Settings::Legit::Weapons::Pistols::triggerKey, Config::binds, 7);
+						ImGui::Combo("##Combo7", &Config::Settings::Legit::Weapons::Pistols::triggerKey, Config::binds, 7);
 						ImGui::Spacing();
 						ImGui::SliderFloat("Chance", &Config::Settings::Legit::Weapons::Pistols::triggerHC, 0.0f, 100.0f, "%0.1f");
 						ImGui::Spacing();
@@ -1019,7 +1019,7 @@ void gui::Menu() noexcept
 					Config::Settings::Misc::reVoidTag == true ? Config::Settings::Misc::customTag = false : NULL;
 				}
 
-				ImGui::InputTextWithHint("","10 Char", Config::Settings::Misc::customTagText, 11, 0, 0);
+				ImGui::InputTextWithHint("##input1","10 Char", Config::Settings::Misc::customTagText, 11, 0, 0);
 
 
 				ImGui::Text(Config::Settings::Misc::customTagText);
@@ -1244,12 +1244,10 @@ void gui::Render() noexcept
 	
 	ImGui::Begin(
 		"Re-ReVoid",
-		0,
+		&Config::Settings::Cfg::isOpen,
 		ImGuiWindowFlags_NoScrollbar |
 		ImGuiWindowFlags_NoSavedSettings |
-		ImGuiWindowFlags_NoCollapse |
-		ImGuiWindowFlags_NoResize |
-		ImGuiWindowFlags_NoDecoration
+		ImGuiWindowFlags_NoCollapse
 		
 	);
 	{	

@@ -266,6 +266,7 @@ namespace Config {
 		namespace Skinchanger {
 		};
 		namespace Cfg {
+            extern bool isOpen;
 			//R G B A !!!!!!!!!!!!!!!!!!
 			extern float titleBg[4];
 			extern float titleBgActive[4];
