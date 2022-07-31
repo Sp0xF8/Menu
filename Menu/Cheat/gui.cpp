@@ -1082,9 +1082,14 @@ void gui::Menu() noexcept
 					imguipp::center_text_ex("Config", ImGui::GetContentRegionAvail().x, 1, false);
 					ImGui::SeparatorEx(ImGuiSeparatorFlags_Horizontal);
 
-					if (ImGui::Button("SaveCfg", ImVec2(20, 10)))
+					if (ImGui::Button("SaveCfg", ImVec2(ImGui::GetContentRegionAvail().x, 20)))
 					{
 						Config::SaveConfig();
+					}
+
+					if (ImGui::Button("LoadCfg", ImVec2(ImGui::GetContentRegionAvail().x, 20)))
+					{
+						Config::LoadConfig();
 					}
 
 					

@@ -332,6 +332,10 @@ namespace Config {
 		
 		myFile.open("C:/Users/Public/Documents/Config1.yaml", std::fstream::out);
 		if (myFile.is_open()) {
+
+
+			myFile << "...\n";
+			
 			myFile << "Config:\n";
 
 			///LegitBOT
@@ -760,7 +764,7 @@ namespace Config {
 			myFile << "- float: " << Config::Settings::Cfg::menuBonesActive[2] << "\n";
 			myFile << "- float: " << Config::Settings::Cfg::menuBonesActive[3] << "\n";
 			
-			
+			myFile << "...";
 			
 			
 			
@@ -769,10 +773,12 @@ namespace Config {
 
 	}
 
-	void loadConfig(char* string) {
+	void LoadConfig() {
 		Yaml::Node root;
-		Yaml::Parse(root, "file.txt");
+		Yaml::Parse(root, "C:/Users/Public/Documents/Config1.yaml");
 
+
+		Config::Settings::Legit::enabled = root["Legitbot"][0].As<bool>();
 		
 	}
 };
