@@ -140,6 +140,7 @@
     <ClInclude Include="Imgui\imstb_rectpack.h" />
     <ClInclude Include="Imgui\imstb_textedit.h" />
     <ClInclude Include="Imgui\imstb_truetype.h" />
+    <ClInclude Include="YMAL\Yaml.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Cheat\Config.cpp" />
@@ -153,6 +154,7 @@
     <ClCompile Include="Imgui\imgui_impl_win32.cpp" />
     <ClCompile Include="Imgui\imgui_tables.cpp" />
     <ClCompile Include="Imgui\imgui_widgets.cpp" />
+    <ClCompile Include="YMAL\Yaml.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Font Include="Fonts\Oswald-Light.ttf" />

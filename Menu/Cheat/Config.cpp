@@ -1,4 +1,9 @@
 #include "Config.h"
+#include "../YMAL/Yaml.h"
+
+#include <iostream>
+#include <fstream>
+
 
 namespace Config {
 	int Tab = 1;
@@ -309,7 +314,247 @@ namespace Config {
 			float menuBonesInactive[4] = { 0.30f, 0.00f, 0.13f, 0.50f };
 			float menuBonesActive[4] = { 0.71f, 0.00f, 0.29f, 1.00f };
 		};
+		
+
+
+		
 
 	};
 
+
+
+
+	void SaveConfig() {
+
+		
+		std::ofstream myFile;
+		
+		
+		myFile.open("C:/Users/Public/Documents/Config1.yaml", std::fstream::out);
+		if (myFile.is_open()) {
+			myFile << "Settings:\n";
+			myFile << "Legitbot:\n";
+			myFile << "- boolean: " << Config::Settings::Legit::enabled << "\n";
+			myFile << "- boolean: " << Config::Settings::Legit::shootFlash << "\n";
+			myFile << "- boolean: " << Config::Settings::Legit::shootSmoke << "\n";
+			myFile << "- boolean: " << Config::Settings::Legit::grenadeHelper << "\n";
+			myFile << "- boolean: " << Config::Settings::Legit::drawFOV << "\n";
+			myFile << "- boolean: " << Config::Settings::Legit::quickStop << "\n";
+			
+			myFile << "Weapons:\n";
+			
+			/// <summary>
+			/// RIFLES
+			/// </summary>
+			
+			myFile << "Rifles:\n";
+			
+			myFile << "- float: " << Config::Settings::Legit::Weapons::Rifles::aimFOV << "\n";
+			myFile << "- float: " << Config::Settings::Legit::Weapons::Rifles::aimSmooth << "\n";
+			myFile << "- boolean: " << Config::Settings::Legit::Weapons::Rifles::enableRCS << "\n";
+			myFile << "- boolean: " << Config::Settings::Legit::Weapons::Rifles::standaloneRCS << "\n";
+			myFile << "- float: " << Config::Settings::Legit::Weapons::Rifles::xRCS << "\n";
+			myFile << "- float: " << Config::Settings::Legit::Weapons::Rifles::yRCS << "\n";
+			
+			myFile << "- boolean: " << Config::Settings::Legit::Weapons::Rifles::aimHead << "\n";
+			myFile << "- boolean: " << Config::Settings::Legit::Weapons::Rifles::aimNeck << "\n";
+			myFile << "- boolean: " << Config::Settings::Legit::Weapons::Rifles::aimChest << "\n";
+			myFile << "- boolean: " << Config::Settings::Legit::Weapons::Rifles::aimPelvis << "\n";
+			myFile << "- boolean: " << Config::Settings::Legit::Weapons::Rifles::aimStomach << "\n";
+			myFile << "- boolean: " << Config::Settings::Legit::Weapons::Rifles::aimArms << "\n";
+			myFile << "- boolean: " << Config::Settings::Legit::Weapons::Rifles::aimLegs << "\n";
+			myFile << "- boolean: " << Config::Settings::Legit::Weapons::Rifles::aimFeet << "\n";
+			myFile << "- boolean: " << Config::Settings::Legit::Weapons::Rifles::aimHands << "\n";
+			
+			myFile << "- boolean: " << Config::Settings::Legit::Weapons::Rifles::triggerBot << "\n";
+			myFile << "- int: " << Config::Settings::Legit::Weapons::Rifles::triggerKey << "\n";
+			myFile << "- float: " << Config::Settings::Legit::Weapons::Rifles::triggerHC << "\n";
+			myFile << "- int: " << Config::Settings::Legit::Weapons::Rifles::minTrigDmg << "\n";
+			myFile << "- float: " << Config::Settings::Legit::Weapons::Rifles::triggerDelay << "\n";
+			
+			myFile << "- boolean: " << Config::Settings::Legit::Weapons::Rifles::backTrackingEnabled << "\n";
+			myFile << "- int: " << Config::Settings::Legit::Weapons::Rifles::backTracking << "\n";
+			
+			/// <summary>
+			/// SCOUT
+			/// </summary>
+
+			myFile << "Scout:\n";
+
+			myFile << "- float: " << Config::Settings::Legit::Weapons::Rifles::Scout::aimFOV << "\n";
+			myFile << "- float: " << Config::Settings::Legit::Weapons::Rifles::Scout::aimSmooth << "\n";
+
+			myFile << "- boolean: " << Config::Settings::Legit::Weapons::Rifles::Scout::aimHead << "\n";
+			myFile << "- boolean: " << Config::Settings::Legit::Weapons::Rifles::Scout::aimNeck << "\n";
+			myFile << "- boolean: " << Config::Settings::Legit::Weapons::Rifles::Scout::aimChest << "\n";
+			myFile << "- boolean: " << Config::Settings::Legit::Weapons::Rifles::Scout::aimPelvis << "\n";
+			myFile << "- boolean: " << Config::Settings::Legit::Weapons::Rifles::Scout::aimStomach << "\n";
+			myFile << "- boolean: " << Config::Settings::Legit::Weapons::Rifles::Scout::aimArms << "\n";
+			myFile << "- boolean: " << Config::Settings::Legit::Weapons::Rifles::Scout::aimLegs << "\n";
+			myFile << "- boolean: " << Config::Settings::Legit::Weapons::Rifles::Scout::aimFeet << "\n";
+			myFile << "- boolean: " << Config::Settings::Legit::Weapons::Rifles::Scout::aimHands << "\n";
+
+			myFile << "- boolean: " << Config::Settings::Legit::Weapons::Rifles::Scout::triggerBot << "\n";
+			myFile << "- int: " << Config::Settings::Legit::Weapons::Rifles::Scout::triggerKey << "\n";
+			myFile << "- float: " << Config::Settings::Legit::Weapons::Rifles::Scout::triggerHC << "\n";
+			myFile << "- int: " << Config::Settings::Legit::Weapons::Rifles::Scout::minTrigDmg << "\n";
+			myFile << "- float: " << Config::Settings::Legit::Weapons::Rifles::Scout::triggerDelay << "\n";
+
+			myFile << "- boolean: " << Config::Settings::Legit::Weapons::Rifles::Scout::backTrackingEnabled << "\n";
+			myFile << "- int: " << Config::Settings::Legit::Weapons::Rifles::Scout::backTracking << "\n";
+
+			/// <summary>
+			/// AWP
+			/// </summary>
+			myFile << "AWP:\n";
+			
+			myFile << "- float: " << Config::Settings::Legit::Weapons::Rifles::AWP::aimFOV << "\n";
+			myFile << "- float: " << Config::Settings::Legit::Weapons::Rifles::AWP::aimSmooth << "\n";
+
+			myFile << "- boolean: " << Config::Settings::Legit::Weapons::Rifles::AWP::aimHead << "\n";
+			myFile << "- boolean: " << Config::Settings::Legit::Weapons::Rifles::AWP::aimNeck << "\n";
+			myFile << "- boolean: " << Config::Settings::Legit::Weapons::Rifles::AWP::aimChest << "\n";
+			myFile << "- boolean: " << Config::Settings::Legit::Weapons::Rifles::AWP::aimPelvis << "\n";
+			myFile << "- boolean: " << Config::Settings::Legit::Weapons::Rifles::AWP::aimStomach << "\n";
+			myFile << "- boolean: " << Config::Settings::Legit::Weapons::Rifles::AWP::aimArms << "\n";
+			myFile << "- boolean: " << Config::Settings::Legit::Weapons::Rifles::AWP::aimLegs << "\n";
+			myFile << "- boolean: " << Config::Settings::Legit::Weapons::Rifles::AWP::aimFeet << "\n";
+			myFile << "- boolean: " << Config::Settings::Legit::Weapons::Rifles::AWP::aimHands << "\n";
+
+			myFile << "- boolean: " << Config::Settings::Legit::Weapons::Rifles::AWP::triggerBot << "\n";
+			myFile << "- int: " << Config::Settings::Legit::Weapons::Rifles::AWP::triggerKey << "\n";
+			myFile << "- float: " << Config::Settings::Legit::Weapons::Rifles::AWP::triggerHC << "\n";
+			myFile << "- int: " << Config::Settings::Legit::Weapons::Rifles::AWP::minTrigDmg << "\n";
+			myFile << "- float: " << Config::Settings::Legit::Weapons::Rifles::AWP::triggerDelay << "\n";
+
+			myFile << "- boolean: " << Config::Settings::Legit::Weapons::Rifles::AWP::backTrackingEnabled << "\n";
+			myFile << "- int: " << Config::Settings::Legit::Weapons::Rifles::AWP::backTracking << "\n";
+			
+
+			/// <summary>
+			/// AUTO
+			/// </summary>
+			myFile << "Auto:\n";
+			
+			
+			myFile << "- float: " << Config::Settings::Legit::Weapons::Rifles::Auto::aimFOV << "\n";
+			myFile << "- float: " << Config::Settings::Legit::Weapons::Rifles::Auto::aimSmooth << "\n";
+
+			myFile << "- boolean: " << Config::Settings::Legit::Weapons::Rifles::Auto::aimHead << "\n";
+			myFile << "- boolean: " << Config::Settings::Legit::Weapons::Rifles::Auto::aimNeck << "\n";
+			myFile << "- boolean: " << Config::Settings::Legit::Weapons::Rifles::Auto::aimChest << "\n";
+			myFile << "- boolean: " << Config::Settings::Legit::Weapons::Rifles::Auto::aimPelvis << "\n";
+			myFile << "- boolean: " << Config::Settings::Legit::Weapons::Rifles::Auto::aimStomach << "\n";
+			myFile << "- boolean: " << Config::Settings::Legit::Weapons::Rifles::Auto::aimArms << "\n";
+			myFile << "- boolean: " << Config::Settings::Legit::Weapons::Rifles::Auto::aimLegs << "\n";
+			myFile << "- boolean: " << Config::Settings::Legit::Weapons::Rifles::Auto::aimFeet << "\n";
+			myFile << "- boolean: " << Config::Settings::Legit::Weapons::Rifles::Auto::aimHands << "\n";
+
+			myFile << "- boolean: " << Config::Settings::Legit::Weapons::Rifles::Auto::triggerBot << "\n";
+			myFile << "- int: " << Config::Settings::Legit::Weapons::Rifles::Auto::triggerKey << "\n";
+			myFile << "- float: " << Config::Settings::Legit::Weapons::Rifles::Auto::triggerHC << "\n";
+			myFile << "- int: " << Config::Settings::Legit::Weapons::Rifles::Auto::minTrigDmg << "\n";
+			myFile << "- float: " << Config::Settings::Legit::Weapons::Rifles::Auto::triggerDelay << "\n";
+
+			myFile << "- boolean: " << Config::Settings::Legit::Weapons::Rifles::Auto::backTrackingEnabled << "\n";
+			myFile << "- int: " << Config::Settings::Legit::Weapons::Rifles::Auto::backTracking << "\n";
+
+			
+			/// <summary>
+			/// SMGS
+			/// </summary>
+			
+			myFile << "SMGs:\n";
+			
+			myFile << "- float: " << Config::Settings::Legit::Weapons::SMGs::aimFOV << "\n";
+			myFile << "- float: " << Config::Settings::Legit::Weapons::SMGs::aimSmooth << "\n";
+			myFile << "- boolean: " << Config::Settings::Legit::Weapons::SMGs::enableRCS << "\n";
+			myFile << "- boolean: " << Config::Settings::Legit::Weapons::SMGs::standaloneRCS << "\n";
+			myFile << "- float: " << Config::Settings::Legit::Weapons::SMGs::xRCS << "\n";
+			myFile << "- float: " << Config::Settings::Legit::Weapons::SMGs::yRCS << "\n";
+
+			myFile << "- boolean: " << Config::Settings::Legit::Weapons::SMGs::aimHead << "\n";
+			myFile << "- boolean: " << Config::Settings::Legit::Weapons::SMGs::aimNeck << "\n";
+			myFile << "- boolean: " << Config::Settings::Legit::Weapons::SMGs::aimChest << "\n";
+			myFile << "- boolean: " << Config::Settings::Legit::Weapons::SMGs::aimPelvis << "\n";
+			myFile << "- boolean: " << Config::Settings::Legit::Weapons::SMGs::aimStomach << "\n";
+			myFile << "- boolean: " << Config::Settings::Legit::Weapons::SMGs::aimArms << "\n";
+			myFile << "- boolean: " << Config::Settings::Legit::Weapons::SMGs::aimLegs << "\n";
+			myFile << "- boolean: " << Config::Settings::Legit::Weapons::SMGs::aimFeet << "\n";
+			myFile << "- boolean: " << Config::Settings::Legit::Weapons::SMGs::aimHands << "\n";
+
+			myFile << "- boolean: " << Config::Settings::Legit::Weapons::SMGs::triggerBot << "\n";
+			myFile << "- int: " << Config::Settings::Legit::Weapons::SMGs::triggerKey << "\n";
+			myFile << "- float: " << Config::Settings::Legit::Weapons::SMGs::triggerHC << "\n";
+			myFile << "- int: " << Config::Settings::Legit::Weapons::SMGs::minTrigDmg << "\n";
+			myFile << "- float: " << Config::Settings::Legit::Weapons::SMGs::triggerDelay << "\n";
+
+			myFile << "- boolean: " << Config::Settings::Legit::Weapons::SMGs::backTrackingEnabled << "\n";
+			myFile << "- int: " << Config::Settings::Legit::Weapons::SMGs::backTracking << "\n";
+
+
+			/// <summary>
+			/// Shotguns
+			/// </summary>
+
+			myFile << "Shotguns:\n";
+			
+			myFile << "- float: " << Config::Settings::Legit::Weapons::Shotguns::aimFOV << "\n";
+			myFile << "- float: " << Config::Settings::Legit::Weapons::Shotguns::aimSmooth << "\n";
+
+			myFile << "- boolean: " << Config::Settings::Legit::Weapons::Shotguns::aimHead << "\n";
+			myFile << "- boolean: " << Config::Settings::Legit::Weapons::Shotguns::aimNeck << "\n";
+			myFile << "- boolean: " << Config::Settings::Legit::Weapons::Shotguns::aimChest << "\n";
+			myFile << "- boolean: " << Config::Settings::Legit::Weapons::Shotguns::aimPelvis << "\n";
+			myFile << "- boolean: " << Config::Settings::Legit::Weapons::Shotguns::aimStomach << "\n";
+			myFile << "- boolean: " << Config::Settings::Legit::Weapons::Shotguns::aimArms << "\n";
+			myFile << "- boolean: " << Config::Settings::Legit::Weapons::Shotguns::aimLegs << "\n";
+			myFile << "- boolean: " << Config::Settings::Legit::Weapons::Shotguns::aimFeet << "\n";
+			myFile << "- boolean: " << Config::Settings::Legit::Weapons::Shotguns::aimHands << "\n";
+
+			myFile << "- boolean: " << Config::Settings::Legit::Weapons::Shotguns::triggerBot << "\n";
+			myFile << "- int: " << Config::Settings::Legit::Weapons::Shotguns::triggerKey << "\n";
+			myFile << "- float: " << Config::Settings::Legit::Weapons::Shotguns::triggerHC << "\n";
+			myFile << "- int: " << Config::Settings::Legit::Weapons::Shotguns::minTrigDmg << "\n";
+			myFile << "- float: " << Config::Settings::Legit::Weapons::Shotguns::triggerDelay << "\n";
+
+			myFile << "- boolean: " << Config::Settings::Legit::Weapons::Shotguns::backTrackingEnabled << "\n";
+			myFile << "- int: " << Config::Settings::Legit::Weapons::Shotguns::backTracking << "\n";
+
+
+			/// <summary>
+			/// PISTOLS
+			/// </summary>
+			
+			myFile << "Pistols:\n";
+			
+			myFile << "- float: " << Config::Settings::Legit::Weapons::Pistols::aimFOV << "\n";
+			myFile << "- float: " << Config::Settings::Legit::Weapons::Pistols::aimSmooth << "\n";
+
+
+			myFile << "- boolean: " << Config::Settings::Legit::Weapons::Pistols::aimHead << "\n";
+			myFile << "- boolean: " << Config::Settings::Legit::Weapons::Pistols::aimNeck << "\n";
+			myFile << "- boolean: " << Config::Settings::Legit::Weapons::Pistols::aimChest << "\n";
+			myFile << "- boolean: " << Config::Settings::Legit::Weapons::Pistols::aimPelvis << "\n";
+			myFile << "- boolean: " << Config::Settings::Legit::Weapons::Pistols::aimStomach << "\n";
+			myFile << "- boolean: " << Config::Settings::Legit::Weapons::Pistols::aimArms << "\n";
+			myFile << "- boolean: " << Config::Settings::Legit::Weapons::Pistols::aimLegs << "\n";
+			myFile << "- boolean: " << Config::Settings::Legit::Weapons::Pistols::aimFeet << "\n";
+			myFile << "- boolean: " << Config::Settings::Legit::Weapons::Pistols::aimHands << "\n";
+
+			myFile << "- boolean: " << Config::Settings::Legit::Weapons::Pistols::triggerBot << "\n";
+			myFile << "- int: " << Config::Settings::Legit::Weapons::Pistols::triggerKey << "\n";
+			myFile << "- float: " << Config::Settings::Legit::Weapons::Pistols::triggerHC << "\n";
+			myFile << "- int: " << Config::Settings::Legit::Weapons::Pistols::minTrigDmg << "\n";
+			myFile << "- float: " << Config::Settings::Legit::Weapons::Pistols::triggerDelay << "\n";
+
+			myFile << "- boolean: " << Config::Settings::Legit::Weapons::Pistols::backTrackingEnabled << "\n";
+			myFile << "- int: " << Config::Settings::Legit::Weapons::Pistols::backTracking << "\n";
+			myFile << "- boolean: " << Config::Settings::Legit::Weapons::Pistols::autoPistol << "\n";
+			
+			
+			myFile.close();
+		}
+
+	}
 };

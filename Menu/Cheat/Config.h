@@ -9,8 +9,6 @@ namespace Config {
 	namespace Settings {
 		namespace Legit {
 			extern bool enabled;
-			extern int activationType;
-			extern int aimKey;
 			
 			extern bool shootSmoke;
 			extern bool shootFlash;
@@ -311,5 +309,7 @@ namespace Config {
 		};
 		
 	}; 
+
+	extern void SaveConfig();
 	
 };
