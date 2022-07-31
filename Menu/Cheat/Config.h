@@ -311,5 +311,6 @@ namespace Config {
 	}; 
 
 	extern void SaveConfig();
+	extern void LoadConfig(char* string);
 	
 };

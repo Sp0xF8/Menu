@@ -332,7 +332,12 @@ namespace Config {
 		
 		myFile.open("C:/Users/Public/Documents/Config1.yaml", std::fstream::out);
 		if (myFile.is_open()) {
-			myFile << "Settings:\n";
+			myFile << "Config:\n";
+
+			///LegitBOT
+			///
+			/// 
+			
 			myFile << "Legitbot:\n";
 			myFile << "- boolean: " << Config::Settings::Legit::enabled << "\n";
 			myFile << "- boolean: " << Config::Settings::Legit::shootFlash << "\n";
@@ -341,13 +346,13 @@ namespace Config {
 			myFile << "- boolean: " << Config::Settings::Legit::drawFOV << "\n";
 			myFile << "- boolean: " << Config::Settings::Legit::quickStop << "\n";
 			
-			myFile << "Weapons:\n";
+			myFile << "lWeapons:\n";
 			
 			/// <summary>
 			/// RIFLES
 			/// </summary>
 			
-			myFile << "Rifles:\n";
+			myFile << "lRifles:\n";
 			
 			myFile << "- float: " << Config::Settings::Legit::Weapons::Rifles::aimFOV << "\n";
 			myFile << "- float: " << Config::Settings::Legit::Weapons::Rifles::aimSmooth << "\n";
@@ -379,7 +384,7 @@ namespace Config {
 			/// SCOUT
 			/// </summary>
 
-			myFile << "Scout:\n";
+			myFile << "lScout:\n";
 
 			myFile << "- float: " << Config::Settings::Legit::Weapons::Rifles::Scout::aimFOV << "\n";
 			myFile << "- float: " << Config::Settings::Legit::Weapons::Rifles::Scout::aimSmooth << "\n";
@@ -406,7 +411,7 @@ namespace Config {
 			/// <summary>
 			/// AWP
 			/// </summary>
-			myFile << "AWP:\n";
+			myFile << "lAWP:\n";
 			
 			myFile << "- float: " << Config::Settings::Legit::Weapons::Rifles::AWP::aimFOV << "\n";
 			myFile << "- float: " << Config::Settings::Legit::Weapons::Rifles::AWP::aimSmooth << "\n";
@@ -434,7 +439,7 @@ namespace Config {
 			/// <summary>
 			/// AUTO
 			/// </summary>
-			myFile << "Auto:\n";
+			myFile << "lAuto:\n";
 			
 			
 			myFile << "- float: " << Config::Settings::Legit::Weapons::Rifles::Auto::aimFOV << "\n";
@@ -464,7 +469,7 @@ namespace Config {
 			/// SMGS
 			/// </summary>
 			
-			myFile << "SMGs:\n";
+			myFile << "lSMGs:\n";
 			
 			myFile << "- float: " << Config::Settings::Legit::Weapons::SMGs::aimFOV << "\n";
 			myFile << "- float: " << Config::Settings::Legit::Weapons::SMGs::aimSmooth << "\n";
@@ -497,7 +502,7 @@ namespace Config {
 			/// Shotguns
 			/// </summary>
 
-			myFile << "Shotguns:\n";
+			myFile << "lShotguns:\n";
 			
 			myFile << "- float: " << Config::Settings::Legit::Weapons::Shotguns::aimFOV << "\n";
 			myFile << "- float: " << Config::Settings::Legit::Weapons::Shotguns::aimSmooth << "\n";
@@ -526,7 +531,7 @@ namespace Config {
 			/// PISTOLS
 			/// </summary>
 			
-			myFile << "Pistols:\n";
+			myFile << "lPistols:\n";
 			
 			myFile << "- float: " << Config::Settings::Legit::Weapons::Pistols::aimFOV << "\n";
 			myFile << "- float: " << Config::Settings::Legit::Weapons::Pistols::aimSmooth << "\n";
@@ -551,10 +556,223 @@ namespace Config {
 			myFile << "- boolean: " << Config::Settings::Legit::Weapons::Pistols::backTrackingEnabled << "\n";
 			myFile << "- int: " << Config::Settings::Legit::Weapons::Pistols::backTracking << "\n";
 			myFile << "- boolean: " << Config::Settings::Legit::Weapons::Pistols::autoPistol << "\n";
+
+
+			///LEGIT BOT END
+
+			
+			///RAGE BOT BEGIN
+			///
+			/// 
+
+			myFile << "Ragebot:\n";
+			
+
+			//RAGE BOT END
+
+			
+			///VISUALS BEGIN
+			///
+			/// 
+			
+			myFile << "Visuals:\n";
+			
+			// VISUALS END
+
+
+			///MISC BEGIN
+			///
+			/// 
+			
+
+			myFile << "Misc:\n";
+			
+			myFile << "- boolean: " << Config::Settings::Misc::legitBhop << "\n";
+			myFile << "- boolean: " << Config::Settings::Misc::bhop << "\n";
+			myFile << "- boolean: " << Config::Settings::Misc::autoStrafe << "\n";
+			myFile << "- boolean: " << Config::Settings::Misc::autoAccept << "\n";
+			myFile << "- boolean: " << Config::Settings::Misc::autoBlock << "\n";
+			myFile << "- boolean: " << Config::Settings::Misc::reVoidTag << "\n";
+			myFile << "- boolean: " << Config::Settings::Misc::customTag << "\n";
+
+			
+			myFile << "- char: " << Config::Settings::Misc::customTagText[0] << "\n";
+			myFile << "- char: " << Config::Settings::Misc::customTagText[1] << "\n";
+			myFile << "- char: " << Config::Settings::Misc::customTagText[2] << "\n";
+			myFile << "- char: " << Config::Settings::Misc::customTagText[3] << "\n";
+			myFile << "- char: " << Config::Settings::Misc::customTagText[4] << "\n";
+			myFile << "- char: " << Config::Settings::Misc::customTagText[5] << "\n";
+			myFile << "- char: " << Config::Settings::Misc::customTagText[6] << "\n";
+			myFile << "- char: " << Config::Settings::Misc::customTagText[7] << "\n";
+			myFile << "- char: " << Config::Settings::Misc::customTagText[8] << "\n";
+			myFile << "- char: " << Config::Settings::Misc::customTagText[9] << "\n";
+			myFile << "- char: " << Config::Settings::Misc::customTagText[10] << "\n";
+			
+			
+			// MISC END
+
+			
+
+			/// <summary>
+			/// Skins BEGIN
+			/// </summary>
+			
+			myFile << "Skins:\n";
+			
+			// SKINS END
+
+			
+			///Settings Begin
+			///
+			/// 
+
+			myFile << "Settings:\n";
+
+
+			
+			/// <summary>
+			/// Colours
+			/// </summary>
+			/// 
+			myFile << "Colour:\n";
+			myFile << "- float: " << Config::Settings::Cfg::textCol1[0] << "\n";
+			myFile << "- float: " << Config::Settings::Cfg::textCol1[1] << "\n";
+			myFile << "- float: " << Config::Settings::Cfg::textCol1[2] << "\n";
+			myFile << "- float: " << Config::Settings::Cfg::textCol1[3] << "\n";
+
+			myFile << "- float: " << Config::Settings::Cfg::button[0] << "\n";
+			myFile << "- float: " << Config::Settings::Cfg::button[1] << "\n";
+			myFile << "- float: " << Config::Settings::Cfg::button[2] << "\n";
+			myFile << "- float: " << Config::Settings::Cfg::button[3] << "\n";
+			
+			myFile << "- float: " << Config::Settings::Cfg::buttonHovered[0] << "\n";
+			myFile << "- float: " << Config::Settings::Cfg::buttonHovered[1] << "\n";
+			myFile << "- float: " << Config::Settings::Cfg::buttonHovered[2] << "\n";
+			myFile << "- float: " << Config::Settings::Cfg::buttonHovered[3] << "\n";
+
+			myFile << "- float: " << Config::Settings::Cfg::buttonActive[0] << "\n";
+			myFile << "- float: " << Config::Settings::Cfg::buttonActive[1] << "\n";
+			myFile << "- float: " << Config::Settings::Cfg::buttonActive[2] << "\n";
+			myFile << "- float: " << Config::Settings::Cfg::buttonActive[3] << "\n";
+
+			myFile << "- float: " << Config::Settings::Cfg::separator[0] << "\n";
+			myFile << "- float: " << Config::Settings::Cfg::separator[1] << "\n";
+			myFile << "- float: " << Config::Settings::Cfg::separator[2] << "\n";
+			myFile << "- float: " << Config::Settings::Cfg::separator[3] << "\n";
+
+			myFile << "- float: " << Config::Settings::Cfg::separatorHovered[0] << "\n";
+			myFile << "- float: " << Config::Settings::Cfg::separatorHovered[1] << "\n";
+			myFile << "- float: " << Config::Settings::Cfg::separatorHovered[2] << "\n";
+			myFile << "- float: " << Config::Settings::Cfg::separatorHovered[3] << "\n";
+
+			myFile << "- float: " << Config::Settings::Cfg::separatorActive[0] << "\n";
+			myFile << "- float: " << Config::Settings::Cfg::separatorActive[1] << "\n";
+			myFile << "- float: " << Config::Settings::Cfg::separatorActive[2] << "\n";
+			myFile << "- float: " << Config::Settings::Cfg::separatorActive[3] << "\n";
+
+			myFile << "- float: " << Config::Settings::Cfg::windowBg[0] << "\n";
+			myFile << "- float: " << Config::Settings::Cfg::windowBg[1] << "\n";
+			myFile << "- float: " << Config::Settings::Cfg::windowBg[2] << "\n";
+			myFile << "- float: " << Config::Settings::Cfg::windowBg[3] << "\n";
+			
+			myFile << "- float: " << Config::Settings::Cfg::childBg[0] << "\n";
+			myFile << "- float: " << Config::Settings::Cfg::childBg[1] << "\n";
+			myFile << "- float: " << Config::Settings::Cfg::childBg[2] << "\n";
+			myFile << "- float: " << Config::Settings::Cfg::childBg[3] << "\n";
+
+			myFile << "- float: " << Config::Settings::Cfg::borderBg[0] << "\n";
+			myFile << "- float: " << Config::Settings::Cfg::borderBg[1] << "\n";
+			myFile << "- float: " << Config::Settings::Cfg::borderBg[2] << "\n";
+			myFile << "- float: " << Config::Settings::Cfg::borderBg[3] << "\n";
+			
+			myFile << "- float: " << Config::Settings::Cfg::frameBg[0] << "\n";
+			myFile << "- float: " << Config::Settings::Cfg::frameBg[1] << "\n";
+			myFile << "- float: " << Config::Settings::Cfg::frameBg[2] << "\n";
+			myFile << "- float: " << Config::Settings::Cfg::frameBg[3] << "\n";
+			
+			myFile << "- float: " << Config::Settings::Cfg::frameBgHover[0] << "\n";
+			myFile << "- float: " << Config::Settings::Cfg::frameBgHover[1] << "\n";
+			myFile << "- float: " << Config::Settings::Cfg::frameBgHover[2] << "\n";
+			myFile << "- float: " << Config::Settings::Cfg::frameBgHover[3] << "\n";
+			
+			myFile << "- float: " << Config::Settings::Cfg::frameBgActive[0] << "\n";
+			myFile << "- float: " << Config::Settings::Cfg::frameBgActive[1] << "\n";
+			myFile << "- float: " << Config::Settings::Cfg::frameBgActive[2] << "\n";
+			myFile << "- float: " << Config::Settings::Cfg::frameBgActive[3] << "\n";
+
+			myFile << "- float: " << Config::Settings::Cfg::headder[0] << "\n";
+			myFile << "- float: " << Config::Settings::Cfg::headder[1] << "\n";
+			myFile << "- float: " << Config::Settings::Cfg::headder[2] << "\n";
+			myFile << "- float: " << Config::Settings::Cfg::headder[3] << "\n";
+			
+			myFile << "- float: " << Config::Settings::Cfg::headderHover[0] << "\n";
+			myFile << "- float: " << Config::Settings::Cfg::headderHover[1] << "\n";
+			myFile << "- float: " << Config::Settings::Cfg::headderHover[2] << "\n";
+			myFile << "- float: " << Config::Settings::Cfg::headderHover[3] << "\n";
+
+			myFile << "- float: " << Config::Settings::Cfg::headderActive[0] << "\n";
+			myFile << "- float: " << Config::Settings::Cfg::headderActive[1] << "\n";
+			myFile << "- float: " << Config::Settings::Cfg::headderActive[2] << "\n";
+			myFile << "- float: " << Config::Settings::Cfg::headderActive[3] << "\n";
+			
+			myFile << "- float: " << Config::Settings::Cfg::checkMark[0] << "\n";
+			myFile << "- float: " << Config::Settings::Cfg::checkMark[1] << "\n";
+			myFile << "- float: " << Config::Settings::Cfg::checkMark[2] << "\n";
+			myFile << "- float: " << Config::Settings::Cfg::checkMark[3] << "\n";
+			
+			myFile << "- float: " << Config::Settings::Cfg::sliderGrab[0] << "\n";
+			myFile << "- float: " << Config::Settings::Cfg::sliderGrab[1] << "\n";
+			myFile << "- float: " << Config::Settings::Cfg::sliderGrab[2] << "\n";
+			myFile << "- float: " << Config::Settings::Cfg::sliderGrab[3] << "\n";
+			
+			myFile << "- float: " << Config::Settings::Cfg::sliderGrabActive[0] << "\n";
+			myFile << "- float: " << Config::Settings::Cfg::sliderGrabActive[1] << "\n";
+			myFile << "- float: " << Config::Settings::Cfg::sliderGrabActive[2] << "\n";
+			myFile << "- float: " << Config::Settings::Cfg::sliderGrabActive[3] << "\n";
+			
+			myFile << "- float: " << Config::Settings::Cfg::scrollBar[0] << "\n";
+			myFile << "- float: " << Config::Settings::Cfg::scrollBar[1] << "\n";
+			myFile << "- float: " << Config::Settings::Cfg::scrollBar[2] << "\n";
+			myFile << "- float: " << Config::Settings::Cfg::scrollBar[3] << "\n";
+
+			myFile << "- float: " << Config::Settings::Cfg::scrollBarGrab[0] << "\n";
+			myFile << "- float: " << Config::Settings::Cfg::scrollBarGrab[1] << "\n";
+			myFile << "- float: " << Config::Settings::Cfg::scrollBarGrab[2] << "\n";
+			myFile << "- float: " << Config::Settings::Cfg::scrollBarGrab[3] << "\n";
+			
+			myFile << "- float: " << Config::Settings::Cfg::scrollBarHovered[0] << "\n";
+			myFile << "- float: " << Config::Settings::Cfg::scrollBarHovered[1] << "\n";
+			myFile << "- float: " << Config::Settings::Cfg::scrollBarHovered[2] << "\n";
+			myFile << "- float: " << Config::Settings::Cfg::scrollBarHovered[3] << "\n";
+			
+			myFile << "- float: " << Config::Settings::Cfg::scrollBarActive[0] << "\n";
+			myFile << "- float: " << Config::Settings::Cfg::scrollBarActive[1] << "\n";
+			myFile << "- float: " << Config::Settings::Cfg::scrollBarActive[2] << "\n";
+			myFile << "- float: " << Config::Settings::Cfg::scrollBarActive[3] << "\n";
+			
+			myFile << "- float: " << Config::Settings::Cfg::menuBonesInactive[0] << "\n";
+			myFile << "- float: " << Config::Settings::Cfg::menuBonesInactive[1] << "\n";
+			myFile << "- float: " << Config::Settings::Cfg::menuBonesInactive[2] << "\n";
+			myFile << "- float: " << Config::Settings::Cfg::menuBonesInactive[3] << "\n";
+
+			myFile << "- float: " << Config::Settings::Cfg::menuBonesActive[0] << "\n";
+			myFile << "- float: " << Config::Settings::Cfg::menuBonesActive[1] << "\n";
+			myFile << "- float: " << Config::Settings::Cfg::menuBonesActive[2] << "\n";
+			myFile << "- float: " << Config::Settings::Cfg::menuBonesActive[3] << "\n";
+			
+			
+			
 			
 			
 			myFile.close();
 		}
 
+	}
+
+	void loadConfig(char* string) {
+		Yaml::Node root;
+		Yaml::Parse(root, "file.txt");
+
+		
 	}
 };
