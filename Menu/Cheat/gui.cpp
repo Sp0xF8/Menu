@@ -1028,7 +1028,7 @@ void gui::Menu() noexcept
 			break;
 		case 5:
 			//Skins
-			ImGui::Text("Visuals");
+			ImGui::Text("Skins");
 			break;
 		case 6:
 			//Settings
@@ -1071,6 +1071,34 @@ void gui::Menu() noexcept
 				ImGui::ColorEdit4("Scrollbar Active", (float*)&Config::Settings::Cfg::scrollBarActive, ImGuiColorEditFlags_NoInputs | ImGuiColorEditFlags_AlphaBar);
 
 				ImGui::ColorEdit4("Text Colour", (float*)&Config::Settings::Cfg::textCol1, ImGuiColorEditFlags_NoInputs | ImGuiColorEditFlags_AlphaBar);
+
+			}
+			ImGui::EndChild();
+			ImGui::SameLine();
+			ImGui::BeginChild("Cheat", ImVec2(200, ImGui::GetContentRegionAvail().y), TRUE);
+			{
+				ImGui::BeginChild("Config", ImVec2(ImGui::GetContentRegionAvail().x, ImGui::GetContentRegionAvail().y / 2), TRUE);
+				{
+					imguipp::center_text_ex("Config", ImGui::GetContentRegionAvail().x, 1, false);
+					ImGui::SeparatorEx(ImGuiSeparatorFlags_Horizontal);
+
+					if (ImGui::Button("SaveCfg", ImVec2(20, 10)))
+					{
+						Config::SaveConfig();
+					}
+
+					
+
+
+				}
+				ImGui::EndChild();
+
+				ImGui::BeginChild("Unload", ImVec2(ImGui::GetContentRegionAvail().x, ImGui::GetContentRegionAvail().y), TRUE);
+				{
+					imguipp::center_text_ex("Options", ImGui::GetContentRegionAvail().x, 1, false);
+					ImGui::SeparatorEx(ImGuiSeparatorFlags_Horizontal);
+				}
+				ImGui::EndChild();
 
 			}
 			ImGui::EndChild();
